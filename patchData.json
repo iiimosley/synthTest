@@ -1,0 +1,58 @@
+{
+    "patch1": {
+        "ampAttack": "1.35",
+        "ampDecay": "0.84",
+        "ampRelease": "2.03",
+        "ampSustain": "1",
+        "detune": "0",
+        "filterAttack": "1.21",
+        "filterDecay": "1",
+        "filterFreq": "740",
+        "filterQ": "5",
+        "filterRelease": "1.65",
+        "filterSustain": "1",
+        "osc": "square"
+    },
+    "patch2": {
+        "ampAttack": "1.38",
+        "ampDecay": "1",
+        "ampRelease": "2.87",
+        "ampSustain": "1",
+        "detune": "0",
+        "filterAttack": "0.01",
+        "filterDecay": "0.69",
+        "filterFreq": "710",
+        "filterQ": "0",
+        "filterRelease": "2.34",
+        "filterSustain": "1",
+        "osc": "sawtooth"
+    },
+    "patch3": {
+        "ampAttack": "1.14",
+        "ampDecay": "1",
+        "ampRelease": "2.29",
+        "ampSustain": "1",
+        "detune": "0",
+        "filterAttack": "0.01",
+        "filterDecay": "0.01",
+        "filterFreq": "780",
+        "filterQ": "6",
+        "filterRelease": "1.42",
+        "filterSustain": "0.01",
+        "osc": "triangle"
+    },
+    "patch4": {
+        "detune": "0",
+        "osc": "square",
+        "ampAttack": "0.01",
+        "ampDecay": "1",
+        "ampSustain": "1",
+        "ampRelease": "2.73",
+        "filterFreq": "680",
+        "filterQ": "10",
+        "filterAttack": "2.24",
+        "filterDecay": "1",
+        "filterSustain": "1",
+        "filterRelease": "2.44"
+    }
+}

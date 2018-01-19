@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>synth test - capstone</title>
+    <link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:300,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="stylesheets/main.css">
+</head>
+<body>
+    <div id="synthWrap">
+        <div id="octave">
+            <h4>transpose</h4>
+            <div>
+                <label for="plus2">+2</label>
+                <input type="radio" name="detune" id="plus2" value="2400">
+            </div>
+            <div>
+                <label for="plus1">+1</label>
+                <input type="radio" name="detune" id="plus1" value="1200">
+            </div>
+            <div>
+                <label for="none">0</label>
+                <input type="radio" name="detune" id="none" value="0" checked>
+            </div>
+            <div>
+                <label for="down1">-1</label>
+                <input type="radio" name="detune" id="down1" value="-1200">
+            </div>
+            <div>
+                <label for="down2">-2</label>
+                <input type="radio" name="detune" id="down2" value="-2400">
+            </div>
+        </div>
+        <div id="oscType">
+            <div>
+            <label for="sine">sine</label>
+            <input type="radio" name="osc" id="sine" value="sine" checked>
+            </div>
+            <div>
+            <label for="triangle">triangle</label>
+            <input type="radio" name="osc" id="triangle" value="triangle">
+            </div>
+            <div>
+            <label for="square">square</label>
+            <input type="radio" name="osc" id="square" value="square">
+            </div>
+            <div>
+            <label for="sawtooth">sawtooth</label>
+            <input type="radio" name="osc" id="sawtooth" value="sawtooth">
+            </div>
+        </div>
+        <div id="ampEG">
+            <div>
+            <label for="ampAttack">amp attack</label>
+            <input type="range" id="ampAttack" min="0.01" max="3" step="0.01" value="0.01">
+            </div>
+            <div>
+            <label for="ampDecay">amp decay</label>
+            <input type="range" id="ampDecay" min="0.01" max="1" step="0.01" value="1">
+            </div>
+            <div>
+            <label for="ampAttack">amp sustain</label>
+            <input type="range" id="ampSustain" min="0.01" max="1" step="0.01" value="1">
+            </div>
+            <div>
+            <label for="ampRelease">amp release</label>
+            <input type="range" id="ampRelease" min="0.01" max="3" step="0.01" value="0">
+            </div>
+        </div>
+        <div id="filter">
+            <div>
+                <label for="filterFreq">cutoff frequency</label>
+                <input type="range" id="filterFreq" min="100" max="2000" step="10" value="200">
+            </div>
+            <div>
+                <label for="filterQ">resonance</label>
+                <input type="range" id="filterQ" min="0" max="12" step="1" value="0">
+            </div>
+        </div>
+        <div id="filterEG">
+            <div>
+                <label for="filterAttack">filter attack</label>
+                <input type="range" id="filterAttack" min="0.01" max="3" step="0.01" value="0.01">
+            </div>
+            <div>
+                <label for="filterDecay">filter decay</label>
+                <input type="range" id="filterDecay" min="0.01" max="1" step="0.01" value="1">
+            </div>
+            <div>
+                <label for="filterAttack">filter sustain</label>
+                <input type="range" id="filterSustain" min="0.01" max="1" step="0.01" value="1">
+            </div>
+            <div>
+                <label for="filterRelease">filter release</label>
+                <input type="range" id="filterRelease" min="0.01" max="3" step="0.01" value="0.01">
+            </div>
+        </div>
+    </div>
+    <div id="patchWrap">
+        <span id="disclaimer">please adjust transpose w/ each patch change <sup><span id="bug">**bug**</span></sup></span>
+        <h3>patches</h3>
+        <div id="patchBtns">
+        <input type="radio" name="patch" id="patch1" checked>
+        <input type="radio" name="patch" id="patch2">
+        <input type="radio" name="patch" id="patch3">
+        <input type="radio" name="patch" id="patch4">
+        </div>
+    </div>
+    <img id="piano" src="keys.jpg">
+    <!-- <button id="getVals">get all values</button> -->
+    <script src="dist/bundle.js"></script>
+</body>
+</html>
