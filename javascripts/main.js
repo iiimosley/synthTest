@@ -14,7 +14,6 @@ function applyPatch(patch) {
     let params = Object.keys(patch);
     params.forEach(i => {
         if (i === "osc" || i === "detune") {
-            console.log(patch[i]);
             $(`#synthWrap :input:radio[name=${i}][id=${patch[i]}]`).prop('checked', true);
         } else {
             $(`#synthWrap :input#${i}`).val(patch[i]);
@@ -72,7 +71,6 @@ $("#patchBtns :input:radio").change(function(){
     let pID = $("#patchBtns :input:radio:checked").attr('id');
     model.setPatch()
     .then((patches)=>{
-        console.log(patches[pID]);
         applyPatch(patches[pID]);
     });
 });
