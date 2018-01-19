@@ -5,7 +5,7 @@ body {
     color: snow;
 }
 
-h1 {
+h1, h3 {
     margin: 1em auto;
     text-align: center;
 }
@@ -28,7 +28,9 @@ h1 {
     border: .4vw groove oldlace;
     text-align: center;
     h3 {
-        display: inline-block;
+        display: block;
+        width: 40%;
+        padding-bottom: .4vw;
         letter-spacing: .2vw;
         border-bottom: .1vw solid white;
     }
@@ -55,6 +57,7 @@ h1 {
     margin: 2em auto;
     max-width: 40%;
     height: auto;
+    border-radius: 1em;
 }
 
 canvas {
