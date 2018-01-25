@@ -72,6 +72,7 @@ $("#patchBtns :input:radio").change(function(){
     model.setPatch()
     .then((patches)=>{
         applyPatch(patches[pID]);
+        $("#synthWrap").trigger("change");
     });
 });
 
