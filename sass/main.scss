@@ -36,11 +36,29 @@ h1, h3 {
     }
 }
 
-#disclaimer {
-    font-size: .9em;
-    color: goldenrod;
-    #bug {
-        font-size: .45em;
+#keyMap {
+
+    margin: 1em auto;
+    padding: 0;
+    width: 59%;
+    height: 20vw;
+    border: .3vw double white;
+    div {
+        position: relative;
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+        width: 8.3%;
+        height: 100%;
+        background: white;
+        border-radius: 0 0 1.3vw 1.3vw;
+    }
+    .flat {
+        z-index: 2;
+        position: absolute;
+        width: 2.4vw;
+        height: 12vw;
+        background: black;
     }
 }
 
