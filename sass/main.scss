@@ -70,10 +70,12 @@ h1, h3 {
         height: 12vw;
         background: black;
     }
-}
-
-.keyFill {
-    background: linear-gradient(45deg, goldenrod,rgb(138, 171, 214)) !important;
+    .keyFill {
+        background: linear-gradient(45deg, goldenrod,rgb(138, 171, 214)) !important;
+    }
+    .keyFillFlat {
+        background: linear-gradient(76deg,rgb(90, 37, 43) 42%, rgb(107, 206, 194)) !important;
+    }
 }
 
 
