@@ -1,7 +1,7 @@
 'use strict';
 const $ = require('jquery');
 const Tone = require('tone');
-const model = require('./model');
+const DataFactory = require('./dataFactory.js');
 const view = require('./view');
 
 
@@ -82,24 +82,30 @@ $(document).on("keyup", function () {
 
 $("#showKeys").on("change", function(){
     if ($("#showKeys").is(":checked")){
-        $("#keyOver").show();
+        // $("#keyOver").show();
         $("#keyMap>div>span").show();
     } else {
-        $("#keyOver").hide();
+        // $("#keyOver").hide();
         $("#keyMap>div>span").hide();
     }
 });
 
 $("#patchBtns :input:radio").change(function(){
     let pID = $("#patchBtns :input:radio:checked").attr('id');
-    model.setPatch()
+    DataFactory.setPatch()
     .then((patches)=>{
         applyPatch(patches[pID]);
         $("#synthWrap").trigger("change");
     });
 });
 
+$("#callSave").on("click", () => $("#saveModal").show());
 
+
+
+$(".closeChip").on("click", function(){
+    $(this).parent().parent().hide();
+});
 
 // $("#getVals").on("click", function(){
 //     let obj = {};
@@ -112,6 +118,6 @@ $("#patchBtns :input:radio").change(function(){
 //         obj[this.id] = this.value;
 //     });
 //     console.log(obj, $("#patchBtns :input:radio:checked").attr('id'));
-//     model.setPatch(obj, $("#patchBtns :input:radio:checked").attr('id'));
+//     DataFactory.setPatch(obj, $("#patchBtns :input:radio:checked").attr('id'));
 // });
 
