@@ -1,3 +1,5 @@
+$keyBorder: .3vw double white;
+
 body {
     margin: 0;
     background: rgb(34, 34, 34);
@@ -37,29 +39,36 @@ h1, h3 {
 }
 
 #keyMap {
-
+    font-size: 0;
     margin: 1em auto;
-    padding: 0;
+    padding-bottom: .1vw;
     width: 59%;
     height: 20vw;
-    border: .3vw double white;
+    border-top: $keyBorder;
+    border-right: $keyBorder;
+    border-left: $keyBorder;
     div {
-        position: relative;
         display: inline-block;
         padding: 0;
         margin: 0;
-        width: 8.3%;
+        width: 8.74%;
         height: 100%;
         background: white;
+        border: .1vw solid black;
         border-radius: 0 0 1.3vw 1.3vw;
     }
     .flat {
         z-index: 2;
         position: absolute;
+        margin-left: -1.3vw;
         width: 2.4vw;
         height: 12vw;
         background: black;
     }
+}
+
+.keyFill {
+    background: linear-gradient(45deg, goldenrod,rgb(138, 171, 214)) !important;
 }
 
 
