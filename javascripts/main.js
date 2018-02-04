@@ -83,8 +83,10 @@ $(document).on("keyup", function () {
 $("#showKeys").on("change", function(){
     if ($("#showKeys").is(":checked")){
         $("#keyOver").show();
+        $("#keyMap>div>span").show();
     } else {
         $("#keyOver").hide();
+        $("#keyMap>div>span").hide();
     }
 });
 
