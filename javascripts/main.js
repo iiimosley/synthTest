@@ -80,6 +80,14 @@ $(document).on("keyup", function () {
     }
 });
 
+$("#showKeys").on("change", function(){
+    if ($("#showKeys").is(":checked")){
+        $("#keyOver").show();
+    } else {
+        $("#keyOver").hide();
+    }
+});
+
 $("#patchBtns :input:radio").change(function(){
     let pID = $("#patchBtns :input:radio:checked").attr('id');
     model.setPatch()
