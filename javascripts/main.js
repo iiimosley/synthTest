@@ -60,9 +60,8 @@ synth.toMaster();
 $(document).on("keydown", function () {
     for (let i = 0; i < allNotes.length; i++) {
         if (event.keyCode == allKeys[i] && !event.repeat) {
-            // console.log(allKeys[i]);
-            $(`#key${allKeys[i]}`).css('background-color', 'yellow');
-            // .css('background-color', 'yellow');
+            $(`#key${allKeys[i]}`).addClass("keyFill");
+            // $(`#key${allKeys[i]}`).css('background-color', 'yellow');
             synth.triggerAttack(allNotes[i]);
         }
     }
@@ -71,11 +70,12 @@ $(document).on("keydown", function () {
 $(document).on("keyup", function () {
     for (let i = 0; i < allNotes.length; i++) {
         if (event.keyCode == allKeys[i]) {
-            if ($(`#key${allKeys[i]}`).hasClass("flat")) {
-                $(`#key${allKeys[i]}`).css('background-color', 'black');
-            } else {
-                $(`#key${allKeys[i]}`).css('background-color', 'white');
-            }
+            // if ($(`#key${allKeys[i]}`).hasClass("flat")) {
+            //     $(`#key${allKeys[i]}`).css('background-color', 'black');
+            // } else {
+            //     $(`#key${allKeys[i]}`).css('background-color', 'white');
+            // }
+            $(`#key${allKeys[i]}`).removeClass("keyFill");
             synth.triggerRelease(allNotes[i]);
         }
     }
