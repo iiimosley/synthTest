@@ -36,6 +36,12 @@ $keyBorder: .3vw double white;
             color: white;
             text-decoration: none;
             background: blue;
+            border-radius: 1em;
+            &:hover{
+                // border: .01vw solid black;
+                box-shadow: inset 0 0 .7vw .2vw rgba(1, 1, 66, 0.582), inset 0 0 1vw rgb(2, 2, 109);
+                cursor: pointer;
+            }
         }
         .closeChip {
             float: right;

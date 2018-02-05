@@ -13,7 +13,7 @@ module.exports.setPatch = () => {
 module.exports.savePatch = (patchData) => {
     return new Promise((resolve, reject) => {
         $.ajax({
-            url: '../patchData.json',
+            url: 'https://synthulx.firebaseio.com/patches.json',
             method: 'POST',
             data: JSON.stringify(patchData)
         })
