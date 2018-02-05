@@ -9,6 +9,26 @@
     <link rel="stylesheet" href="stylesheets/main.css">
 </head>
 <body>
+    <div id="nav">
+        <button id="login">Login</button>
+        <button id="logout">Logout</button>
+    </div>
+    <div id="editModal">
+        <div class="patchModal">
+
+            <span class="closeChip">&times;</span>
+        </div>
+    </div>
+    <div id="saveModal">
+        <div class="patchModal">
+            <div>
+                <h2>Save new patch as....</h2>
+                <input type="text" id="newPatch">
+                <a id="savePatch" class="patchFeat">Save Patch</a>
+            </div>
+            <span class="closeChip">&times;</span>
+        </div>
+    </div>
     <div id="synthWrap">
         <div id="octave">
             <h4>transpose</h4>
@@ -123,6 +143,10 @@
     <div id="keyCheck">
         <input type="checkbox" id="showKeys">
         <label for="showKeys">Show Key Map</label>
+    </div>
+    <div id="patchData">
+        <button id="callSave">Save Patch</button>
+        <button id="callEdit">Edit Patch</button>
     </div>
     <div id="patchWrap">
         <h3>patches</h3>
