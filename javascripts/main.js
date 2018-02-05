@@ -1,9 +1,18 @@
 'use strict';
 const $ = require('jquery');
 const Tone = require('tone');
-const model = require('./model');
+const DataFactory = require('./dataFactory');
 const view = require('./view');
+const AuthFactory = require('./authFactory');
 
+let currentUser = null;
+
+$("#login").on("click", ()=>{
+    AuthFactory.authUser()
+    .then(account=>{currentUser=account.user.uid;console.log(currentUser);});  
+});
+
+$("#logout").on("click", () => AuthFactory.logout());
 
 let allNotes = ['C4','C#4','D4','D#4','E4','F4','F#4','G4','G#4','A4','A#4','B4','C5','C#5','D5','D#5','E5','F5'];
 let allKeys = [65,87,83,69,68,70,84,71,89,72,85,74,75,79,76,80,186,222];
@@ -57,6 +66,7 @@ $("#synthWrap").on("change", function(){
 });
 synth.toMaster();
 
+
 $(document).on("keydown", function () {
     for (let i = 0; i < allNotes.length; i++) {
         if (event.keyCode == allKeys[i] && !event.repeat) {
@@ -80,26 +90,49 @@ $(document).on("keyup", function () {
     }
 });
 
+
 $("#showKeys").on("change", function(){
     if ($("#showKeys").is(":checked")){
-        $("#keyOver").show();
+        // $("#keyOver").show();
         $("#keyMap>div>span").show();
     } else {
-        $("#keyOver").hide();
+        // $("#keyOver").hide();
         $("#keyMap>div>span").hide();
     }
 });
 
+
+
 $("#patchBtns :input:radio").change(function(){
     let pID = $("#patchBtns :input:radio:checked").attr('id');
-    model.setPatch()
+    DataFactory.setPatch()
     .then((patches)=>{
         applyPatch(patches[pID]);
         $("#synthWrap").trigger("change");
     });
 });
 
+$("#callSave").on("click", () => $("#saveModal").show());
 
+$("#savePatch").on("click", function() {
+    let obj = {};
+    obj.patch_name = $("#newPatch").val();
+    obj.uid = currentUser;
+    $("#synthWrap :input:radio:checked").each(function(set){
+        console.log(set, this.name, this.value);
+        obj[this.name] = this.value;
+    });
+    $("#synthWrap :input[type=range]").each(function (set) {
+        console.log(set, this.id, this.value);
+        obj[this.id] = this.value;
+    });
+    console.log(obj);
+    DataFactory.savePatch(obj);
+});
+
+$(".closeChip").on("click", function(){
+    $(this).parent().parent().hide();
+});
 
 // $("#getVals").on("click", function(){
 //     let obj = {};
@@ -112,6 +145,6 @@ $("#patchBtns :input:radio").change(function(){
 //         obj[this.id] = this.value;
 //     });
 //     console.log(obj, $("#patchBtns :input:radio:checked").attr('id'));
-//     model.setPatch(obj, $("#patchBtns :input:radio:checked").attr('id'));
+//     DataFactory.setPatch(obj, $("#patchBtns :input:radio:checked").attr('id'));
 // });
 
