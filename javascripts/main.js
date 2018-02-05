@@ -66,6 +66,7 @@ $("#synthWrap").on("change", function(){
 });
 synth.toMaster();
 
+
 $(document).on("keydown", function () {
     for (let i = 0; i < allNotes.length; i++) {
         if (event.keyCode == allKeys[i] && !event.repeat) {
@@ -89,6 +90,7 @@ $(document).on("keyup", function () {
     }
 });
 
+
 $("#showKeys").on("change", function(){
     if ($("#showKeys").is(":checked")){
         // $("#keyOver").show();
@@ -98,6 +100,8 @@ $("#showKeys").on("change", function(){
         $("#keyMap>div>span").hide();
     }
 });
+
+
 
 $("#patchBtns :input:radio").change(function(){
     let pID = $("#patchBtns :input:radio:checked").attr('id');
