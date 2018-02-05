@@ -1,9 +1,18 @@
 'use strict';
 const $ = require('jquery');
 const Tone = require('tone');
-const DataFactory = require('./dataFactory.js');
+const DataFactory = require('./dataFactory');
 const view = require('./view');
+const AuthFactory = require('./authFactory');
 
+let currentUser = null;
+
+$("#login").on("click", ()=>{
+    AuthFactory.authUser()
+    .then(account=>{currentUser=account.user.uid;console.log(currentUser);});  
+});
+
+$("#logout").on("click", () => AuthFactory.logout());
 
 let allNotes = ['C4','C#4','D4','D#4','E4','F4','F#4','G4','G#4','A4','A#4','B4','C5','C#5','D5','D#5','E5','F5'];
 let allKeys = [65,87,83,69,68,70,84,71,89,72,85,74,75,79,76,80,186,222];
@@ -104,6 +113,7 @@ $("#callSave").on("click", () => $("#saveModal").show());
 $("#savePatch").on("click", function() {
     let obj = {};
     obj.patch_name = $("#newPatch").val();
+    obj.uid = currentUser;
     $("#synthWrap :input:radio:checked").each(function(set){
         console.log(set, this.name, this.value);
         obj[this.name] = this.value;
