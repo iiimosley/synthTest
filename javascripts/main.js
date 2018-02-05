@@ -101,7 +101,20 @@ $("#patchBtns :input:radio").change(function(){
 
 $("#callSave").on("click", () => $("#saveModal").show());
 
-
+$("#savePatch").on("click", function() {
+    let obj = {};
+    obj.patch_name = $("#newPatch").val();
+    $("#synthWrap :input:radio:checked").each(function(set){
+        console.log(set, this.name, this.value);
+        obj[this.name] = this.value;
+    });
+    $("#synthWrap :input[type=range]").each(function (set) {
+        console.log(set, this.id, this.value);
+        obj[this.id] = this.value;
+    });
+    console.log(obj);
+    DataFactory.savePatch(obj);
+});
 
 $(".closeChip").on("click", function(){
     $(this).parent().parent().hide();
