@@ -4,15 +4,19 @@ const Tone = require('tone');
 const DataFactory = require('./dataFactory');
 const view = require('./view');
 const AuthFactory = require('./authFactory');
-
 let currentUser = null;
 
-$("#login").on("click", ()=>{
+module.exports.checkUser = uid => {
+    currentUser = uid;
+    return currentUser;
+};
+
+$(document).on("click", "#login", ()=>{
     AuthFactory.authUser()
     .then(account=>{currentUser=account.user.uid;console.log(currentUser);});  
 });
 
-$("#logout").on("click", () => AuthFactory.logout());
+$(document).on("click", "#logout", () => AuthFactory.logout());
 
 let allNotes = ['C4','C#4','D4','D#4','E4','F4','F#4','G4','G#4','A4','A#4','B4','C5','C#5','D5','D#5','E5','F5'];
 let allKeys = [65,87,83,69,68,70,84,71,89,72,85,74,75,79,76,80,186,222];
@@ -34,6 +38,7 @@ function applyPatch(patch) {
             $(`#synthWrap :input#${i}`).val(patch[i]);
         }
     });
+    $("#synthWrap").trigger("change");
 }
 
 $("#synthWrap").on("change", function(){
@@ -93,15 +98,16 @@ $(document).on("keyup", function () {
 
 $("#showKeys").on("change", function(){
     if ($("#showKeys").is(":checked")){
-        // $("#keyOver").show();
         $("#keyMap>div>span").show();
     } else {
-        // $("#keyOver").hide();
         $("#keyMap>div>span").hide();
     }
 });
 
-
+$(document).on("click", "#patchDrop", function(){
+    DataFactory.loadPatch(event.target.id)
+    .then(patch=>applyPatch(patch));
+}); 
 
 $("#patchBtns :input:radio").change(function(){
     let pID = $("#patchBtns :input:radio:checked").attr('id');
@@ -112,9 +118,9 @@ $("#patchBtns :input:radio").change(function(){
     });
 });
 
-$("#callSave").on("click", () => $("#saveModal").show());
+$(document).on("click", "#callSave", () => $("#saveModal").show());
 
-$("#savePatch").on("click", function() {
+$(document).on("click", "#savePatch", function() {
     let obj = {};
     obj.patch_name = $("#newPatch").val();
     obj.uid = currentUser;

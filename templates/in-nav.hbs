@@ -1,0 +1,9 @@
+<button id="logout">Logout</button>
+<span>patches</span>
+<div id="patchDrop">
+    <ul>
+        {{#each userPatches}}
+            <li id="{{@key}}">{{patch_name}}</li>
+        {{/each}}
+    </ul>
+</div>
