@@ -4,8 +4,12 @@ const Tone = require('tone');
 const DataFactory = require('./dataFactory');
 const view = require('./view');
 const AuthFactory = require('./authFactory');
-
 let currentUser = null;
+
+module.exports.checkUser = uid => {
+    currentUser = uid;
+    return currentUser;
+};
 
 $(document).on("click", "#login", ()=>{
     AuthFactory.authUser()
@@ -34,6 +38,7 @@ function applyPatch(patch) {
             $(`#synthWrap :input#${i}`).val(patch[i]);
         }
     });
+    $("#synthWrap").trigger("change");
 }
 
 $("#synthWrap").on("change", function(){
@@ -93,16 +98,13 @@ $(document).on("keyup", function () {
 
 $("#showKeys").on("change", function(){
     if ($("#showKeys").is(":checked")){
-        // $("#keyOver").show();
         $("#keyMap>div>span").show();
     } else {
-        // $("#keyOver").hide();
         $("#keyMap>div>span").hide();
     }
 });
 
 $(document).on("click", "#patchDrop", function(){
-    console.log(event.target.id);
     DataFactory.loadPatch(event.target.id)
     .then(patch=>applyPatch(patch));
 }); 
