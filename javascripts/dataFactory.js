@@ -4,8 +4,9 @@ const $ = require('jquery');
 module.exports.getPatches = (uid) => {
     return new Promise((resolve, reject) => {
         $.ajax({ url: `https://synthulx.firebaseio.com/patches.json?orderBy="uid"&equalTo="${uid}"` })
-            .done(patch => {
-                resolve(patch);
+            .done(patches => {
+                console.log(patches);
+                resolve(patches);
             });
     });
 };

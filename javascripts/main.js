@@ -7,12 +7,12 @@ const AuthFactory = require('./authFactory');
 
 let currentUser = null;
 
-$("#login").on("click", ()=>{
+$(document).on("click", "#login", ()=>{
     AuthFactory.authUser()
     .then(account=>{currentUser=account.user.uid;console.log(currentUser);});  
 });
 
-$("#logout").on("click", () => AuthFactory.logout());
+$(document).on("click", "#logout", () => AuthFactory.logout());
 
 let allNotes = ['C4','C#4','D4','D#4','E4','F4','F#4','G4','G#4','A4','A#4','B4','C5','C#5','D5','D#5','E5','F5'];
 let allKeys = [65,87,83,69,68,70,84,71,89,72,85,74,75,79,76,80,186,222];
