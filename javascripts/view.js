@@ -10,7 +10,7 @@ const userBtns = require('../templates/user-buttons.hbs');
 module.exports.userAuth = (patches) => {
     console.log("patches to nav", patches);
     $("#nav").empty();
-    $("#nav").append(inNav);
+    $("#nav").append(inNav({userPatches: patches}));
     $("#userTools").append(userBtns);
 };
 

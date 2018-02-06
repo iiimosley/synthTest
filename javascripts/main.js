@@ -101,7 +101,11 @@ $("#showKeys").on("change", function(){
     }
 });
 
-
+$(document).on("click", "#patchDrop", function(){
+    console.log(event.target.id);
+    DataFactory.loadPatch(event.target.id)
+    .then(patch=>applyPatch(patch));
+}); 
 
 $("#patchBtns :input:radio").change(function(){
     let pID = $("#patchBtns :input:radio:checked").attr('id');
