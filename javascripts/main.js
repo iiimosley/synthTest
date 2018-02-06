@@ -112,9 +112,9 @@ $("#patchBtns :input:radio").change(function(){
     });
 });
 
-$("#callSave").on("click", () => $("#saveModal").show());
+$(document).on("click", "#callSave", () => $("#saveModal").show());
 
-$("#savePatch").on("click", function() {
+$(document).on("click", "#savePatch", function() {
     let obj = {};
     obj.patch_name = $("#newPatch").val();
     obj.uid = currentUser;

@@ -188,6 +188,14 @@ h1, h3 {
     width: 20%;
 }
 
+#userTools {
+    margin: 2em auto;
+    width: 30%;
+    #patchData {
+        margin: 1em auto;
+    }
+}
+
 
 #patchBtns {
     display: flex;
