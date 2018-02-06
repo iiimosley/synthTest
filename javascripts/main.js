@@ -158,7 +158,10 @@ $(document).on("click", "#editPatch", function () {
         obj[this.id] = this.value;
     });
     console.log(patchKey, obj);
-    DataFactory.overwritePatch(patchKey, obj);
+    DataFactory.overwritePatch(patchKey, obj)
+        .then(patch => {
+            view.leaveEdit(patch.patch_name);
+        });
 });
 
 

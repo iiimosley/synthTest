@@ -1,6 +1,7 @@
 'use strict';
 const $ = require('jquery');
 
+
 module.exports.savePatch = (patchData) => {
     return new Promise((resolve, reject) => {
         $.ajax({
@@ -15,6 +16,7 @@ module.exports.savePatch = (patchData) => {
     });
 };
 
+
 module.exports.getPatches = (uid) => {
     return new Promise((resolve, reject) => {
         $.ajax({ url: `https://synthulx.firebaseio.com/patches.json?orderBy="uid"&equalTo="${uid}"` })
@@ -28,6 +30,7 @@ module.exports.getPatches = (uid) => {
     });
 };
 
+
 module.exports.loadPatch = (pKey) => {
     return new Promise((resolve, reject) => {
         $.ajax({ url: `https://synthulx.firebaseio.com/patches/${pKey}.json` })
@@ -35,6 +38,8 @@ module.exports.loadPatch = (pKey) => {
     });
 };
 
+
+//overwrites specified patch with current synth settings
 module.exports.overwritePatch = (patch, params) => {
     return new Promise((resolve, reject) => {
         $.ajax({
