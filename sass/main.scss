@@ -17,11 +17,19 @@ $keyBorder: .3vw double white;
 
 #nav {
     background: white;
+    color: rgb(42, 42, 94);
     padding: .5vw;
     border-bottom: .2vw double black;
     #login {
         display: inline-block;
         margin: auto;
+    }
+    span {
+        font-style: italic;
+        margin-left: 1.4vw;
+    }
+    li {
+        cursor: pointer;
     }
 }
 
