@@ -35,6 +35,23 @@ module.exports.loadPatch = (pKey) => {
     });
 };
 
+module.exports.overwritePatch = (patch, params) => {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            url: `https://synthulx.firebaseio.com/patches/${patch}.json`,
+            method: 'PUT',
+            data: JSON.stringify(params)
+        })
+        .done(patch => {
+            console.log(patch);
+            resolve(patch);
+        });
+    });
+};
+
+
+
+//radio button patches on load (no login)
 module.exports.setPatch = () => {
     return new Promise((resolve, reject) => {
         $.ajax({url: '../patchData.json'})

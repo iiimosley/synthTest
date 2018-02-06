@@ -13,7 +13,7 @@ module.exports.checkUser = uid => {
 
 $(document).on("click", "#login", ()=>{
     AuthFactory.authUser()
-    .then(account=>{currentUser=account.user.uid;console.log(currentUser);});  
+    .then(account=>currentUser=account.user.uid);  
 });
 
 $(document).on("click", "#logout", () => AuthFactory.logout());
@@ -119,6 +119,13 @@ $("#patchBtns :input:radio").change(function(){
 });
 
 $(document).on("click", "#callSave", () => $("#saveModal").show());
+$(document).on("click", "#callEdit", () => {
+    DataFactory.getPatches(currentUser)
+    .then(patches=>{
+        view.editView(patches);
+    });
+});
+
 
 $(document).on("click", "#savePatch", function() {
     let obj = {};
@@ -136,9 +143,42 @@ $(document).on("click", "#savePatch", function() {
     DataFactory.savePatch(obj);
 });
 
-$(".closeChip").on("click", function(){
+
+$(document).on("click", "#editPatch", function () {
+    let patchKey = $("#patchOver").val();
+    let obj = {};
+    obj.patch_name = $("#patchOver option:selected").text();
+    obj.uid = currentUser;
+    $("#synthWrap :input:radio:checked").each(function (set) {
+        console.log(set, this.name, this.value);
+        obj[this.name] = this.value;
+    });
+    $("#synthWrap :input[type=range]").each(function (set) {
+        console.log(set, this.id, this.value);
+        obj[this.id] = this.value;
+    });
+    console.log(patchKey, obj);
+    DataFactory.overwritePatch(patchKey, obj);
+});
+
+
+$(document).on("click", ".closeChip", function(){
     $(this).parent().parent().hide();
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // $("#getVals").on("click", function(){
 //     let obj = {};
