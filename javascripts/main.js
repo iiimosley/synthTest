@@ -74,9 +74,12 @@ $("#synthWrap").on("change", function(){
 synth.toMaster();
 
 
-$(document).on("keydown", function () {
+$(document).on("keydown", function (e) {
     for (let i = 0; i < allNotes.length; i++) {
-        if (event.keyCode == allKeys[i] && !event.repeat) {
+        if ($("#newPatch").is(":focus")) {
+            e.stopPropagation();
+        }
+        else if (event.keyCode == allKeys[i] && !event.repeat) {
             if ($(`#key${allKeys[i]}`).hasClass("flat")){
                 $(`#key${allKeys[i]}`).addClass("keyFillFlat");
             } else {
