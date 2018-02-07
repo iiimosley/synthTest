@@ -6,7 +6,7 @@ module.exports = function (grunt) {
                 dest: 'dist/bundle.js'
             },
             options: {
-                transform: ['hbsfy'],
+                transform: ['hbsfy']
             }
         },
         jshint: {
@@ -27,12 +27,16 @@ module.exports = function (grunt) {
             }
         },
         watch: {
+            options: {
+                reload: true
+            },
             javascripts: {
                 files: ["javascripts/**/*.js"],
                 tasks: ["jshint", "browserify"]
             },
             hbs: {
-                files: ['../templates/**/*.hbs']
+                files: ['../templates/**/*.hbs'],
+                tasks: ["browserify"]
             },
             sass: {
                 files: ["sass/**/*.scss"],

@@ -4,7 +4,9 @@ const Tone = require('tone');
 const DataFactory = require('./dataFactory');
 const view = require('./view');
 const AuthFactory = require('./authFactory');
+
 let currentUser = null;
+let editBool = false;
 
 module.exports.checkUser = uid => {
     currentUser = uid;
@@ -13,7 +15,7 @@ module.exports.checkUser = uid => {
 
 $(document).on("click", "#login", ()=>{
     AuthFactory.authUser()
-    .then(account=>{currentUser=account.user.uid;console.log(currentUser);});  
+    .then(account=>currentUser=account.user.uid);  
 });
 
 $(document).on("click", "#logout", () => AuthFactory.logout());
@@ -96,6 +98,7 @@ $(document).on("keyup", function () {
 });
 
 
+/// show/hide coordinating key presses to piano
 $("#showKeys").on("change", function(){
     if ($("#showKeys").is(":checked")){
         $("#keyMap>div>span").show();
@@ -104,11 +107,15 @@ $("#showKeys").on("change", function(){
     }
 });
 
+
+
+/// load user patch from firebase & apply params to synth
 $(document).on("click", "#patchDrop", function(){
     DataFactory.loadPatch(event.target.id)
     .then(patch=>applyPatch(patch));
 }); 
 
+/// load prebuilt patch for non-registered users & apply params to synth
 $("#patchBtns :input:radio").change(function(){
     let pID = $("#patchBtns :input:radio:checked").attr('id');
     DataFactory.setPatch()
@@ -118,8 +125,32 @@ $("#patchBtns :input:radio").change(function(){
     });
 });
 
-$(document).on("click", "#callSave", () => $("#saveModal").show());
 
+
+
+///modal view event listeners
+/////////////////////////////
+$(document).on("click", "#callSave", () => view.saveView());
+
+$(document).on("click", "#callEdit", () => {
+    DataFactory.getPatches(currentUser)
+    .then(patches=>{
+        view.editView(patches);
+    });
+});
+
+$(document).on("click", ".deleteChip", function () {
+    view.deleteView($(this).parent().attr("id"), $(this).prev().text());
+});
+
+$(document).on("click", ".closeChip", function () {
+    $(this).parent().parent().hide();
+});
+
+
+
+///modal-to-data interactions
+/////////////////////////////
 $(document).on("click", "#savePatch", function() {
     let obj = {};
     obj.patch_name = $("#newPatch").val();
@@ -133,12 +164,52 @@ $(document).on("click", "#savePatch", function() {
         obj[this.id] = this.value;
     });
     console.log(obj);
-    DataFactory.savePatch(obj);
+    DataFactory.savePatch(obj)
+        .then(() => {
+            view.leaveModal(obj.patch_name, editBool);
+        });
 });
 
-$(".closeChip").on("click", function(){
-    $(this).parent().parent().hide();
+
+$(document).on("click", "#editPatch", function () {
+    let patchKey = $("#patchOver").val();
+    let obj = {};
+    obj.patch_name = $("#patchOver option:selected").text();
+    obj.uid = currentUser;
+    $("#synthWrap :input:radio:checked").each(function (set) {
+        console.log(set, this.name, this.value);
+        obj[this.name] = this.value;
+    });
+    $("#synthWrap :input[type=range]").each(function (set) {
+        console.log(set, this.id, this.value);
+        obj[this.id] = this.value;
+    });
+    console.log(patchKey, obj);
+    DataFactory.overwritePatch(patchKey, obj)
+        .then(patch => {
+            view.leaveModal(patch.patch_name, editBool);
+        });
 });
+
+
+$(document).on("click", "#deletePatch", function () {
+    let erasePatch = $(this).prev().attr("patch_id");
+    let deletedPatch = $("#toDelete").text();
+    let deleteBool = true;
+    DataFactory.deletePatch(erasePatch)
+        .then(() => view.leaveModal(deletedPatch, deleteBool));
+});
+
+
+
+
+
+
+
+
+
+
+
 
 // $("#getVals").on("click", function(){
 //     let obj = {};
