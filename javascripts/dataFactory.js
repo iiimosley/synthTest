@@ -55,7 +55,6 @@ module.exports.overwritePatch = (patch, params) => {
 };
 
 
-
 //radio button patches on load (no login)
 module.exports.setPatch = () => {
     return new Promise((resolve, reject) => {
