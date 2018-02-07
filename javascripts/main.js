@@ -13,12 +13,16 @@ module.exports.checkUser = uid => {
     return currentUser;
 };
 
+
+
 $(document).on("click", "#login", ()=>{
     AuthFactory.authUser()
     .then(account=>currentUser=account.user.uid);  
 });
 
 $(document).on("click", "#logout", () => AuthFactory.logout());
+
+
 
 let allNotes = ['C4','C#4','D4','D#4','E4','F4','F#4','G4','G#4','A4','A#4','B4','C5','C#5','D5','D#5','E5','F5'];
 let allKeys = [65,87,83,69,68,70,84,71,89,72,85,74,75,79,76,80,186,222];
@@ -30,6 +34,7 @@ for (let i=0;i<keyboard.length;i++) {
 }
 
 let synth = new Tone.PolySynth(6, Tone.MonoSynth);
+
 
 function applyPatch(patch) {
     let params = Object.keys(patch);
@@ -111,6 +116,14 @@ $("#showKeys").on("change", function(){
 });
 
 
+
+$(document).on("click", "#userPatches", ()=>{ 
+    if ($("#patchDrop").css("display") == "none") {
+        $("#patchDrop").css("display", "block");
+    } else {
+        $("#patchDrop").css("display", "none");
+    }
+});
 
 /// load user patch from firebase & apply params to synth
 $(document).on("click", "#patchDrop", function(){

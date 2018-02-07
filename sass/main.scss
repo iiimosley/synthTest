@@ -18,30 +18,49 @@ $keyBorder: .3vw double white;
 #nav {
     background: white;
     color: rgb(42, 42, 94);
-    padding: .5vw;
     border-bottom: .2vw double black;
+    overflow: hidden;
     #login {
         display: inline-block;
         margin: auto;
     }
-    span {
-        font-style: italic;
-        margin-left: 1.4vw;
+    #dropdown {
+        display: inline-block;
     }
-    li {
-        cursor: pointer;
-        .patchSelect:hover {
-            text-shadow: 0 0 .2vw snow, 0 0 .4vw cornflowerblue;
+    #userPatches {
+        font-style: italic;
+        padding: 2vw 1vw 1vw 3vw;
+        &:hover {
+            background: rgb(255, 219, 128);
+            cursor: pointer;
         }
-        .deleteChip {
-            text-align: right;
-            font-size: 1.4em;
-            &:hover {
-                color: rgb(214, 1, 1);
-                text-shadow: 0 0 .3vw goldenrod;
+    }
+    #patchDrop {
+        display: none;
+        position: absolute;
+        z-index: 2;
+        background: snow;
+        box-shadow: 0 .3vw 1vw darkslategray;
+        li {
+            cursor: pointer;
+            list-style-type: none;
+            .patchSelect:hover {
+                text-shadow: 0 0 .2vw snow, 0 0 .4vw cornflowerblue;
+            }
+            .deleteChip {
+                text-align: right;
+                font-size: 1.4em;
+                &:hover {
+                    color: rgb(214, 1, 1);
+                    text-shadow: 0 0 .3vw goldenrod;
+                }
             }
         }
     }
+}
+
+.show {
+    display: block;
 }
 
 //modals
