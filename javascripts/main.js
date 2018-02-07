@@ -128,7 +128,7 @@ $("#patchBtns :input:radio").change(function(){
 
 
 
-///modal display event listeners
+///display modal event listeners
 /////////////////////////////
 $(document).on("click", "#callSave", () => view.saveView());
 
@@ -156,17 +156,17 @@ $(document).on("click", "#savePatch", function() {
     obj.patch_name = $("#newPatch").val();
     obj.uid = currentUser;
     $("#synthWrap :input:radio:checked").each(function(set){
-        console.log(set, this.name, this.value);
         obj[this.name] = this.value;
     });
     $("#synthWrap :input[type=range]").each(function (set) {
-        console.log(set, this.id, this.value);
         obj[this.id] = this.value;
     });
     console.log(obj);
     DataFactory.savePatch(obj)
         .then(() => {
             view.leaveModal(obj.patch_name, editBool);
+            DataFactory.getPatches(currentUser)
+                .then(userPatches => view.userAuth(userPatches));
         });
 });
 
@@ -177,11 +177,9 @@ $(document).on("click", "#editPatch", function () {
     obj.patch_name = $("#patchOver option:selected").text();
     obj.uid = currentUser;
     $("#synthWrap :input:radio:checked").each(function (set) {
-        console.log(set, this.name, this.value);
         obj[this.name] = this.value;
     });
     $("#synthWrap :input[type=range]").each(function (set) {
-        console.log(set, this.id, this.value);
         obj[this.id] = this.value;
     });
     console.log(patchKey, obj);
