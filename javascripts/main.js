@@ -116,8 +116,8 @@ $("#showKeys").on("change", function(){
 });
 
 
-
-$(document).on("click", "#userPatches", ()=>{ 
+/// dropdown menu listener
+$(document).on("click", "#dropdown", ()=>{ 
     if ($("#patchDrop").css("display") == "none") {
         $("#patchDrop").css("display", "block");
     } else {
