@@ -142,7 +142,7 @@ $(document).on("click", "#savePatch", function() {
     console.log(obj);
     DataFactory.savePatch(obj)
         .then(() => {
-            view.leaveEdit(obj.patch_name);
+            view.leaveModal(obj.patch_name);
         });
 });
 
@@ -163,10 +163,13 @@ $(document).on("click", "#editPatch", function () {
     console.log(patchKey, obj);
     DataFactory.overwritePatch(patchKey, obj)
         .then(patch => {
-            view.leaveEdit(patch.patch_name);
+            view.leaveModal(patch.patch_name);
         });
 });
 
+$(document).on("click", ".deleteChip", function () {
+    view.deleteView($(this).parent().attr("id"), $(this).prev().text());
+});
 
 $(document).on("click", ".closeChip", function(){
     $(this).parent().parent().hide();

@@ -3,7 +3,7 @@
 <div id="patchDrop">
     <ul>
         {{#each userPatches}}
-            <li id="{{@key}}">{{patch_name}}</li>
+            <li id="{{@key}}"><span>{{patch_name}}</span> <span class="deleteChip">&times;</span></li>
         {{/each}}
     </ul>
 </div>
