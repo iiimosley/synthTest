@@ -118,7 +118,7 @@ $("#patchBtns :input:radio").change(function(){
     });
 });
 
-$(document).on("click", "#callSave", () => $("#saveModal").show());
+$(document).on("click", "#callSave", () => view.saveView());
 $(document).on("click", "#callEdit", () => {
     DataFactory.getPatches(currentUser)
     .then(patches=>{
@@ -140,7 +140,10 @@ $(document).on("click", "#savePatch", function() {
         obj[this.id] = this.value;
     });
     console.log(obj);
-    DataFactory.savePatch(obj);
+    DataFactory.savePatch(obj)
+        .then(() => {
+            view.leaveEdit(obj.patch_name);
+        });
 });
 
 

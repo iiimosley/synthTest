@@ -7,6 +7,7 @@ const inNav = require('../templates/in-nav.hbs');
 const outNav = require('../templates/out-nav.hbs');
 const userBtns = require('../templates/user-buttons.hbs');
 const editModal = require('../templates/edit-modal.hbs');
+const saveModal = require('../templates/save-modal.hbs');
 const success = require('../templates/success.hbs');
 
 module.exports.userAuth = (patches) => {
@@ -27,11 +28,17 @@ module.exports.editView = (patches) => {
     $("#editModal").show();
 };
 
+module.exports.saveView = () => {
+    $("#saveModal").empty();
+    $("#saveModal").append(saveModal);
+    $("#saveModal").show();
+};
+
 module.exports.leaveEdit = (patchName) => {
-    $("#editModal>div").empty();
+    $(".patchModal").empty();
     console.log(patchName);
-    $("#editModal>div").append(success({name: patchName}));
+    $(".patchModal").append(success({name: patchName}));
     setTimeout(() => {
-        $("#editModal").hide();
+        $(".patchModal").parent().hide();
     }, 2000);
 };
