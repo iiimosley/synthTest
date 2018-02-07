@@ -140,7 +140,7 @@ $(document).on("click", "#callEdit", () => {
 });
 
 $(document).on("click", ".deleteChip", function () {
-    view.deleteView($(this).parent().attr("id"), $(this).prev().text());
+    view.deleteView($(this).prev().attr("id"), $(this).prev().text());
 });
 
 $(document).on("click", ".closeChip", function () {
