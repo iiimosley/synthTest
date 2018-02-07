@@ -128,7 +128,7 @@ $("#patchBtns :input:radio").change(function(){
 
 
 
-///modal view event listeners
+///modal display event listeners
 /////////////////////////////
 $(document).on("click", "#callSave", () => view.saveView());
 
@@ -197,7 +197,10 @@ $(document).on("click", "#deletePatch", function () {
     let deletedPatch = $("#toDelete").text();
     let deleteBool = true;
     DataFactory.deletePatch(erasePatch)
-        .then(() => view.leaveModal(deletedPatch, deleteBool));
+        .then(() => {
+            view.leaveModal(deletedPatch, deleteBool);
+            $(`#${erasePatch}`).parent().remove();
+        });
 });
 
 
