@@ -12,7 +12,8 @@ module.exports.savePatch = (patchData) => {
             .done(patch => {
                 console.log(patch);
                 resolve(patch);
-            });
+            })
+            .fail(err => reject(err));
     });
 };
 
@@ -26,7 +27,8 @@ module.exports.getPatches = (uid) => {
                     patches[key].patch_id = key;
                 });
                 resolve(patches);
-            });
+            })
+            .fail(err => reject(err));
     });
 };
 
@@ -34,7 +36,8 @@ module.exports.getPatches = (uid) => {
 module.exports.loadPatch = (pKey) => {
     return new Promise((resolve, reject) => {
         $.ajax({ url: `https://synthulx.firebaseio.com/patches/${pKey}.json` })
-            .done(patch => resolve(patch));
+            .done(patch => resolve(patch))
+            .fail(err => reject(err));
     });
 };
 
@@ -50,15 +53,29 @@ module.exports.overwritePatch = (patch, params) => {
         .done(patch => {
             console.log(patch);
             resolve(patch);
-        });
+        })
+        .fail(err => reject(err));
     });
 };
+
+module.exports.deletePatch = (patch) => {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            url: `https://synthulx.firebaseio.com/patches/${patch}.json`,
+            method: 'DELETE'
+        })
+        .done(patch => resolve(patch))
+        .fail(err => reject(err));
+    });
+};
+
 
 
 //radio button patches on load (no login)
 module.exports.setPatch = () => {
     return new Promise((resolve, reject) => {
         $.ajax({url: '../patchData.json'})
-        .done( patch => resolve(patch));
+        .done( patch => resolve(patch))
+        .fail(err => reject(err));
     });
 };

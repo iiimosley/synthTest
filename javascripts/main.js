@@ -96,6 +96,7 @@ $(document).on("keyup", function () {
 });
 
 
+/// show/hide coordinating key presses to piano
 $("#showKeys").on("change", function(){
     if ($("#showKeys").is(":checked")){
         $("#keyMap>div>span").show();
@@ -104,11 +105,15 @@ $("#showKeys").on("change", function(){
     }
 });
 
+
+
+/// load user patch from firebase & apply params to synth
 $(document).on("click", "#patchDrop", function(){
     DataFactory.loadPatch(event.target.id)
     .then(patch=>applyPatch(patch));
 }); 
 
+/// load prebuilt patch for non-registered users & apply params to synth
 $("#patchBtns :input:radio").change(function(){
     let pID = $("#patchBtns :input:radio:checked").attr('id');
     DataFactory.setPatch()
@@ -119,8 +124,10 @@ $("#patchBtns :input:radio").change(function(){
 });
 
 
-///modal view event listeners
 
+
+///modal view event listeners
+/////////////////////////////
 $(document).on("click", "#callSave", () => view.saveView());
 
 $(document).on("click", "#callEdit", () => {
@@ -141,6 +148,7 @@ $(document).on("click", ".closeChip", function () {
 
 
 ///modal-to-data interactions
+/////////////////////////////
 $(document).on("click", "#savePatch", function() {
     let obj = {};
     obj.patch_name = $("#newPatch").val();
