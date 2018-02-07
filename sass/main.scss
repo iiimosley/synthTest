@@ -15,33 +15,60 @@ $keyBorder: .3vw double white;
     background-color: rgba(61, 61, 61, 0.836);
 }
 
+* {
+    margin: 0;
+}
+
 #nav {
     background: white;
     color: rgb(42, 42, 94);
-    padding: .5vw;
     border-bottom: .2vw double black;
+    overflow: hidden;
+    > * {
+        padding: 1.3vw 4vw;
+    }
     #login {
         display: inline-block;
         margin: auto;
     }
-    span {
-        font-style: italic;
-        margin-left: 1.4vw;
-    }
-    li {
-        cursor: pointer;
-        .patchSelect:hover {
-            text-shadow: 0 0 .2vw snow, 0 0 .4vw cornflowerblue;
+    #dropdown {
+        display: inline-block;
+        &:hover {
+            background: rgb(255, 219, 128);
+            cursor: pointer;
         }
-        .deleteChip {
-            text-align: right;
-            font-size: 1.4em;
-            &:hover {
-                color: rgb(214, 1, 1);
-                text-shadow: 0 0 .3vw goldenrod;
+    }
+    #userPatches {
+        font-style: italic;
+    }
+    #patchDrop {
+        display: none;
+        position: absolute;
+        z-index: 7;
+        background: rgba(255, 250, 250, 0.92);
+        box-shadow: 0 .3vw 1vw darkslategray;
+        margin-left: -4vw;
+        margin-top: 1.3vw;
+        li {
+            cursor: pointer;
+            list-style-type: none;
+            .patchSelect:hover {
+                text-shadow: 0 0 .2vw snow, 0 0 .4vw cornflowerblue;
+            }
+            .deleteChip {
+                text-align: right;
+                font-size: 1.4em;
+                &:hover {
+                    color: rgb(214, 1, 1);
+                    text-shadow: 0 0 .3vw goldenrod;
+                }
             }
         }
     }
+}
+
+.show {
+    display: block;
 }
 
 //modals
@@ -178,7 +205,8 @@ h1, h3 {
         span {
             display: inline-block; 
             font-size: 3vw;
-            color: red;
+            color: rgb(211, 255, 124);
+            text-shadow: 0 0 .2vw darkblue;
             margin: 4.5em auto 0 auto;
             width: 100%;
             text-align: center;
