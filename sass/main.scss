@@ -30,11 +30,19 @@ $keyBorder: .3vw double white;
     }
     li {
         cursor: pointer;
+        .deleteChip {
+            text-align: right;
+            font-size: 1.4em;
+            &:hover {
+                color: rgb(214, 1, 1);
+                text-shadow: 0 0 .3vw goldenrod;
+            }
+        }
     }
 }
 
 //modals
-#editModal, #saveModal {
+#editModal, #saveModal, #deleteModal {
     @include modal;
     .patchModal{
         position: relative;
@@ -43,13 +51,13 @@ $keyBorder: .3vw double white;
         width: 40%;
         height: auto;
         border-radius: 3em;
+        color: rgb(51, 51, 51);
         background: white;
         .modalContent {
             margin: 3vw auto;
             text-align: center;
         }
         h2 {
-            color: rgb(51, 51, 51);
             font-style: italic;
             margin-bottom: 6vw;
         }
@@ -60,9 +68,14 @@ $keyBorder: .3vw double white;
             background: blue;
             border-radius: 1em;
             &:hover{
-                // border: .01vw solid black;
                 box-shadow: inset 0 0 .7vw .2vw rgba(1, 1, 66, 0.582), inset 0 0 1vw rgb(2, 2, 109);
                 cursor: pointer;
+            }
+        }
+        #deletePatch {
+            background: red;
+                &:hover{
+                box-shadow: inset 0 0 .7vw .2vw rgb(128, 19, 0), inset 0 0 1vw rgb(122, 33, 17);
             }
         }
         .closeChip {
