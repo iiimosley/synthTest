@@ -16,7 +16,10 @@ firebase.auth().onAuthStateChanged(user => {
     if (user) {
         main.checkUser(user.uid);
         DataFactory.getPatches(user.uid)
-        .then(userPatches =>view.userAuth(userPatches));
+        .then(userPatches =>{
+            view.userAuth(userPatches);
+            view.userFeat();
+        });
     } else {
         console.log('not logged in');
         view.noUser();

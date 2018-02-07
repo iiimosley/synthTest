@@ -14,6 +14,9 @@ const success = require('../templates/success.hbs');
 module.exports.userAuth = (patches) => {
     $("#nav").empty();
     $("#nav").append(inNav({userPatches: patches}));
+};
+
+module.exports.userFeat = () => {
     $("#userTools").append(userBtns);
 };
 
