@@ -47,5 +47,5 @@ module.exports.leaveModal = (patchName, bool) => {
     $(".patchModal").append(success({name: patchName, delete: bool}));
     setTimeout(() => {
         $(".patchModal").parent().hide();
-    }, 2000);
+    }, 1500);
 };
