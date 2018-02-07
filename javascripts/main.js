@@ -191,7 +191,8 @@ $(document).on("click", "#editPatch", function () {
 
 
 $(document).on("click", "#deletePatch", function () {
-    console.log("patch to delete", $(this).prev().attr("patch_id"));
+    DataFactory.deletePatch($(this).prev().attr("patch_id"))
+    .then(patch=>console.log('post delete', patch));
 });
 
 
