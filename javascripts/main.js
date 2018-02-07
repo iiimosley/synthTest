@@ -4,7 +4,9 @@ const Tone = require('tone');
 const DataFactory = require('./dataFactory');
 const view = require('./view');
 const AuthFactory = require('./authFactory');
+
 let currentUser = null;
+let editBool = false;
 
 module.exports.checkUser = uid => {
     currentUser = uid;
@@ -164,7 +166,7 @@ $(document).on("click", "#savePatch", function() {
     console.log(obj);
     DataFactory.savePatch(obj)
         .then(() => {
-            view.leaveModal(obj.patch_name);
+            view.leaveModal(obj.patch_name, editBool);
         });
 });
 
@@ -185,14 +187,17 @@ $(document).on("click", "#editPatch", function () {
     console.log(patchKey, obj);
     DataFactory.overwritePatch(patchKey, obj)
         .then(patch => {
-            view.leaveModal(patch.patch_name);
+            view.leaveModal(patch.patch_name, editBool);
         });
 });
 
 
 $(document).on("click", "#deletePatch", function () {
-    DataFactory.deletePatch($(this).prev().attr("patch_id"))
-    .then(patch=>console.log('post delete', patch));
+    let erasePatch = $(this).prev().attr("patch_id");
+    let deletedPatch = $("#toDelete").text();
+    let deleteBool = true;
+    DataFactory.deletePatch(erasePatch)
+        .then(() => view.leaveModal(deletedPatch, deleteBool));
 });
 
 

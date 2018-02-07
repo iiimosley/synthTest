@@ -41,10 +41,10 @@ module.exports.deleteView = (id, patch) => {
     $("#deleteModal").show();
 };
 
-module.exports.leaveModal = (patchName) => {
+module.exports.leaveModal = (patchName, bool) => {
     $(".patchModal").empty();
     console.log(patchName);
-    $(".patchModal").append(success({name: patchName}));
+    $(".patchModal").append(success({name: patchName, delete: bool}));
     setTimeout(() => {
         $(".patchModal").parent().hide();
     }, 2000);
