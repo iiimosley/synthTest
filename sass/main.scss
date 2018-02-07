@@ -30,6 +30,9 @@ $keyBorder: .3vw double white;
     }
     li {
         cursor: pointer;
+        .patchSelect:hover {
+            text-shadow: 0 0 .2vw snow, 0 0 .4vw cornflowerblue;
+        }
         .deleteChip {
             text-align: right;
             font-size: 1.4em;
