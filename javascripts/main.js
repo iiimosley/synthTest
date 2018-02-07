@@ -118,7 +118,11 @@ $("#patchBtns :input:radio").change(function(){
     });
 });
 
+
+///modal view event listeners
+
 $(document).on("click", "#callSave", () => view.saveView());
+
 $(document).on("click", "#callEdit", () => {
     DataFactory.getPatches(currentUser)
     .then(patches=>{
@@ -126,7 +130,17 @@ $(document).on("click", "#callEdit", () => {
     });
 });
 
+$(document).on("click", ".deleteChip", function () {
+    view.deleteView($(this).parent().attr("id"), $(this).prev().text());
+});
 
+$(document).on("click", ".closeChip", function () {
+    $(this).parent().parent().hide();
+});
+
+
+
+///modal-to-data interactions
 $(document).on("click", "#savePatch", function() {
     let obj = {};
     obj.patch_name = $("#newPatch").val();
@@ -167,16 +181,10 @@ $(document).on("click", "#editPatch", function () {
         });
 });
 
-$(document).on("click", ".deleteChip", function () {
-    view.deleteView($(this).parent().attr("id"), $(this).prev().text());
+
+$(document).on("click", "#deletePatch", function () {
+    console.log("patch to delete", $(this).prev().attr("patch_id"));
 });
-
-$(document).on("click", ".closeChip", function(){
-    $(this).parent().parent().hide();
-});
-
-
-
 
 
 
