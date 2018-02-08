@@ -1,5 +1,5 @@
-# SynthULX (working model/title)
+# SynthULX
 
-core synthesizer model for pre-proposed+front end capstone project
+Front End Capstone
 
 * powered by [Tone.Js](https://tonejs.github.io/) 
