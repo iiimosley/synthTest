@@ -35,7 +35,7 @@ module.exports.editView = (patches) => {
 module.exports.saveView = () => {
     $("#saveModal").empty();
     $("#saveModal").append(saveModal);
-    $("#saveModal").show();
+    $("#saveModal").fadeIn(100, ()=>$(this).show());
 };
 
 module.exports.deleteView = (id, patch) => {
@@ -48,6 +48,6 @@ module.exports.leaveModal = (patchName, bool) => {
     $(".patchModal").empty();
     $(".patchModal").append(success({name: patchName, delete: bool}));
     setTimeout(() => {
-        $(".patchModal").parent().hide();
-    }, 1500);
+        $(".patchModal").parent().fadeOut();
+    }, 1000);
 };
