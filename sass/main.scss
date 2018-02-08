@@ -22,53 +22,52 @@ $keyBorder: .3vw double white;
 #nav {
     background: white;
     color: rgb(42, 42, 94);
-    border-bottom: .2vw double black;
+    border-bottom: .3vw double gold;
     overflow: hidden;
+    transition: all .2s;
     > * {
         padding: 1.3vw 4vw;
-    }
-    #login {
         display: inline-block;
-        margin: auto;
-    }
-    #dropdown {
-        display: inline-block;
-        &:hover {
-            background: rgb(255, 219, 128);
+        border-left: .1vw solid navy;
+        border-right: .1vw solid navy;
+        transition: all .2s;
+        &:hover, {
+            background: rgb(209, 167, 59);
             cursor: pointer;
         }
-    }
-    #userPatches {
-        font-style: italic;
     }
     #patchDrop {
         display: none;
         position: absolute;
         z-index: 7;
-        background: rgba(255, 250, 250, 0.92);
-        box-shadow: 0 .3vw 1vw darkslategray;
+        background: rgba(255, 250, 250, 0.959);
+        box-shadow: 0 .7vw 1vw darkslategray;
         margin-left: -4vw;
         margin-top: 1.3vw;
-        li {
-            cursor: pointer;
-            list-style-type: none;
-            .patchSelect:hover {
+        .patchSelect{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: .3vw;
+            transition: all .3s;
+            > span:first-child {
+                margin-right: 2.1vw;
+            }
+            &:hover {
+                color: seashell;
+                background: #cc5500;
                 text-shadow: 0 0 .2vw snow, 0 0 .4vw cornflowerblue;
             }
-            .deleteChip {
-                text-align: right;
-                font-size: 1.4em;
-                &:hover {
-                    color: rgb(214, 1, 1);
-                    text-shadow: 0 0 .3vw goldenrod;
-                }
+        }
+        .deleteChip {
+            // text-align: right;
+            font-size: 1.6em;
+            &:hover {
+                color: rgb(214, 1, 1);
+                text-shadow: 0 0 .3vw goldenrod;
             }
         }
     }
-}
-
-.show {
-    display: block;
 }
 
 //modals
@@ -86,9 +85,14 @@ $keyBorder: .3vw double white;
         .modalContent {
             margin: 3vw auto;
             text-align: center;
+            width: 80%;
+            > * {
+                display: block;
+                margin: 2vw auto;
+            }
         }
         h2 {
-            margin-bottom: 6vw;
+            margin-bottom: 3vw;
         }
         a {
             padding: 1vw 2vw;
@@ -100,6 +104,10 @@ $keyBorder: .3vw double white;
                 box-shadow: inset 0 0 .7vw .2vw rgba(1, 1, 66, 0.582), inset 0 0 1vw rgb(2, 2, 109);
                 cursor: pointer;
             }
+        }
+        input, select {
+            font-family: inherit;
+            font-size: 1.1em;
         }
         #deletePatch {
             background: red;
@@ -236,6 +244,11 @@ h1, h3 {
 #keyCheck {
     margin: 1em auto;
     width: 20%;
+    sup {
+        font-size: .2em;
+        color: rgb(211, 255, 124);
+        margin: 0 .4vw;
+    }
 }
 
 #userTools {
