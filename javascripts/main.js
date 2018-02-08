@@ -1,9 +1,12 @@
 'use strict';
 const $ = require('jquery');
 const Tone = require('tone');
+const Chart = require('chart.js');
+
 const DataFactory = require('./dataFactory');
 const view = require('./view');
 const AuthFactory = require('./authFactory');
+const osc = require('./osc.js');
 
 let currentUser = null;
 let editBool = false;
@@ -38,9 +41,12 @@ let synth = new Tone.PolySynth(6, Tone.MonoSynth);
 
 function applyPatch(patch) {
     let params = Object.keys(patch);
+    console.log(patch);
     params.forEach(i => {
-        if (i === "osc" || i === "detune") {
+        if (i === "osc") {
             $(`#synthWrap :input:radio[name=${i}][id=${patch[i]}]`).prop('checked', true);
+        } else if (i === "detune") {
+            $(`#synthWrap :input:radio[name=${i}][value=${patch[i]}]`).prop('checked', true);
         } else {
             $(`#synthWrap :input#${i}`).val(patch[i]);
         }
@@ -124,6 +130,12 @@ $(document).on("click", "#dropdown", ()=>{
         $("#patchDrop").css("display", "none");
     }
 });
+
+// $(document).on("click", (e)=>{
+//     if (e.currentTarget !== $("#dropdown") && $("#patchDrop").css("display") == "block") {
+//         $("#patchDrop").css("display", "none");
+//     }
+// });
 
 
 /// load user patch from firebase & apply params to synth
@@ -218,13 +230,34 @@ $(document).on("click", "#deletePatch", function () {
         });
 });
 
+let lCtx = $("#adsr");
 
 
+let dataObj;
 
+$("#adsr").on ("change", ()=>{
+    dataObj = [{
+        x: $("#attack").val(),
+        y: $("#decay").val()
+    }, {
+        x: $("#decay").val() + $("#sustain").val(),
+        y: $("#sustain").val()
+    },{
+        x: $("#release").val(),
+        y: $("#sustain").val()
+    }
+    ];
+});
 
+function activateChart() {
+    let egChart  = new Chart(lCtx, {
+        type: 'line',
+        data: dataObj
+    });
+    $("#adsr").trigger("change");
+}
 
-
-
+activateChart();
 
 
 
