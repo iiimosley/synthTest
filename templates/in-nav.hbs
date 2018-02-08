@@ -1,11 +1,9 @@
-<button id="logout">Logout</button>
+<div id="logout">Logout</div>
 <div id="dropdown">
     <span id="userPatches">patches</span>
     <div id="patchDrop">
-        <ul>
             {{#each userPatches}}
-                <li><span class="patchSelect" id="{{@key}}">{{patch_name}}</span> <span class="deleteChip">&times;</span></li>
+                <div class="patchSelect"><span id="{{@key}}">{{patch_name}}</span> <span class="deleteChip">&times;</span></div>
             {{/each}}
-        </ul>
     </div>
 </div>
