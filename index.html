@@ -74,17 +74,17 @@
             </div>
             <div>
             <label for="ampRelease">amp release</label>
-            <input type="range" id="ampRelease" min="0" max="3" step="0.01" value="0">
+            <input type="range" id="ampRelease" min="0" max="4.5" step="0.01" value="0">
             </div>
         </div>
         <div id="filter">
             <div>
                 <label for="filterFreq">cutoff frequency</label>
-                <input type="range" id="filterFreq" min="100" max="2000" step="10" value="200">
+                <input type="range" id="filterFreq" min="100" max="8000" step="10" value="300">
             </div>
             <div>
                 <label for="filterQ">resonance</label>
-                <input type="range" id="filterQ" min="0" max="12" step="1" value="0">
+                <input type="range" id="filterQ" min="0" max="18" step="1" value="0">
             </div>
         </div>
         <div id="filterEG">
@@ -102,7 +102,7 @@
             </div>
             <div>
                 <label for="filterRelease">filter release</label>
-                <input type="range" id="filterRelease" min="0" max="3" step="0.01" value="0.01">
+                <input type="range" id="filterRelease" min="0" max="4.5" step="0.01" value="0.01">
             </div>
         </div>
     </div>
@@ -143,6 +143,18 @@
         <input type="radio" name="patch" id="patch4">
         </div>
     </div>
+    <div>
+        <canvas id="oscScope"></canvas>
+        <button id="startSine">start sine</button>
+        <button id="startSquare">start square</button>
+        <button id="startTriangle">start triangle</button>
+        <button id="startSawtooth">start sawtooth</button>
+    </div>
+    <canvas id="adsr"></canvas>
+    <input type="range" name="attack" id="attack" step="0.01" min="0" max="1" value=".4">
+    <input type="range" name="decay" id="decay" step="0.01" min="0" max="1" value=".8">
+    <input type="range" name="sustain" id="sustain" step="0.01" min="0" max="1" value=".6">
+    <input type="range" name="release" id="release" step="0.01" min="0" max="1" value=".1">
     <!-- <h3>&darr; qwerty keys &darr;</h3>
     <img id="piano" src="keys.jpg"> -->
     <!-- <button id="getVals">get all values</button> -->
