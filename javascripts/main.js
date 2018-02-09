@@ -237,16 +237,16 @@ function draw() {
     ctx.beginPath();
     
     $("#chartCtrl").on("input", function(){
-        let aVal = $("#attack").val();
-        let dVal = $("#decay").val();
+        let aVal = +($("#attack").val()*100);
+        let dVal = +(canvas.height) - +($("#decay").val() * +(canvas.height));
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.beginPath();
         ctx.moveTo(0, canvas.height);
-        ctx.lineTo((+aVal * 100), (+dVal * 100));
+        ctx.lineTo(+aVal, +dVal);
         ctx.strokeStyle = 'rgb(255,250,250)';
         ctx.stroke();
         ctx.fillStyle = 'rgb(255,250,250)';
-        ctx.fillRect((+aVal*100), (+dVal*100), 5, 5);
+        ctx.fillRect(+aVal, +dVal, 5, 5);
     });
     // $("#chartCrtl").trigger("change");
 }
