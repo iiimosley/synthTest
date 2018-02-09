@@ -277,10 +277,14 @@ h1, h3 {
 
 #adsr {
     margin: 2em auto;
-    height: auto;
-    width: 40%;
+    height: 20vw;
+    width: 45vw;
 }
 
+#chartWrap, #chartCtrl {
+    width: 70%;
+    margin: 2em auto;
+}
 
 
 canvas {
