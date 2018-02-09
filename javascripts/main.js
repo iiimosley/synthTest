@@ -230,34 +230,61 @@ $(document).on("click", "#deletePatch", function () {
         });
 });
 
-let lCtx = $("#adsr");
 
-
-let dataObj;
-
-$("#adsr").on ("change", ()=>{
-    dataObj = [{
-        x: $("#attack").val(),
-        y: $("#decay").val()
-    }, {
-        x: $("#decay").val() + $("#sustain").val(),
-        y: $("#sustain").val()
-    },{
-        x: $("#release").val(),
-        y: $("#sustain").val()
-    }
-    ];
-});
-
-function activateChart() {
-    let egChart  = new Chart(lCtx, {
-        type: 'line',
-        data: dataObj
+function draw() {
+    let canvas = document.getElementById("adsr");
+    let ctx = canvas.getContext("2d");
+    ctx.beginPath();
+    
+    $("#chartCtrl").on("input", function(){
+        let aVal = $("#attack").val();
+        let dVal = $("#decay").val();
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.beginPath();
+        ctx.moveTo(0, canvas.height);
+        ctx.lineTo((+aVal * 100), (+dVal * 100));
+        ctx.strokeStyle = 'rgb(255,250,250)';
+        ctx.stroke();
+        ctx.fillStyle = 'rgb(255,250,250)';
+        ctx.fillRect((+aVal*100), (+dVal*100), 5, 5);
     });
-    $("#adsr").trigger("change");
+    // $("#chartCrtl").trigger("change");
 }
 
-activateChart();
+draw();
+
+
+
+
+
+// let lCtx = document.getElementById("adsr").getContext('2d');
+
+
+// let dataObj;
+
+// $("#chartCtrl").on("change", ()=>{
+//     dataObj = [{
+//         x: +$("#attack").val(),
+//         y: +$("#decay").val()
+//     }, {
+//         x: +$("#decay").val() + (+$("#sustain").val()),
+//         y: +$("#sustain").val()
+//     },{
+//         x: +$("#release").val(),
+//         y: +$("#sustain").val()
+//     }
+//     ];
+// });
+
+// function activateChart() {
+//     $("#chartCtrl").trigger("change");
+//     let egChart  = new Chart(lCtx, {
+//         type: 'line',
+//         data: dataObj
+//     });
+// }
+
+// activateChart();
 
 
 
