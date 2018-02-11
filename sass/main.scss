@@ -92,6 +92,7 @@ $keyBorder: .3vw double white;
 
 #eduModal {
     @include modal;
+    padding-top: 6vw;
     #eduWrap{
         position: relative;
         margin: auto;
@@ -109,19 +110,41 @@ $keyBorder: .3vw double white;
             } 
             aside {
                 float: right;
-                width: 55%;
+                width: 50%;
+                text-align: right;
+                margin-right: 3vw;
                 div {
                     margin: .8vw;
+                    img {
+                        width: 30vw;
+                        height: auto;
+                    }
                 }
             }
             #pickOsc{
                 clear: both;
+                text-align: right;
+                span{
+                    display: inline-block;
+                    padding: 1.3vw;
+                    color: white;
+                    margin-top: 1vw;
+                    margin-right: 3vw;
+                    background: blue;
+                    border-radius: .8vw;
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+            }
+            .oscSelect {
+                border: .2vw solid lightblue;
             }
         }
         .closeChip {
             @include closeChip;
             left: 95%;
-            top: 5%;
+            top: 3%;
         }
     }
 }
