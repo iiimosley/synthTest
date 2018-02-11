@@ -33,9 +33,12 @@ $keyBorder: .3vw double white;
     }
 }
 
+
 * {
     margin: 0;
 }
+
+
 
 #nav {
     background: white;
@@ -92,7 +95,7 @@ $keyBorder: .3vw double white;
 
 #eduModal {
     @include modal;
-    padding-top: 6vw;
+    padding-top: 5vw;
     #eduWrap{
         position: relative;
         margin: auto;
@@ -107,6 +110,9 @@ $keyBorder: .3vw double white;
                 float: left;
                 width: 40%;
                 text-align: center;
+                p {
+                    margin: 3.5vw auto;
+                }
             } 
             aside {
                 float: right;
@@ -115,6 +121,8 @@ $keyBorder: .3vw double white;
                 margin-right: 3vw;
                 div {
                     margin: .8vw;
+                    padding: .5vw;
+                    transition: all .1s;
                     img {
                         width: 30vw;
                         height: auto;
@@ -138,7 +146,9 @@ $keyBorder: .3vw double white;
                 }
             }
             .oscSelect {
-                border: .2vw solid lightblue;
+                border: .2vw solid rgb(0, 113, 151);
+                border-radius: .3em;
+                box-shadow: 0 0 .4vw darkslategray;
             }
         }
         .closeChip {
