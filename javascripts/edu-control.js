@@ -2,6 +2,55 @@
 
 const $ = require('jquery');
 const Tone = require('tone');
+const eduView = require('./edu-view');
+
+$(document).on('click', '#startBuild', ()=> eduView.startBuild());
+
+
+/// oscillator
+
+let waves = ["sine", "triangle", "square", "sawtooth"];
+window.AudioContext = window.AudioContext || window.webkitAudioContext;
+let audioCtx = new window.AudioContext();
+
+let sineWave = audioCtx.createOscillator();
+let squareWave = audioCtx.createOscillator();
+let triangleWave = audioCtx.createOscillator();
+let sawtoothWave = audioCtx.createOscillator();
+
+sineWave.type = 'sine';
+squareWave.type = 'square';
+triangleWave.type = 'triangle';
+sawtoothWave.type = 'sawtooth';
+
+sineWave.frequency.setValueAtTime(440, audioCtx.currentTime);
+squareWave.frequency.setValueAtTime(440, audioCtx.currentTime);
+triangleWave.frequency.setValueAtTime(440, audioCtx.currentTime);
+sawtoothWave.frequency.setValueAtTime(440, audioCtx.currentTime);
+
+sineWave.start(0);
+squareWave.start(0);
+triangleWave.start(0);
+sawtoothWave.start(0);
+
+
+
+
+$(document).on('mousedown', "#startSine", () => sineWave.connect(audioCtx.destination));
+$(document).on('mouseup mouseleave', "#startSine", () => sineWave.disconnect());
+
+$(document).on('mousedown', "#startSquare", () => squareWave.connect(audioCtx.destination));
+$(document).on('mouseup mouseleave', "#startSquare", () => squareWave.disconnect());
+
+$(document).on('mousedown', "#startTriangle", () => triangleWave.connect(audioCtx.destination));
+$(document).on('mouseup mouseleave', "#startTriangle", () => triangleWave.disconnect());
+
+$(document).on('mousedown', "#startSawtooth", () => sawtoothWave.connect(audioCtx.destination));
+$(document).on('mouseup mouseleave', "#startSawtooth", () => sawtoothWave.disconnect());
+
+
+
+/// ADSR Graph
 
 function draw() {
     $("#chartCrtl").trigger("change");
@@ -16,9 +65,7 @@ function draw() {
         let rVal = +(canvas.width) - (+($("#release").val() * 100));
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        if (dVal > sVal) {
-            dVal = sVal;
-        }
+        if (dVal > sVal) dVal = sVal;
 
         ctx.beginPath();
         ctx.moveTo(0, canvas.height);
@@ -55,3 +102,56 @@ function draw() {
 }
 
 draw();
+
+
+
+
+
+
+
+
+
+// let sineConnected = false;
+// let squareConnected = false;
+// let triangleConnected = false;
+// let sawtoothConnected = false;
+
+// const playSine = () => {
+//     if (!sineConnected) {
+//         sineWave.connect(audioCtx.destination);
+//     }
+//     else {
+//         sineWave.disconnect();
+//     }
+//     sineConnected = !sineConnected;
+// };
+
+// const playSquare = () => {
+//     if (!squareConnected) {
+//         squareWave.connect(audioCtx.destination);
+//     }
+//     else {
+//         squareWave.disconnect();
+//     }
+//     squareConnected = !squareConnected;
+// };
+
+// const playTriangle = () => {
+//     if (!triangleConnected) {
+//         triangleWave.connect(audioCtx.destination);
+//     }
+//     else {
+//         triangleWave.disconnect();
+//     }
+//     triangleConnected = !triangleConnected;
+// };
+
+// const playSawtooth = () => {
+//     if (!sawtoothConnected) {
+//         sawtoothWave.connect(audioCtx.destination);
+//     }
+//     else {
+//         sawtoothWave.disconnect();
+//     }
+//     sawtoothConnected = !sawtoothConnected;
+// };
