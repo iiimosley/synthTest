@@ -4,8 +4,10 @@ const Tone = require('tone');
 const Chart = require('chart.js');
 
 const DataFactory = require('./dataFactory');
-const view = require('./view');
 const AuthFactory = require('./authFactory');
+const view = require('./view');
+const eduCtrl = require('./edu-control');
+const eduView = require('./edu-view');
 const osc = require('./osc.js');
 
 let currentUser = null;
@@ -230,34 +232,39 @@ $(document).on("click", "#deletePatch", function () {
         });
 });
 
-let lCtx = $("#adsr");
 
 
-let dataObj;
 
-$("#adsr").on ("change", ()=>{
-    dataObj = [{
-        x: $("#attack").val(),
-        y: $("#decay").val()
-    }, {
-        x: $("#decay").val() + $("#sustain").val(),
-        y: $("#sustain").val()
-    },{
-        x: $("#release").val(),
-        y: $("#sustain").val()
-    }
-    ];
-});
 
-function activateChart() {
-    let egChart  = new Chart(lCtx, {
-        type: 'line',
-        data: dataObj
-    });
-    $("#adsr").trigger("change");
-}
 
-activateChart();
+// let lCtx = document.getElementById("adsr").getContext('2d');
+
+
+// let dataObj;
+
+// $("#chartCtrl").on("change", ()=>{
+//     dataObj = [{
+//         x: +$("#attack").val(),
+//         y: +$("#decay").val()
+//     }, {
+//         x: +$("#decay").val() + (+$("#sustain").val()),
+//         y: +$("#sustain").val()
+//     },{
+//         x: +$("#release").val(),
+//         y: +$("#sustain").val()
+//     }
+//     ];
+// });
+
+// function activateChart() {
+//     $("#chartCtrl").trigger("change");
+//     let egChart  = new Chart(lCtx, {
+//         type: 'line',
+//         data: dataObj
+//     });
+// }
+
+// activateChart();
 
 
 
