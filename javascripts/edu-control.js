@@ -9,7 +9,6 @@ $(document).on('click', '#startBuild', ()=> eduView.startBuild());
 
 /// oscillator
 
-let waves = ["sine", "triangle", "square", "sawtooth"];
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 let audioCtx = new window.AudioContext();
 
@@ -23,6 +22,13 @@ squareWave.type = 'square';
 triangleWave.type = 'triangle';
 sawtoothWave.type = 'sawtooth';
 
+let waves = [sineWave, squareWave, triangleWave, sawtoothWave];
+
+waves.forEach(wave=>{
+    console.log(wave);
+});
+
+
 sineWave.frequency.setValueAtTime(440, audioCtx.currentTime);
 squareWave.frequency.setValueAtTime(440, audioCtx.currentTime);
 triangleWave.frequency.setValueAtTime(440, audioCtx.currentTime);
@@ -33,27 +39,49 @@ squareWave.start(0);
 triangleWave.start(0);
 sawtoothWave.start(0);
 
+function selectOsc(wave) {
+    wave.addClass('oscSelect');
+    $('aside>div').not(wave).removeClass('oscSelect');
+}
 
 
-
-$(document).on('mousedown', "#startSine", () => sineWave.connect(audioCtx.destination));
+$(document).on('mousedown', '#startSine', function() {
+    console.log($(this));
+    sineWave.connect(audioCtx.destination);
+    selectOsc($('#startSine').parent());
+});
 $(document).on('mouseup mouseleave', "#startSine", () => sineWave.disconnect());
 
-$(document).on('mousedown', "#startSquare", () => squareWave.connect(audioCtx.destination));
+
+$(document).on('mousedown', "#startSquare", () => {
+    squareWave.connect(audioCtx.destination);
+    selectOsc($('#startSquare').parent());
+});
 $(document).on('mouseup mouseleave', "#startSquare", () => squareWave.disconnect());
 
-$(document).on('mousedown', "#startTriangle", () => triangleWave.connect(audioCtx.destination));
+
+$(document).on('mousedown', "#startTriangle", () => {
+    triangleWave.connect(audioCtx.destination);
+    selectOsc($('#startTriangle').parent());
+});
 $(document).on('mouseup mouseleave', "#startTriangle", () => triangleWave.disconnect());
 
-$(document).on('mousedown', "#startSawtooth", () => sawtoothWave.connect(audioCtx.destination));
+
+$(document).on('mousedown', "#startSawtooth", () => {
+    sawtoothWave.connect(audioCtx.destination);
+    selectOsc($('#startSawtooth').parent());
+});
 $(document).on('mouseup mouseleave', "#startSawtooth", () => sawtoothWave.disconnect());
+
+$(document).on('click', '#pickOsc>span', ()=>{
+    console.log($('.oscSelect'));
+});
 
 
 
 /// ADSR Graph
 
 function draw() {
-    $("#chartCrtl").trigger("change");
     let canvas = document.getElementById("adsr");
     let ctx = canvas.getContext("2d");
     ctx.beginPath();
@@ -99,11 +127,10 @@ function draw() {
         // ctx.fillStyle = 'rgb(255,250,250)';
         // ctx.fillRect(130, +sVal, 5, 5);
     });
+    $("#chartCrtl").trigger("input");
 }
 
 draw();
-
-
 
 
 
