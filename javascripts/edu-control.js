@@ -24,9 +24,9 @@ sawtoothWave.type = 'sawtooth';
 
 let waves = [sineWave, squareWave, triangleWave, sawtoothWave];
 
-waves.forEach(wave=>{
-    console.log(wave);
-});
+// waves.forEach(wave=>{
+//     console.log(wave);
+// });
 
 
 sineWave.frequency.setValueAtTime(440, audioCtx.currentTime);
@@ -41,12 +41,12 @@ sawtoothWave.start(0);
 
 function selectOsc(wave) {
     wave.addClass('oscSelect');
-    $('aside>div').not(wave).removeClass('oscSelect');
+    $('#oscView>aside>div').not(wave).removeClass('oscSelect');
+    eduView.printOscDetail($('.oscSelect').attr('wave'));
 }
 
 
 $(document).on('mousedown', '#startSine', function() {
-    console.log($(this));
     sineWave.connect(audioCtx.destination);
     selectOsc($('#startSine').parent());
 });
@@ -74,7 +74,11 @@ $(document).on('mousedown', "#startSawtooth", () => {
 $(document).on('mouseup mouseleave', "#startSawtooth", () => sawtoothWave.disconnect());
 
 $(document).on('click', '#pickOsc>span', ()=>{
-    console.log($('.oscSelect'));
+    if ($('.oscSelect').attr('wave')===undefined) {
+        window.alert('Please Select a Soundwave');
+    } else {
+        console.log($('.oscSelect').attr('wave'));
+    }
 });
 
 
