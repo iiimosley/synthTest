@@ -134,8 +134,9 @@ $(document).on('input', '#eduAmpEG', function() {
     eduSynth.envelope.decay = $('#aDecay').val();
     eduSynth.envelope.sustain = $('#aSustain').val();
     eduSynth.envelope.release = $('#aRelease').val();
-    eduView.printAmpEGDetail(event.target.id);
 });
+
+$(document).on('mousedown', '#eduAmpEG', ()=>eduView.printAmpEGDetail(event.target.id));
 
 
 /// AMP ADSR Graph
