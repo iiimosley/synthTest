@@ -129,7 +129,7 @@ $(document).on('click', '#pickOsc', ()=>{
 });
 
 
-/// listener for 
+/// listener for range input on AmpEG
 $(document).on('change', '#eduAmpEG', () => {
     eduSynth.envelope.attack = $('#aAttack').val();
     eduSynth.envelope.decay = $('#aDecay').val();
@@ -138,7 +138,8 @@ $(document).on('change', '#eduAmpEG', () => {
 });
 
 
-/// ADSR Graph
+
+/// AMP ADSR Graph
 
 module.exports.ampDraw = () => {
     let canvas = document.getElementById("ampADSR");
