@@ -1,7 +1,9 @@
 'use strict';
 const $ = require('jquery');
+const eduCtrl = require('./edu-control');
 const osc = require('../templates/osc.hbs');
 const oscDetail = require('../templates/osc-detail.hbs');
+const ampEG = require('../templates/amp-eg.hbs');
 
 module.exports.startBuild = () => {
     $("#eduModal").empty();
@@ -14,6 +16,12 @@ module.exports.printOscDetail = (wave) => {
     oscObj[wave] = true;
     $("#oscDetail").empty();
     $("#oscDetail").append(oscDetail(oscObj));
+};
+
+module.exports.printAmpEGDetail = () => {
+    $("#eduWrap").empty();
+    $("#eduWrap").append(ampEG);
+    eduCtrl.ampDraw();
 };
 
 // module.exports.closeBuild = (patchName, bool) => {

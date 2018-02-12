@@ -37,6 +37,7 @@ let eduParams = {
 };
 
 let eduSynth = new Tone.MonoSynth(eduParams);
+eduSynth.toMaster();
 
 
 //oscillators
@@ -96,7 +97,7 @@ $(document).on('mouseup mouseleave', "#startSquare", () => squareWave.disconnect
 
 
 $(document).on('mousedown', "#startTriangle", () => {
-    g.gain.value = 0.68;
+    g.gain.value = 0.71;
     triangleWave.connect(g);
     g.connect(audioCtx.destination);
     selectOsc($('#startTriangle').parent());
@@ -114,12 +115,14 @@ $(document).on('mouseup mouseleave', "#startSawtooth", () => sawtoothWave.discon
 
 
 /// pulls selected sound wave, augments synth params, continues to amp stage 
-$(document).on('click', '#pickOsc>span', ()=>{
+$(document).on('click', '#pickOsc', ()=>{
     if ($('.oscSelect').attr('wave')===undefined) {
         window.alert('Please Select a Soundwave');
     } else {
         eduParams.oscillator.type = $('.oscSelect').attr('wave');
         console.log(eduParams);
+        eduView.printAmpEGDetail();
+        return eduParams.oscillator.type;
     }
 });
 
@@ -127,16 +130,16 @@ $(document).on('click', '#pickOsc>span', ()=>{
 
 /// ADSR Graph
 
-function draw() {
-    let canvas = document.getElementById("adsr");
+module.exports.ampDraw = () => {
+    let canvas = document.getElementById("ampADSR");
     let ctx = canvas.getContext("2d");
     ctx.beginPath();
 
-    $("#chartCtrl").on("input", function () {
-        let aVal = +($("#attack").val() * 100);
-        let dVal = +(canvas.height) - +($("#decay").val() * +(canvas.height)); 
-        let sVal = +(canvas.height) - +($("#sustain").val() * +(canvas.height));
-        let rVal = +(canvas.width) - (+($("#release").val() * 100));
+    $(document).on("input", "#eduAmpEG", function () {
+        let aVal = +($("#aAttack").val() * 90);
+        let dVal = +(canvas.height) - +($("#aDecay").val() * +(canvas.height)); 
+        let sVal = +(canvas.height) - +($("#aSustain").val() * +(canvas.height));
+        let rVal = +(canvas.width) - (+($("#aRelease").val() * 100));
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         if (dVal > sVal) dVal = sVal;
@@ -144,40 +147,52 @@ function draw() {
         ctx.beginPath();
         ctx.moveTo(0, canvas.height);
         ctx.lineTo(+aVal, +dVal);
-        ctx.strokeStyle = 'rgb(255,250,250)';
+        ctx.strokeStyle = 'rgb(0,0,0)';
         ctx.stroke();
-        // ctx.fillStyle = 'rgb(255,250,250)';
+        // ctx.fillStyle = 'rgb(0,0,0)';
         // ctx.fillRect(+aVal, +dVal, 5, 5);
 
         ctx.beginPath();
         ctx.moveTo(+aVal, +dVal);
         ctx.lineTo(100, +sVal);
-        ctx.strokeStyle = 'rgb(255,250,250)';
+        ctx.strokeStyle = 'rgb(0,0,0)';
         ctx.stroke();
-        // ctx.fillStyle = 'rgb(255,250,250)';
+        // ctx.fillStyle = 'rgb(0,0,0)';
         // ctx.fillRect(130, +sVal, 5, 5);
 
         ctx.beginPath();
         ctx.moveTo(100, +sVal);
         ctx.lineTo(+rVal, +sVal);
-        ctx.strokeStyle = 'rgb(255,250,250)';
+        ctx.strokeStyle = 'rgb(0,0,0)';
         ctx.stroke();
-        // ctx.fillStyle = 'rgb(255,250,250)';
+        // ctx.fillStyle = 'rgb(0,0,0)';
         // ctx.fillRect(+rVal, +sVal, 5, 5);
 
         ctx.beginPath();
         ctx.moveTo(+rVal, +sVal);
         ctx.lineTo(canvas.width, canvas.height);
-        ctx.strokeStyle = 'rgb(255,250,250)';
+        ctx.strokeStyle = 'rgb(0,0,0)';
         ctx.stroke();
-        // ctx.fillStyle = 'rgb(255,250,250)';
+        // ctx.fillStyle = 'rgb(0,0,0)';
         // ctx.fillRect(130, +sVal, 5, 5);
     });
-    $("#chartCrtl").trigger("input");
-}
+    $("#eduAmpEG").trigger("input");
+};
 
-draw();
+$(document).on('keydown', ()=>{
+    if (event.keyCode === 32 && $('#eduModal').css('display') == 'block' && !event.repeat) {
+        event.preventDefault();
+        eduSynth.triggerAttack('A4');
+    } else if (event.keyCode === 32 && $('#eduModal').css('display') == 'block' && event.repeat) {
+        event.preventDefault();
+    }
+});
 
+$(document).on('keyup', (e) => {
+    if (e.keyCode === 32 && $('#eduModal').css('display') == 'block') {
+        eduSynth.triggerRelease();
+    }
+});
 
 
 
