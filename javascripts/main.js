@@ -83,6 +83,7 @@ $("#synthWrap").on("change", function(){
             exponent: 2
         }
     });
+    synth.volume.value = $("#synthVol").val();
 });
 synth.toMaster();
 
