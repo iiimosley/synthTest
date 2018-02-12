@@ -87,7 +87,7 @@ $(document).on('mouseup mouseleave', "#startSine", () => sineWave.disconnect());
 
 
 $(document).on('mousedown', "#startSquare", () => {
-    g.gain.value = 0.6;
+    g.gain.value = 0.3;
     squareWave.connect(g);
     g.connect(audioCtx.destination);
     selectOsc($('#startSquare').parent());
@@ -96,7 +96,7 @@ $(document).on('mouseup mouseleave', "#startSquare", () => squareWave.disconnect
 
 
 $(document).on('mousedown', "#startTriangle", () => {
-    g.gain.value = 0.7;
+    g.gain.value = 0.68;
     triangleWave.connect(g);
     g.connect(audioCtx.destination);
     selectOsc($('#startTriangle').parent());
