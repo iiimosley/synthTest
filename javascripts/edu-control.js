@@ -8,8 +8,8 @@ $(document).on('click', '#startBuild', ()=> eduView.startBuild());
 
 
 /// synth for builder + params
+
 let eduParams = {
-    frequency: 'A4',
     detune: 0,
     oscillator: {
         type: 'sine'
@@ -30,15 +30,15 @@ let eduParams = {
         decay: 0,
         sustain: 0,
         release: 0,
-        baseFrequency: 5000,
-        octaves: 7,
+        baseFrequency: 15000,
+        octaves: 3,
         exponent: 2
     }
 };
 
 let eduSynth = new Tone.MonoSynth(eduParams);
 eduSynth.toMaster();
-
+console.log(eduSynth);
 
 //oscillators
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -112,6 +112,7 @@ $(document).on('mousedown', "#startSawtooth", () => {
     selectOsc($('#startSawtooth').parent());
 });
 $(document).on('mouseup mouseleave', "#startSawtooth", () => sawtoothWave.disconnect());
+//////////////////
 
 
 /// pulls selected sound wave, augments synth params, continues to amp stage 
@@ -119,13 +120,22 @@ $(document).on('click', '#pickOsc', ()=>{
     if ($('.oscSelect').attr('wave')===undefined) {
         window.alert('Please Select a Soundwave');
     } else {
+        eduSynth.oscillator.type = $('.oscSelect').attr('wave');
         eduParams.oscillator.type = $('.oscSelect').attr('wave');
         console.log(eduParams);
         eduView.printAmpEGDetail();
-        return eduParams.oscillator.type;
+        return eduSynth.oscillator.type;
     }
 });
 
+
+/// listener for 
+$(document).on('change', '#eduAmpEG', () => {
+    eduSynth.envelope.attack = $('#aAttack').val();
+    eduSynth.envelope.decay = $('#aDecay').val();
+    eduSynth.envelope.sustain = $('#aSustain').val();
+    eduSynth.envelope.release = $('#aRelease').val();
+});
 
 
 /// ADSR Graph
@@ -179,6 +189,11 @@ module.exports.ampDraw = () => {
     $("#eduAmpEG").trigger("input");
 };
 
+
+
+
+
+// spacebar plays single oscillator of synth builder when modal is in view
 $(document).on('keydown', ()=>{
     if (event.keyCode === 32 && $('#eduModal').css('display') == 'block' && !event.repeat) {
         event.preventDefault();
