@@ -208,23 +208,23 @@ module.exports.cutoffDraw = () => {
     ctx.beginPath();
 
     $(document).on("input", "#eduFilter", function () {
-        let fVal = +($("#fCutoff").val() / 100);
+        let fVal = +($("#fCutoff").val() / 40)+35;
         let qVal = +($("#fResonance").val());
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         ctx.beginPath();
         ctx.moveTo(+fVal, canvas.height);
-        ctx.lineTo(20, 30);
+        ctx.lineTo((+fVal - 70), 30);
         ctx.strokeStyle = 'rgb(0,0,0)';
         ctx.stroke();
         // ctx.fillStyle = 'rgb(0,0,0)';
         // ctx.fillRect(+aVal, +dVal, 5, 5);
 
-        // ctx.beginPath();
-        // ctx.moveTo(+aVal, +dVal);
-        // ctx.lineTo();
-        // ctx.strokeStyle = 'rgb(0,0,0)';
-        // ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo((+fVal - 70), 30);
+        ctx.lineTo(0, 30);
+        ctx.strokeStyle = 'rgb(0,0,0)';
+        ctx.stroke();
         // ctx.fillStyle = 'rgb(0,0,0)';
         // ctx.fillRect(130, +sVal, 5, 5);
 
