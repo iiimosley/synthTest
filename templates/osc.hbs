@@ -2,27 +2,28 @@
 <div id="oscView">
     <main>
         <h3>Oscillator</h3>
-        <p>the core to any synthesizer</p>
+        <p>the core of any synthesizer</p>
+        <div id="oscDetail"></div>
     </main>
     <aside>
-        <div>
+        <div wave="sine">
         <button id="startSine">start sine</button>
         <img src="../images/sine.png">
         </div>
-        <div>
+        <div wave="triangle">
         <button id="startTriangle">start triangle</button>
         <img src="../images/triangle.png">
         </div>
-        <div>
+        <div wave="square">
         <button id="startSquare">start square</button>
         <img src="../images/square.png">
         </div>
-        <div>
+        <div wave="sawtooth">
         <button id="startSawtooth">start sawtooth</button>
         <img src="../images/sawtooth.png">
         </div>
     </aside>
-    <div id="pickOsc"><span>continue with selected soundwave</span></div>
+    <div class="continueSection"><span id="pickOsc">continue with selected soundwave</span></div>
 </div>
     <span class="closeChip">&times;</span>
 </div>
