@@ -7,10 +7,42 @@ const eduView = require('./edu-view');
 $(document).on('click', '#startBuild', ()=> eduView.startBuild());
 
 
-/// oscillator
+/// synth for builder + params
+let eduParams = {
+    frequency: 'A4',
+    detune: 0,
+    oscillator: {
+        type: 'sine'
+    },
+    filter: {
+        Q: 1,
+        type: 'lowpass',
+        rolloff: -24
+    },
+    envelope: {
+        attack: 0.005,
+        decay: 1,
+        sustain: 1,
+        release: 0
+    },
+    filterEnvelope: {
+        attack: 0,
+        decay: 0,
+        sustain: 0,
+        release: 0,
+        baseFrequency: 5000,
+        octaves: 7,
+        exponent: 2
+    }
+};
 
+let eduSynth = new Tone.MonoSynth(eduParams);
+
+
+//oscillators
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 let audioCtx = new window.AudioContext();
+let g = audioCtx.createGain();
 
 let sineWave = audioCtx.createOscillator();
 let squareWave = audioCtx.createOscillator();
@@ -39,13 +71,14 @@ squareWave.start(0);
 triangleWave.start(0);
 sawtoothWave.start(0);
 
+//adds class to osc selected + calls to print details
 function selectOsc(wave) {
     wave.addClass('oscSelect');
     $('#oscView>aside>div').not(wave).removeClass('oscSelect');
     eduView.printOscDetail($('.oscSelect').attr('wave'));
 }
 
-
+// oscillator listeners
 $(document).on('mousedown', '#startSine', function() {
     sineWave.connect(audioCtx.destination);
     selectOsc($('#startSine').parent());
@@ -54,30 +87,39 @@ $(document).on('mouseup mouseleave', "#startSine", () => sineWave.disconnect());
 
 
 $(document).on('mousedown', "#startSquare", () => {
-    squareWave.connect(audioCtx.destination);
+    g.gain.value = 0.6;
+    squareWave.connect(g);
+    g.connect(audioCtx.destination);
     selectOsc($('#startSquare').parent());
 });
 $(document).on('mouseup mouseleave', "#startSquare", () => squareWave.disconnect());
 
 
 $(document).on('mousedown', "#startTriangle", () => {
-    triangleWave.connect(audioCtx.destination);
+    g.gain.value = 0.7;
+    triangleWave.connect(g);
+    g.connect(audioCtx.destination);
     selectOsc($('#startTriangle').parent());
 });
 $(document).on('mouseup mouseleave', "#startTriangle", () => triangleWave.disconnect());
 
 
 $(document).on('mousedown', "#startSawtooth", () => {
-    sawtoothWave.connect(audioCtx.destination);
+    g.gain.value = 0.5;
+    sawtoothWave.connect(g);
+    g.connect(audioCtx.destination);
     selectOsc($('#startSawtooth').parent());
 });
 $(document).on('mouseup mouseleave', "#startSawtooth", () => sawtoothWave.disconnect());
 
+
+/// pulls selected sound wave, augments synth params, continues to amp stage 
 $(document).on('click', '#pickOsc>span', ()=>{
     if ($('.oscSelect').attr('wave')===undefined) {
         window.alert('Please Select a Soundwave');
     } else {
-        console.log($('.oscSelect').attr('wave'));
+        eduParams.oscillator.type = $('.oscSelect').attr('wave');
+        console.log(eduParams);
     }
 });
 
