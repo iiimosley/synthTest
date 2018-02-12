@@ -4,6 +4,8 @@ const eduCtrl = require('./edu-control');
 const osc = require('../templates/osc.hbs');
 const oscDetail = require('../templates/osc-detail.hbs');
 const ampEG = require('../templates/amp-eg.hbs');
+const ampEGDetail = require('../templates/amp-eg-detail.hbs');
+const cutoffFilter = require('../templates/filter.hbs');
 
 module.exports.startBuild = () => {
     $("#eduModal").empty();
@@ -18,10 +20,23 @@ module.exports.printOscDetail = (wave) => {
     $("#oscDetail").append(oscDetail(oscObj));
 };
 
-module.exports.printAmpEGDetail = () => {
+module.exports.printAmpEG = () => {
     $("#eduWrap").empty();
     $("#eduWrap").append(ampEG);
     eduCtrl.ampDraw();
+};
+
+module.exports.printAmpEGDetail = (EG) => {
+    let ampObj = {};
+    ampObj[EG] = true;
+    $("#ampDetail").empty();
+    $("#ampDetail").append(ampEGDetail(ampObj));
+};
+
+module.exports.printFilterDetail = () => {
+    $("#eduWrap").empty();
+    $("#eduWrap").append(cutoffFilter);
+    eduCtrl.filterDraw();
 };
 
 // module.exports.closeBuild = (patchName, bool) => {

@@ -123,20 +123,19 @@ $(document).on('click', '#pickOsc', ()=>{
         eduSynth.oscillator.type = $('.oscSelect').attr('wave');
         eduParams.oscillator.type = $('.oscSelect').attr('wave');
         console.log(eduParams);
-        eduView.printAmpEGDetail();
-        return eduSynth.oscillator.type;
+        eduView.printAmpEG();
     }
 });
 
 
 /// listener for range input on AmpEG
-$(document).on('change', '#eduAmpEG', () => {
+$(document).on('input', '#eduAmpEG', function() {
     eduSynth.envelope.attack = $('#aAttack').val();
     eduSynth.envelope.decay = $('#aDecay').val();
     eduSynth.envelope.sustain = $('#aSustain').val();
     eduSynth.envelope.release = $('#aRelease').val();
+    eduView.printAmpEGDetail(event.target.id);
 });
-
 
 
 /// AMP ADSR Graph
@@ -190,6 +189,14 @@ module.exports.ampDraw = () => {
     $("#eduAmpEG").trigger("input");
 };
 
+$(document).on('click', '#pickAmp', ()=>{
+    eduParams.envelope.attack = $('#aAttack').val();
+    eduParams.envelope.decay = $('#aDecay').val();
+    eduParams.envelope.sustain = $('#aSustain').val();
+    eduParams.envelope.release = $('#aRelease').val();
+    console.log(eduParams);
+    eduView.printFilterDetail();
+});
 
 
 
