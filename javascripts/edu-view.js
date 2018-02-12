@@ -36,7 +36,7 @@ module.exports.printAmpEGDetail = (EG) => {
 module.exports.printFilterDetail = () => {
     $("#eduWrap").empty();
     $("#eduWrap").append(cutoffFilter);
-    eduCtrl.filterDraw();
+    eduCtrl.cutoffDraw();
 };
 
 // module.exports.closeBuild = (patchName, bool) => {
