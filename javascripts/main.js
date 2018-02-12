@@ -90,7 +90,7 @@ synth.toMaster();
 
 $(document).on("keydown", function (e) {
     for (let i = 0; i < allNotes.length; i++) {
-        if ($("#newPatch").is(":focus")) {
+        if ($("#newPatch").is(":focus") || $('#eduModal').css('display') == 'block') {
             e.stopPropagation();
         }
         else if (event.keyCode == allKeys[i] && !event.repeat) {
