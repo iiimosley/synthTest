@@ -156,6 +156,8 @@ $keyBorder: .3vw double white;
                 canvas {
                     border: .3vw double black;
                     transform: scale(1.3);
+                    width: 80%;
+                    height: auto;
                 }
             }
         }
