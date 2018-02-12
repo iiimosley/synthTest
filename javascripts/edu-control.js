@@ -202,6 +202,41 @@ $(document).on('click', '#pickAmp', ()=>{
 
 
 
+module.exports.cutoffDraw = () => {
+    let canvas = document.getElementById("cutoffView");
+    let ctx = canvas.getContext("2d");
+    ctx.beginPath();
+
+    $(document).on("input", "#eduFilter", function () {
+        let fVal = +($("#fCutoff").val() / 100);
+        let qVal = +($("#fResonance").val());
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        ctx.beginPath();
+        ctx.moveTo(+fVal, canvas.height);
+        ctx.lineTo(20, 30);
+        ctx.strokeStyle = 'rgb(0,0,0)';
+        ctx.stroke();
+        // ctx.fillStyle = 'rgb(0,0,0)';
+        // ctx.fillRect(+aVal, +dVal, 5, 5);
+
+        // ctx.beginPath();
+        // ctx.moveTo(+aVal, +dVal);
+        // ctx.lineTo();
+        // ctx.strokeStyle = 'rgb(0,0,0)';
+        // ctx.stroke();
+        // ctx.fillStyle = 'rgb(0,0,0)';
+        // ctx.fillRect(130, +sVal, 5, 5);
+
+    });
+    $("#eduFilter").trigger("input");
+};
+
+
+
+
+
+
 // spacebar plays single oscillator of synth builder when modal is in view
 $(document).on('keydown', ()=>{
     if (event.keyCode === 32 && $('#eduModal').css('display') == 'block' && !event.repeat) {
