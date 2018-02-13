@@ -1,4 +1,9 @@
+dist/
+stylesheets/
+node_modules/
 .sass-cache/
 javascripts/config/fb-creds.js
 package-lock.json
 .DS_Store
+.firebaserc
+firebase.json
