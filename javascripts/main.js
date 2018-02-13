@@ -1,7 +1,6 @@
 'use strict';
 const $ = require('jquery');
 const Tone = require('tone');
-const Chart = require('chart.js');
 
 const DataFactory = require('./dataFactory');
 const AuthFactory = require('./authFactory');
@@ -240,53 +239,4 @@ $(document).on("click", "#deletePatch", function () {
 });
 
 
-
-
-
-
-// let lCtx = document.getElementById("adsr").getContext('2d');
-
-
-// let dataObj;
-
-// $("#chartCtrl").on("change", ()=>{
-//     dataObj = [{
-//         x: +$("#attack").val(),
-//         y: +$("#decay").val()
-//     }, {
-//         x: +$("#decay").val() + (+$("#sustain").val()),
-//         y: +$("#sustain").val()
-//     },{
-//         x: +$("#release").val(),
-//         y: +$("#sustain").val()
-//     }
-//     ];
-// });
-
-// function activateChart() {
-//     $("#chartCtrl").trigger("change");
-//     let egChart  = new Chart(lCtx, {
-//         type: 'line',
-//         data: dataObj
-//     });
-// }
-
-// activateChart();
-
-
-
-
-// $("#getVals").on("click", function(){
-//     let obj = {};
-//     $("#synthWrap :input:radio:checked").each(function(set){
-//         console.log(set, this.name, this.value);
-//         obj[this.name] = this.value;
-//     });
-//     $("#synthWrap :input[type=range]").each(function (set) {
-//         console.log(set, this.id, this.value);
-//         obj[this.id] = this.value;
-//     });
-//     console.log(obj, $("#patchBtns :input:radio:checked").attr('id'));
-//     DataFactory.setPatch(obj, $("#patchBtns :input:radio:checked").attr('id'));
-// });
 
