@@ -7,3 +7,4 @@ package-lock.json
 .DS_Store
 .firebaserc
 firebase.json
+404.html
