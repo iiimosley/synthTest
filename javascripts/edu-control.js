@@ -198,8 +198,15 @@ $(document).on('click', '#pickAmp', ()=>{
     console.log(eduParams);
     eduView.printFilterDetail();
 });
+/////////////////////////
 
 
+/// cutoff filter
+////range input listeners
+$(document).on('input', '#eduFilter', function () {
+    eduSynth.filterEnvelope.baseFrequency = $("#fCutoff").val();
+    eduSynth.filter.Q.value = $('#fResonance').val();
+});
 
 
 module.exports.cutoffDraw = () => {
@@ -232,6 +239,12 @@ module.exports.cutoffDraw = () => {
     $("#eduFilter").trigger("input");
 };
 
+$(document).on('click', '#pickCutoff', () => {
+    eduParams.filterEnvelope.baseFrequency = $("#fCutoff").val();
+    eduParams.filter.Q = $('#fResonance').val();
+    console.log(eduParams);
+    eduView.printFilterDetail();
+});
 
 
 
