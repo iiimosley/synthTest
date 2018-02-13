@@ -56,6 +56,13 @@ function applyPatch(patch) {
     $("#synthWrap").trigger("change");
 }
 
+module.exports.receivePatch = (patch) => {
+    console.log('back to maiin');
+    applyPatch(patch);
+};
+
+
+
 $("#synthWrap").on("change", function(){
     synth.set({
         detune: $("input[name='detune']:checked").val(),
@@ -86,7 +93,6 @@ $("#synthWrap").on("change", function(){
     synth.volume.value = $("#synthVol").val();
 });
 synth.toMaster();
-
 
 $(document).on("keydown", function (e) {
     for (let i = 0; i < allNotes.length; i++) {
