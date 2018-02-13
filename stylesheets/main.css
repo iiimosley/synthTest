@@ -1,0 +1,341 @@
+* {
+  margin: 0; }
+
+#nav {
+  background: white;
+  color: #2a2a5e;
+  border-bottom: .3vw double gold;
+  overflow: hidden;
+  transition: all .2s; }
+  #nav > * {
+    padding: 1.3vw 4vw;
+    display: inline-block;
+    border-left: .1vw solid navy;
+    border-right: .1vw solid navy;
+    transition: all .2s; }
+    #nav > *:hover {
+      background: #d1a73b;
+      cursor: pointer; }
+  #nav #patchDrop {
+    display: none;
+    position: absolute;
+    z-index: 7;
+    background: rgba(255, 250, 250, 0.959);
+    box-shadow: 0 .7vw 1vw darkslategray;
+    margin-left: -4vw;
+    margin-top: 1.3vw; }
+    #nav #patchDrop .patchSelect {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: .3vw;
+      transition: all .3s; }
+      #nav #patchDrop .patchSelect > span:first-child {
+        margin-right: 2.1vw; }
+      #nav #patchDrop .patchSelect:hover {
+        color: seashell;
+        background: #cc5500;
+        text-shadow: 0 0 .2vw snow, 0 0 .4vw cornflowerblue; }
+    #nav #patchDrop .deleteChip {
+      font-size: 1.6em; }
+      #nav #patchDrop .deleteChip:hover {
+        color: #d60101;
+        text-shadow: 0 0 .3vw goldenrod; }
+
+#eduModal {
+  display: none;
+  position: fixed;
+  padding-top: 10vw;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(61, 61, 61, 0.836);
+  padding-top: 5vw; }
+  #eduModal #eduWrap {
+    position: relative;
+    margin: auto;
+    padding: 2vw;
+    width: 82%;
+    height: auto;
+    border-radius: 3em;
+    color: #333333;
+    background: white; }
+    #eduModal #eduWrap main {
+      float: left;
+      text-align: center; }
+    #eduModal #eduWrap aside {
+      float: right;
+      text-align: right;
+      margin-right: 3vw; }
+    #eduModal #eduWrap canvas {
+      display: block; }
+    #eduModal #eduWrap #oscView main {
+      width: 40%; }
+      #eduModal #eduWrap #oscView main p {
+        margin: 3.5vw auto; }
+    #eduModal #eduWrap #oscView aside {
+      width: 50%; }
+      #eduModal #eduWrap #oscView aside div {
+        margin: .8vw;
+        padding: .5vw;
+        transition: all .1s; }
+        #eduModal #eduWrap #oscView aside div img {
+          width: 30vw;
+          height: auto; }
+    #eduModal #eduWrap #oscView .oscSelect {
+      border: 0.2vw solid #007197;
+      border-radius: .3em;
+      box-shadow: 0 0 .4vw darkslategray; }
+    #eduModal #eduWrap #ampView main, #eduModal #eduWrap #filterEGView main {
+      width: 55%; }
+      #eduModal #eduWrap #ampView main #ampDetail, #eduModal #eduWrap #ampView main #filterDetail, #eduModal #eduWrap #filterEGView main #ampDetail, #eduModal #eduWrap #filterEGView main #filterDetail {
+        width: 70%;
+        margin: 2vw auto; }
+      #eduModal #eduWrap #ampView main p, #eduModal #eduWrap #filterEGView main p {
+        margin: 2vw auto; }
+    #eduModal #eduWrap #ampView aside, #eduModal #eduWrap #filterEGView aside {
+      width: 40%; }
+      #eduModal #eduWrap #ampView aside div, #eduModal #eduWrap #filterEGView aside div {
+        margin: 3vw auto;
+        padding: .5vw; }
+      #eduModal #eduWrap #ampView aside canvas, #eduModal #eduWrap #filterEGView aside canvas {
+        border: .3vw double black;
+        transform: scale(1.3);
+        width: 80%;
+        height: auto; }
+    #eduModal #eduWrap #cutoffWrap main {
+      width: 50%; }
+      #eduModal #eduWrap #cutoffWrap main h1 {
+        margin: .2em auto; }
+      #eduModal #eduWrap #cutoffWrap main p {
+        margin: 1.3vw auto;
+        width: 70%; }
+        #eduModal #eduWrap #cutoffWrap main p .detail {
+          font-size: .7em; }
+    #eduModal #eduWrap #cutoffWrap aside {
+      width: 45%; }
+      #eduModal #eduWrap #cutoffWrap aside div {
+        margin: 5vw auto; }
+      #eduModal #eduWrap #cutoffWrap aside canvas {
+        margin: auto;
+        border: .1vw solid black;
+        transform: scale(1.3);
+        width: 80%; }
+    #eduModal #eduWrap .continueSection {
+      clear: both;
+      text-align: right; }
+      #eduModal #eduWrap .continueSection span {
+        display: inline-block;
+        padding: 1.3vw;
+        color: white;
+        margin-top: 1vw;
+        margin-right: 3vw;
+        background: blue;
+        border-radius: .8vw; }
+        #eduModal #eduWrap .continueSection span:hover {
+          cursor: pointer; }
+    #eduModal #eduWrap .spacebarEvent {
+      width: 80%;
+      border: .1vw solid black;
+      border-radius: .7vw;
+      box-shadow: 0 0 1vw; }
+      #eduModal #eduWrap .spacebarEvent p {
+        margin: 1.1vw auto; }
+    #eduModal #eduWrap .closeChip {
+      position: absolute;
+      display: inline-block;
+      left: 90%;
+      top: 10%;
+      font-size: 3vw;
+      color: #313131;
+      border-radius: 50%;
+      left: 95%;
+      top: 3%; }
+      #eduModal #eduWrap .closeChip:hover {
+        color: #02027a;
+        cursor: pointer; }
+        #eduModal #eduWrap .closeChip:hover:active {
+          color: gold;
+          text-shadow: 0 0 2vw #525151; }
+    #eduModal #eduWrap .note {
+      font-size: .6em; }
+
+#editModal, #saveModal, #deleteModal {
+  display: none;
+  position: fixed;
+  padding-top: 10vw;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(61, 61, 61, 0.836); }
+  #editModal .patchModal, #saveModal .patchModal, #deleteModal .patchModal {
+    position: relative;
+    margin: auto;
+    padding: 2vw;
+    width: 40%;
+    height: auto;
+    border-radius: 3em;
+    color: #333333;
+    background: white; }
+    #editModal .patchModal .modalContent, #saveModal .patchModal .modalContent, #deleteModal .patchModal .modalContent {
+      margin: 3vw auto;
+      text-align: center;
+      width: 80%; }
+      #editModal .patchModal .modalContent > *, #saveModal .patchModal .modalContent > *, #deleteModal .patchModal .modalContent > * {
+        display: block;
+        margin: 2vw auto; }
+    #editModal .patchModal h2, #saveModal .patchModal h2, #deleteModal .patchModal h2 {
+      margin-bottom: 3vw; }
+    #editModal .patchModal a, #saveModal .patchModal a, #deleteModal .patchModal a {
+      padding: 1vw 2vw;
+      color: white;
+      text-decoration: none;
+      background: blue;
+      border-radius: 1em; }
+      #editModal .patchModal a:hover, #saveModal .patchModal a:hover, #deleteModal .patchModal a:hover {
+        box-shadow: inset 0 0 0.7vw 0.2vw rgba(1, 1, 66, 0.582), inset 0 0 1vw #02026d;
+        cursor: pointer; }
+    #editModal .patchModal input, #editModal .patchModal select, #saveModal .patchModal input, #saveModal .patchModal select, #deleteModal .patchModal input, #deleteModal .patchModal select {
+      font-family: inherit;
+      font-size: 1.1em; }
+    #editModal .patchModal #deletePatch, #saveModal .patchModal #deletePatch, #deleteModal .patchModal #deletePatch {
+      background: red; }
+      #editModal .patchModal #deletePatch:hover, #saveModal .patchModal #deletePatch:hover, #deleteModal .patchModal #deletePatch:hover {
+        box-shadow: inset 0 0 0.7vw 0.2vw #801300, inset 0 0 1vw #7a2111; }
+    #editModal .patchModal .closeChip, #saveModal .patchModal .closeChip, #deleteModal .patchModal .closeChip {
+      position: absolute;
+      display: inline-block;
+      left: 90%;
+      top: 10%;
+      font-size: 3vw;
+      color: #313131;
+      border-radius: 50%; }
+      #editModal .patchModal .closeChip:hover, #saveModal .patchModal .closeChip:hover, #deleteModal .patchModal .closeChip:hover {
+        color: #02027a;
+        cursor: pointer; }
+        #editModal .patchModal .closeChip:hover:active, #saveModal .patchModal .closeChip:hover:active, #deleteModal .patchModal .closeChip:hover:active {
+          color: gold;
+          text-shadow: 0 0 2vw #525151; }
+
+body {
+  margin: 0;
+  background: #222222;
+  font-family: 'Averia Serif Libre', Helvetica, cursive;
+  color: snow; }
+
+h1, h3 {
+  margin: 1em auto;
+  text-align: center; }
+
+#synthWrap > div {
+  display: inline-block;
+  margin: 1vw;
+  border: .2vw solid white;
+  padding: 1vw; }
+  #synthWrap > div h4 {
+    margin: .3vw auto;
+    border-bottom: .1vw solid white; }
+
+#patchWrap {
+  margin: 2em auto;
+  padding: 1em;
+  width: 30%;
+  border: .4vw groove oldlace;
+  text-align: center; }
+  #patchWrap h3 {
+    display: block;
+    width: 40%;
+    padding-bottom: .4vw;
+    letter-spacing: .2vw;
+    border-bottom: .1vw solid white; }
+
+#keyMap {
+  position: relative;
+  font-size: 0;
+  margin: 1em auto;
+  padding-bottom: .1vw;
+  width: 59%;
+  height: 20vw;
+  border-top: 0.3vw double white;
+  border-right: 0.3vw double white;
+  border-left: 0.3vw double white; }
+  #keyMap div {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    width: 8.74%;
+    height: 100%;
+    background: white;
+    border: .1vw solid black;
+    border-radius: 0 0 1.3vw 1.3vw; }
+    #keyMap div span {
+      display: inline-block;
+      font-size: 3vw;
+      color: #d3ff7c;
+      text-shadow: 0 0 .2vw darkblue;
+      margin: 4.5em auto 0 auto;
+      width: 100%;
+      text-align: center;
+      z-index: 18; }
+    #keyMap div .offNote {
+      margin: 3em auto 0 auto;
+      font-size: 2.4vw; }
+  #keyMap .flat {
+    z-index: 2;
+    position: absolute;
+    margin-left: -1.3vw;
+    width: 2.4vw;
+    height: 12vw;
+    background: black; }
+  #keyMap .keyFill {
+    background: linear-gradient(45deg, goldenrod, #8aabd6) !important; }
+  #keyMap .keyFillFlat {
+    background: linear-gradient(76deg, #5a252b 42%, #6bcec2) !important; }
+
+#keyCheck {
+  margin: 1em auto;
+  width: 20%; }
+  #keyCheck sup {
+    font-size: .2em;
+    color: #d3ff7c;
+    margin: 0 .4vw; }
+
+#userTools {
+  margin: 2em auto;
+  width: 30%; }
+  #userTools #patchData {
+    margin: 1em auto; }
+
+#patchBtns {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  margin: 1.3vw auto; }
+
+#piano {
+  display: block;
+  margin: 2em auto;
+  max-width: 40%;
+  height: auto;
+  border-radius: 1em; }
+
+#adsr {
+  margin: 2em auto;
+  height: 20vw;
+  width: 45vw; }
+
+#chartWrap, #chartCtrl {
+  width: 70%;
+  margin: 2em auto; }
+
+#wave {
+  display: block;
+  margin: 1em auto; }
+
+/*# sourceMappingURL=main.css.map */
