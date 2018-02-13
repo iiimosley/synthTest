@@ -105,20 +105,27 @@ $keyBorder: .3vw double white;
         border-radius: 3em;
         color: rgb(51, 51, 51);
         background: white;
+        main{
+            float: left;
+            text-align: center;
+        }
+        aside {
+            float: right;
+            text-align: right;
+            margin-right: 3vw;
+        }
+        canvas {
+            display: block;
+        }
         #oscView {
             main{
-                float: left;
                 width: 40%;
-                text-align: center;
                 p {
                     margin: 3.5vw auto;
                 }
             } 
             aside {
-                float: right;
                 width: 50%;
-                text-align: right;
-                margin-right: 3vw;
                 div {
                     margin: .8vw;
                     padding: .5vw;
@@ -137,9 +144,7 @@ $keyBorder: .3vw double white;
         }
         #ampView {
             main{
-                float: left;
                 width: 55%;
-                text-align: center;
                 #ampDetail {
                     width: 70%;
                     margin: 2vw auto;
@@ -149,10 +154,7 @@ $keyBorder: .3vw double white;
                 }
             } 
             aside {
-                float: right;
                 width: 40%;
-                text-align: right;
-                margin-right: 3vw;
                 div {
                     margin: 3vw auto;
                     padding: .5vw;
@@ -166,9 +168,22 @@ $keyBorder: .3vw double white;
             }
         }
         #cutoffWrap{
+            main {
+                width: 50%;
+                p {
+                    margin: 1.6vw auto;
+                    width: 70%;
+                }
+            }
             aside{
+                width: 45%;
+                div {
+                    margin: 5vw auto;
+                }
                 canvas {
-                    border: .2vw solid black;
+                    margin: auto;
+                    border: .1vw solid black;
+                    transform: scale(1.3);
                 }
             }
         }
@@ -425,12 +440,12 @@ h1, h3 {
 }
 
 
-canvas {
-    display: block;
-    margin: 1em auto;
-    /* transform: rotate(90deg); */
-    border: 1px solid white;
-}
+// canvas {
+//     display: block;
+//     margin: 1em auto;
+//     /* transform: rotate(90deg); */
+//     border: 1px solid white;
+// }
 
 #wave {
     display: block;
