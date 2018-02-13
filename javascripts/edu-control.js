@@ -214,15 +214,15 @@ module.exports.cutoffDraw = () => {
 
         ctx.beginPath();
         ctx.moveTo(+fVal, canvas.height);
-        ctx.lineTo((+fVal - 70), 30);
+        ctx.bezierCurveTo((+fVal - 30), 10, (+fVal - 31), 76 / +qVal, (+fVal - 70), 60);
         ctx.strokeStyle = 'rgb(0,0,0)';
         ctx.stroke();
         // ctx.fillStyle = 'rgb(0,0,0)';
         // ctx.fillRect(+aVal, +dVal, 5, 5);
 
         ctx.beginPath();
-        ctx.moveTo((+fVal - 70), 30);
-        ctx.lineTo(0, 30);
+        ctx.moveTo((+fVal - 70), 60);
+        ctx.lineTo(0, 60);
         ctx.strokeStyle = 'rgb(0,0,0)';
         ctx.stroke();
         // ctx.fillStyle = 'rgb(0,0,0)';
