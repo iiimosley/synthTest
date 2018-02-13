@@ -72,7 +72,7 @@ $keyBorder: .3vw double white;
             padding: .3vw;
             transition: all .3s;
             > span:first-child {
-                margin-right: 2.1vw;
+                padding: .4vw 3vw .4vw .4vw;
             }
             &:hover {
                 color: seashell;
