@@ -1,0 +1,10 @@
+{{#if fCutoff}}
+<h3>Frequency Cutoff</h3>
+<p>Sets the highest frequency of arranged harmonics to be heard.</p>
+<p class="detail">With a LPF (the most common of synth filters): the filter allows for any frequencies set BELOW the set frequency cutoff to be heard</p>
+<p class="note">Other filters that can be found on synths: High Pass Filters (HPF), Band Pass Filters (BPF), or Notch/Band Stop Filters (BSF)</p>
+{{else if fResonance}}
+<h3>Resonance</h3>
+<h4>aka Q (for Quality)</h4>
+<p>a small group (or <i>band</i>) of frequencies set at the filter cutoff that can be increased to accentuate the overall sound of the filter</p>
+{{/if}}

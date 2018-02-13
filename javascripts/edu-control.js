@@ -3,11 +3,15 @@
 const $ = require('jquery');
 const Tone = require('tone');
 const eduView = require('./edu-view');
+const main = require('./main');
 
 $(document).on('click', '#startBuild', ()=> eduView.startBuild());
 
 
 /// synth for builder + params
+
+let buildPatch = {};
+
 
 let eduParams = {
     detune: 0,
@@ -121,8 +125,8 @@ $(document).on('click', '#pickOsc', ()=>{
         window.alert('Please Select a Soundwave');
     } else {
         eduSynth.oscillator.type = $('.oscSelect').attr('wave');
-        eduParams.oscillator.type = $('.oscSelect').attr('wave');
-        console.log(eduParams);
+        buildPatch.osc = $('.oscSelect').attr('wave');
+        console.log(buildPatch);
         eduView.printAmpEG();
     }
 });
@@ -191,15 +195,24 @@ module.exports.ampDraw = () => {
 };
 
 $(document).on('click', '#pickAmp', ()=>{
-    eduParams.envelope.attack = $('#aAttack').val();
-    eduParams.envelope.decay = $('#aDecay').val();
-    eduParams.envelope.sustain = $('#aSustain').val();
-    eduParams.envelope.release = $('#aRelease').val();
-    console.log(eduParams);
-    eduView.printFilterDetail();
+    buildPatch.ampAttack = $('#aAttack').val();
+    buildPatch.ampDecay = $('#aDecay').val();
+    buildPatch.ampSustain = $('#aSustain').val();
+    buildPatch.ampRelease = $('#aRelease').val();
+    console.log(buildPatch);
+    eduView.printFilter();
+});
+/////////////////////////
+
+
+/// cutoff filter
+////range input listeners
+$(document).on('input', '#eduFilter', function () {
+    eduSynth.filterEnvelope.baseFrequency = $("#fCutoff").val();
+    eduSynth.filter.Q.value = $('#fResonance').val();
 });
 
-
+$(document).on('mousedown', '#eduFilter', () => eduView.printFilterDetail(event.target.id));
 
 
 module.exports.cutoffDraw = () => {
@@ -214,15 +227,15 @@ module.exports.cutoffDraw = () => {
 
         ctx.beginPath();
         ctx.moveTo(+fVal, canvas.height);
-        ctx.lineTo((+fVal - 70), 30);
+        ctx.bezierCurveTo((+fVal - 30), 10, (+fVal - 31), 76 / +qVal, (+fVal - 70), 60);
         ctx.strokeStyle = 'rgb(0,0,0)';
         ctx.stroke();
         // ctx.fillStyle = 'rgb(0,0,0)';
         // ctx.fillRect(+aVal, +dVal, 5, 5);
 
         ctx.beginPath();
-        ctx.moveTo((+fVal - 70), 30);
-        ctx.lineTo(0, 30);
+        ctx.moveTo((+fVal - 70), 60);
+        ctx.lineTo(0, 60);
         ctx.strokeStyle = 'rgb(0,0,0)';
         ctx.stroke();
         // ctx.fillStyle = 'rgb(0,0,0)';
@@ -231,6 +244,89 @@ module.exports.cutoffDraw = () => {
     });
     $("#eduFilter").trigger("input");
 };
+
+$(document).on('click', '#pickCutoff', () => {
+    buildPatch.filterFreq = $("#fCutoff").val();
+    buildPatch.filterQ = $('#fResonance').val();
+    console.log(buildPatch);
+    eduView.printFilterEG();
+});
+////////////////////
+
+
+
+
+/// listener for range input on FilterEG
+$(document).on('input', '#eduFilterEG', function () {
+    eduSynth.filterEnvelope.attack = $('#fAttack').val();
+    eduSynth.filterEnvelope.decay = $('#fDecay').val();
+    eduSynth.filterEnvelope.sustain = $('#fSustain').val();
+    eduSynth.filterEnvelope.release = $('#fRelease').val();
+});
+
+$(document).on('mousedown', '#eduFilterEG', () => eduView.printFilterEGDetail(event.target.id));
+
+
+/// Filter ADSR Graph
+
+module.exports.filterDraw = () => {
+    let canvas = document.getElementById("filterADSR");
+    let ctx = canvas.getContext("2d");
+    ctx.beginPath();
+
+    $(document).on("input", "#eduFilterEG", function () {
+        let aVal = +($("#fAttack").val() * 90);
+        let dVal = +(canvas.height) - +($("#fDecay").val() * +(canvas.height));
+        let sVal = +(canvas.height) - +($("#fSustain").val() * +(canvas.height));
+        let rVal = +(canvas.width) - (+($("#fRelease").val() * 100));
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        if (dVal > sVal) dVal = sVal;
+
+        ctx.beginPath();
+        ctx.moveTo(0, canvas.height);
+        ctx.lineTo(+aVal, +dVal);
+        ctx.strokeStyle = 'rgb(0,0,0)';
+        ctx.stroke();
+        // ctx.fillStyle = 'rgb(0,0,0)';
+        // ctx.fillRect(+aVal, +dVal, 5, 5);
+
+        ctx.beginPath();
+        ctx.moveTo(+aVal, +dVal);
+        ctx.lineTo(100, +sVal);
+        ctx.strokeStyle = 'rgb(0,0,0)';
+        ctx.stroke();
+        // ctx.fillStyle = 'rgb(0,0,0)';
+        // ctx.fillRect(130, +sVal, 5, 5);
+
+        ctx.beginPath();
+        ctx.moveTo(100, +sVal);
+        ctx.lineTo(+rVal, +sVal);
+        ctx.strokeStyle = 'rgb(0,0,0)';
+        ctx.stroke();
+        // ctx.fillStyle = 'rgb(0,0,0)';
+        // ctx.fillRect(+rVal, +sVal, 5, 5);
+
+        ctx.beginPath();
+        ctx.moveTo(+rVal, +sVal);
+        ctx.lineTo(canvas.width, canvas.height);
+        ctx.strokeStyle = 'rgb(0,0,0)';
+        ctx.stroke();
+        // ctx.fillStyle = 'rgb(0,0,0)';
+        // ctx.fillRect(130, +sVal, 5, 5);
+    });
+    $("#eduFilterEG").trigger("input");
+};
+
+$(document).on('click', '#pickFilter', () => {
+    buildPatch.filterAttack = $('#fAttack').val();
+    buildPatch.filterDecay = $('#fDecay').val();
+    buildPatch.filterSustain = $('#fSustain').val();
+    buildPatch.filterRelease = $('#fRelease').val();
+    console.log(buildPatch);
+    main.receivePatch(buildPatch);
+    eduView.leaveBuilder();
+});
 
 
 
@@ -253,52 +349,3 @@ $(document).on('keyup', (e) => {
     }
 });
 
-
-
-
-
-
-// let sineConnected = false;
-// let squareConnected = false;
-// let triangleConnected = false;
-// let sawtoothConnected = false;
-
-// const playSine = () => {
-//     if (!sineConnected) {
-//         sineWave.connect(audioCtx.destination);
-//     }
-//     else {
-//         sineWave.disconnect();
-//     }
-//     sineConnected = !sineConnected;
-// };
-
-// const playSquare = () => {
-//     if (!squareConnected) {
-//         squareWave.connect(audioCtx.destination);
-//     }
-//     else {
-//         squareWave.disconnect();
-//     }
-//     squareConnected = !squareConnected;
-// };
-
-// const playTriangle = () => {
-//     if (!triangleConnected) {
-//         triangleWave.connect(audioCtx.destination);
-//     }
-//     else {
-//         triangleWave.disconnect();
-//     }
-//     triangleConnected = !triangleConnected;
-// };
-
-// const playSawtooth = () => {
-//     if (!sawtoothConnected) {
-//         sawtoothWave.connect(audioCtx.destination);
-//     }
-//     else {
-//         sawtoothWave.disconnect();
-//     }
-//     sawtoothConnected = !sawtoothConnected;
-// };

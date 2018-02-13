@@ -1,0 +1,13 @@
+{{#if fAttack}}
+<h4>ATTACK</h4>
+<p>the amount of time it takes for the filter to reach it's highest frequency from the cutoff and accentuates the volume of those frequencies</p>
+{{else if fDecay}}
+<h4>DECAY</h4>
+<p>the amount of time it takes for the filter's frequency to drop to it's sustained frequency</p>
+{{else if fSustain}}
+<h4>SUSTAIN</h4>
+<p>the continued frequency level of the modulated filter for the duration of the keypress</p>
+{{else if fRelease}}
+<h4>RELEASE</h4>
+<p>the amount of time it takes for the filter to drop back down to it's original state after the keypress release</p>
+{{/if}}
