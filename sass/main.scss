@@ -72,7 +72,9 @@ $keyBorder: .3vw double white;
             padding: .3vw;
             transition: all .3s;
             > span:first-child {
-                padding: .4vw 3vw .4vw .4vw;
+                padding: .4vw auto;
+                width: 95%;
+                // padding: .4vw 3vw .4vw .4vw;
             }
             &:hover {
                 color: seashell;
@@ -83,6 +85,7 @@ $keyBorder: .3vw double white;
         .deleteChip {
             // text-align: right;
             font-size: 1.6em;
+            margin-left: .3em;
             &:hover {
                 color: rgb(214, 1, 1);
                 text-shadow: 0 0 .3vw goldenrod;
