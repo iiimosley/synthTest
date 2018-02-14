@@ -341,16 +341,6 @@ h1, h3 {
     }
 }
 
-// #keyOver{
-//     margin: 0 auto;
-//     width: 59%;
-//     height: 20.4vw;
-//     position: absolute;
-//     z-index: 3;
-//     left: 20.5%;
-//     background: linear-gradient(45deg, rgba(47, 79, 79, 0.767), rgba(53, 95, 95, 0.767));
-// }
-
 #keyMap {
     position: relative;
     font-size: 0;
@@ -435,26 +425,8 @@ h1, h3 {
     border-radius: 1em;
 }
 
-#adsr {
-    margin: 2em auto;
-    height: 20vw;
-    width: 45vw;
-}
 
-#chartWrap, #chartCtrl {
-    width: 70%;
-    margin: 2em auto;
-}
-
-
-// canvas {
-//     display: block;
-//     margin: 1em auto;
-//     /* transform: rotate(90deg); */
-//     border: 1px solid white;
+// input[type=range] {
+//     transform-origin: 50% 50%;
+//     transform: rotate(-90deg);
 // }
-
-#wave {
-    display: block;
-    margin: 1em auto;
-}
