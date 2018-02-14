@@ -76,10 +76,12 @@
         </div>
         <div id="filter">
             <h4>Filter</h4>
+            <div class="textOver">
             <input type="range" id="filterFreq" min="100" max="8000" step="10" value="300">
-            <input type="range" id="filterQ" min="0" max="18" step="1" value="0">
-            <div>
-                <label for="filterFreq">Cutoff</label>
+            <label for="filterFreq">Cutoff</label>
+            </div>
+            <div class="textOver">
+                <input type="range" id="filterQ" min="0" max="18" step="1" value="0">
                 <label for="filterQ">Resonance</label>
             </div>
         </div>
@@ -96,11 +98,11 @@
                 <label for="filterRelease">R</label>
             </div>
         </div>
-    </div>
-    <div>
-        <input type="range" name="synthVol" id="synthVol" step=".01" min="-20" max="1" value="-1">
         <div>
-        <label for="synthVol">volume</label>
+            <div class="textOver">
+            <input type="range" name="synthVol" id="synthVol" step=".01" min="-20" max="1" value="-1">
+            <label for="synthVol">volume</label>
+            </div>
         </div>
     </div>
     <div id="keyMap">
