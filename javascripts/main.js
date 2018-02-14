@@ -17,6 +17,8 @@ module.exports.checkUser = uid => {
     return currentUser;
 };
 
+//firefox dependency for vertically aligned range inputs
+$("input[type=range]").attr('orient', 'vertical');
 
 
 $(document).on("click", "#login", ()=>{
@@ -52,7 +54,7 @@ function applyPatch(patch) {
             $(`#synthWrap :input#${i}`).val(patch[i]);
         }
     });
-    $("#synthWrap").trigger("change");
+    $("#synthWrap").trigger("input");
 }
 
 module.exports.receivePatch = (patch) => {
@@ -62,7 +64,7 @@ module.exports.receivePatch = (patch) => {
 
 
 
-$("#synthWrap").on("change", function(){
+$("#synthWrap").on("input", function(){
     synth.set({
         detune: $("input[name='detune']:checked").val(),
         oscillator: {
@@ -89,8 +91,10 @@ $("#synthWrap").on("change", function(){
             exponent: 2
         }
     });
-    synth.volume.value = $("#synthVol").val();
 });
+
+$("#synthVol").on("input", ()=> synth.volume.value = $("#synthVol").val());
+
 synth.toMaster();
 
 $(document).on("keydown", function (e) {
@@ -158,7 +162,7 @@ $("#patchBtns :input:radio").change(function(){
     DataFactory.setPatch()
     .then((patches)=>{
         applyPatch(patches[pID]);
-        $("#synthWrap").trigger("change");
+        $("#synthWrap").trigger("input");
     });
 });
 
