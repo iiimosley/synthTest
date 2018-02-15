@@ -58,7 +58,6 @@ function applyPatch(patch) {
 }
 
 module.exports.receivePatch = (patch) => {
-    console.log('back to maiin');
     applyPatch(patch);
 };
 
@@ -103,7 +102,6 @@ $(document).on("keydown", function (e) {
             e.stopPropagation();
         }
         else if (event.keyCode == allKeys[i] && !event.repeat) {
-            console.log(event.char);
             if ($(`#key${allKeys[i]}`).hasClass("flat")){
                 $(`#key${allKeys[i]}`).addClass("keyFillFlat");
             } else {
