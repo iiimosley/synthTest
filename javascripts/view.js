@@ -3,6 +3,9 @@
 const AuthFactory = require('./authFactory');
 const $ = require('jquery');
 const Handlebars = require('hbsfy/runtime');
+
+const eduCtrl = require('./edu-control');
+
 const inNav = require('../templates/in-nav.hbs');
 const outNav = require('../templates/out-nav.hbs');
 const userBtns = require('../templates/user-buttons.hbs');
