@@ -128,7 +128,7 @@ input[type=range] {
             padding: .3vw;
             transition: all .3s;
             > span:first-child {
-                padding: .4vw auto;
+                padding-right: 1.2vw;
                 width: 95%;
                 // padding: .4vw 3vw .4vw .4vw;
             }
@@ -390,6 +390,7 @@ input[type=range] {
     width: $synthWidth;
     border: $keyBorder;
     border-radius: .9em .9em 0 0;
+    background: repeating-radial-gradient(circle at left bottom, rgb(34, 34, 34), rgba(95, 95, 95, 0.247) 6vw);
     #brand{
         position: absolute;
         top: 3%;
