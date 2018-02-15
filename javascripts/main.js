@@ -18,7 +18,7 @@ module.exports.checkUser = uid => {
 };
 
 //firefox dependency for vertically aligned range inputs
-$("input[type=range]").attr('orient', 'vertical');
+// $("input[type=range]").attr('orient', 'vertical');
 
 
 $(document).on("click", "#login", ()=>{
