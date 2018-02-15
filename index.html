@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>synth test - capstone</title>
-    <link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans+Condensed:300,300i,400,400i|Exo:100i,200i,300i" rel="stylesheet">
     <link rel="stylesheet" href="stylesheets/main.css">
 </head>
 <body>
@@ -20,6 +20,7 @@
     <div id="deleteModal">
     </div>
     <div id="synthWrap">
+        <h3 id="brand">SynthULX</h3>
         <div id="octave">
             <h4>transpose</h4>
             <div>
@@ -62,54 +63,47 @@
             </div>
         </div>
         <div id="ampEG">
-            <div>
-            <label for="ampAttack">amp attack</label>
+            <h4>Amp EG</h4>
             <input type="range" id="ampAttack" min="0" max="3" step="0.01" value="0.01">
-            </div>
-            <div>
-            <label for="ampDecay">amp decay</label>
             <input type="range" id="ampDecay" min="0" max="1" step="0.01" value="1">
-            </div>
-            <div>
-            <label for="ampAttack">amp sustain</label>
             <input type="range" id="ampSustain" min="0" max="1" step="0.01" value="1">
-            </div>
-            <div>
-            <label for="ampRelease">amp release</label>
             <input type="range" id="ampRelease" min="0" max="4.5" step="0.01" value="0">
+            <div>
+                <label for="ampAttack">A</label>
+                <label for="ampDecay">D</label>
+                <label for="ampAttack">S</label>
+                <label for="ampRelease">R</label>
             </div>
         </div>
         <div id="filter">
-            <div>
-                <label for="filterFreq">cutoff frequency</label>
-                <input type="range" id="filterFreq" min="100" max="8000" step="10" value="300">
+            <h4>Filter</h4>
+            <div class="textOver">
+            <input type="range" id="filterFreq" min="100" max="8000" step="10" value="300">
+            <label for="filterFreq">Cutoff</label>
             </div>
-            <div>
-                <label for="filterQ">resonance</label>
+            <div class="textOver">
                 <input type="range" id="filterQ" min="0" max="18" step="1" value="0">
+                <label for="filterQ">Resonance</label>
             </div>
         </div>
         <div id="filterEG">
+            <h4>Filter EG</h4>
+            <input type="range" id="filterAttack" min="0" max="3" step="0.01" value="0.01">
+            <input type="range" id="filterDecay" min="0" max="1" step="0.01" value="1">
+            <input type="range" id="filterSustain" min="0" max="1" step="0.01" value="1">
+            <input type="range" id="filterRelease" min="0" max="4.5" step="0.01" value="0.01">
             <div>
-                <label for="filterAttack">filter attack</label>
-                <input type="range" id="filterAttack" min="0" max="3" step="0.01" value="0.01">
-            </div>
-            <div>
-                <label for="filterDecay">filter decay</label>
-                <input type="range" id="filterDecay" min="0" max="1" step="0.01" value="1">
-            </div>
-            <div>
-                <label for="filterAttack">filter sustain</label>
-                <input type="range" id="filterSustain" min="0" max="1" step="0.01" value="1">
-            </div>
-            <div>
-                <label for="filterRelease">filter release</label>
-                <input type="range" id="filterRelease" min="0" max="4.5" step="0.01" value="0.01">
+                <label for="filterAttack">A</label>
+                <label for="filterDecay">D</label>
+                <label for="filterAttack">S</label>
+                <label for="filterRelease">R</label>
             </div>
         </div>
         <div>
-        <label for="synthVol">volume</label>
-        <input type="range" name="synthVol" id="synthVol" step=".01" min="-20" max="1" value="-1">
+            <div class="textOver">
+            <input type="range" name="synthVol" id="synthVol" step=".01" min="-20" max="1" value="-1">
+            <label for="synthVol">volume</label>
+            </div>
         </div>
     </div>
     <div id="keyMap">
@@ -134,9 +128,11 @@
     </div>
     <div id="keyCheck">
         <input type="checkbox" id="showKeys">
-        <label for="showKeys">Show Key Map<sup>QWERTY</sup></label>
-    </div>
-    <div id="userTools">
+        <label for="showKeys">Show Key Map
+            <sup>QWERTY</sup>
+        </label>
+        <div id="userTools">
+        </div>
     </div>
     <div id="patchWrap">
         <h3>patches</h3>

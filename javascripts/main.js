@@ -17,6 +17,8 @@ module.exports.checkUser = uid => {
     return currentUser;
 };
 
+//firefox dependency for vertically aligned range inputs
+$("input[type=range]").attr('orient', 'vertical');
 
 
 $(document).on("click", "#login", ()=>{
@@ -89,8 +91,10 @@ $("#synthWrap").on("change", function(){
             exponent: 2
         }
     });
-    synth.volume.value = $("#synthVol").val();
 });
+
+$("#synthVol").on("change", ()=> synth.volume.value = $("#synthVol").val());
+
 synth.toMaster();
 
 $(document).on("keydown", function (e) {
@@ -99,6 +103,7 @@ $(document).on("keydown", function (e) {
             e.stopPropagation();
         }
         else if (event.keyCode == allKeys[i] && !event.repeat) {
+            console.log(event.char);
             if ($(`#key${allKeys[i]}`).hasClass("flat")){
                 $(`#key${allKeys[i]}`).addClass("keyFillFlat");
             } else {

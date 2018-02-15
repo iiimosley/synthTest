@@ -1,11 +1,12 @@
 // vars
+$synthWidth: 63%;
 $keyBorder: .3vw double white;
+$rangeLabel: 2.1vw;
 
 // mixins
 @mixin modal {
     display: none;
     position: fixed;
-    padding-top: 10vw;
     z-index: 10;
     left: 0;
     top: 0;
@@ -13,6 +14,16 @@ $keyBorder: .3vw double white;
     height: 100%;
     overflow: auto;
     background-color: rgba(61, 61, 61, 0.836);
+}
+
+@mixin modalContent {
+    position: relative;
+    margin: auto;
+    padding: 2vw;
+    height: auto;
+    border-radius: 1em;
+    color: rgb(51, 51, 51);
+    background: white;
 }
 
 @mixin closeChip {
@@ -34,11 +45,56 @@ $keyBorder: .3vw double white;
 }
 
 
+///globals
+
 * {
     margin: 0;
 }
 
+body {
+    margin: 0;
+    background: rgb(34, 34, 34);
+    font-family: 'Fira Sans Condensed', Helvetica, cursive;
+    color: snow;
+}
 
+
+h1, h3 {
+    margin: 1em auto;
+    text-align: center;
+}
+
+
+input[type=range] {
+    writing-mode: bt-lr;
+    -webkit-appearance: slider-vertical; 
+    width: $rangeLabel;
+    height: 8em;
+    &:focus{
+        outline: none;
+    }
+}
+
+
+.textOver{
+    display: inline-block;
+    margin: auto .4vw;
+    > * {
+        display: block;
+    }
+    label {
+        width: initial !important;
+        font-size: .8em;
+        margin-top: .6em;
+    }
+    input[type=range]{
+        margin: auto;
+    }
+}
+
+
+
+/// selectors
 
 #nav {
     background: white;
@@ -72,7 +128,9 @@ $keyBorder: .3vw double white;
             padding: .3vw;
             transition: all .3s;
             > span:first-child {
-                padding: .4vw 3vw .4vw .4vw;
+                padding-right: 1.2vw;
+                width: 95%;
+                // padding: .4vw 3vw .4vw .4vw;
             }
             &:hover {
                 color: seashell;
@@ -83,6 +141,7 @@ $keyBorder: .3vw double white;
         .deleteChip {
             // text-align: right;
             font-size: 1.6em;
+            margin-left: .3em;
             &:hover {
                 color: rgb(214, 1, 1);
                 text-shadow: 0 0 .3vw goldenrod;
@@ -95,16 +154,10 @@ $keyBorder: .3vw double white;
 
 #eduModal {
     @include modal;
-    padding-top: 5vw;
+    padding-top: 4vw;
     #eduWrap {
-        position: relative;
-        margin: auto;
-        padding: 2vw;
-        width: 82%;
-        height: auto;
-        border-radius: 3em;
-        color: rgb(51, 51, 51);
-        background: white;
+        @include modalContent;
+        width: 80%;
         main{
             float: left;
             text-align: center;
@@ -117,22 +170,75 @@ $keyBorder: .3vw double white;
         canvas {
             display: block;
         }
+        label {
+            display: inline-block;
+            text-align: center;
+            width: $rangeLabel;
+        }
+        h2 {
+            text-align: center;
+        }
         #oscView {
             main{
                 width: 40%;
                 p {
                     margin: 3.5vw auto;
+                    width: 70%;
                 }
             } 
             aside {
                 width: 50%;
                 div {
+                    display: flex;
+                    justify-content: space-between;
                     margin: .8vw;
-                    padding: .5vw;
                     transition: all .1s;
+                    button {
+                        display: inline-block;
+                        padding: 0;
+                        width: 7vw;
+                        height: 7vw;
+                        border-radius: .7em;
+                        cursor: pointer;
+                        &:focus{
+                            outline: none;
+                        }
+                        &:hover{
+                            background: linear-gradient(45deg, rgb(235, 233, 233),snow);
+                        }
+                        div { 
+                            border: .1vw solid black;
+                            margin: auto;
+                            width: 60%;
+                            height: 60%;
+                            // box-shadow: 0 0 .3vw;
+                        }
+                    }
                     img {
                         width: 30vw;
                         height: auto;
+                    }
+                    #startSine>div{
+                        border-radius: 50%;
+                        background: blue;
+                    }
+                    #startTriangle>div{
+                        width: 0;
+                        height: 0;
+                        border-top: none;
+                        border-left: 2vw solid transparent;
+                        border-right: 2vw solid transparent;
+                        border-bottom: 4vw solid rgb(255, 217, 1);
+                    }
+                    #startSquare>div{
+                        background: green;
+                    }
+                    #startSawtooth>div{
+                        width: 0;
+                        height: 0;
+                        border-top: none;
+                        border-left: 4vw solid transparent;
+                        border-bottom: 4vw solid tomato;
                     }
                 }
             }
@@ -144,7 +250,7 @@ $keyBorder: .3vw double white;
         }
         #ampView, #filterEGView {
             main{
-                width: 55%;
+                width: 50%;
                 #ampDetail, #filterDetail {
                     width: 70%;
                     margin: 2vw auto;
@@ -173,8 +279,11 @@ $keyBorder: .3vw double white;
                 h1 {
                     margin: .2em auto;
                 }
+                h3{
+                    margin: .2vw auto;
+                }
                 p {
-                    margin: 1.3vw auto;
+                    margin: 1.1vw auto;
                     width: 70%;
                     .detail {
                         font-size: .7em;
@@ -225,6 +334,7 @@ $keyBorder: .3vw double white;
             top: 3%;
         }
         .note {
+            margin: .4vw;
             font-size: .6em;
         }
     }
@@ -233,15 +343,10 @@ $keyBorder: .3vw double white;
 
 #editModal, #saveModal, #deleteModal {
     @include modal;
+    padding-top: 10vw;
     .patchModal{
-        position: relative;
-        margin: auto;
-        padding: 2vw;
+        @include modalContent;
         width: 40%;
-        height: auto;
-        border-radius: 3em;
-        color: rgb(51, 51, 51);
-        background: white;
         .modalContent {
             margin: 3vw auto;
             text-align: center;
@@ -250,9 +355,13 @@ $keyBorder: .3vw double white;
                 display: block;
                 margin: 2vw auto;
             }
+            h2 {
+                margin-bottom: 3vw;
+            }
         }
         h2 {
-            margin-bottom: 3vw;
+            margin-bottom: 3vw auto;
+            text-align: center;
         }
         a {
             padding: 1vw 2vw;
@@ -295,68 +404,71 @@ $keyBorder: .3vw double white;
     }
 }
 
-
-//main
-body {
-    margin: 0;
-    background: rgb(34, 34, 34);
-    font-family: 'Averia Serif Libre', Helvetica, cursive;
-    color: snow;
+.attention {
+    color: red;
+    text-shadow: 0 0 .3vw gold;
 }
 
-
-h1, h3 {
-    margin: 1em auto;
-    text-align: center;
-}
-
-#synthWrap > div {
+///synth param container
+#synthWrap {
+    position: relative;
+    margin: 2vw auto 0;
+    padding: 1.7vw 0;
+    width: $synthWidth;
+    border: $keyBorder;
+    border-radius: .9em .9em 0 0;
+    background: repeating-radial-gradient(circle at left bottom, rgb(34, 34, 34), rgba(95, 95, 95, 0.247) 6vw);
+    #brand{
+        position: absolute;
+        top: 3%;
+        left: 3%;
+        margin: 0;
+        font-family: 'Exo', Helvetica, sans-serif;
+        font-weight: 200;
+        font-style: italic;
+        font-size: 1.8em;
+        letter-spacing: .2em;
+        transform: skewX(170deg);
+        background: linear-gradient(270deg, rgb(126, 126, 145), gold);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    > div {
+        display: inline-block;
+        margin: .3vw;
+        // border: .2vw solid white;
+        padding: 1vw;
+        h4 {
+            margin: .8vw auto;
+            padding-bottom: .2vw;
+            text-align: center;
+            letter-spacing: .1vw;
+            border-bottom: .1vw solid white;
+        }
+    }
+    label {
     display: inline-block;
-    margin: 1vw;
-    border: .2vw solid white;
-    padding: 1vw;
-    h4 {
-        margin: .3vw auto;
-        border-bottom: .1vw solid white;
-    }
-    // input[type="range"] {
-    //     transform-origin: bottom left;
-    //     transform: rotate(-90deg);
-    //     margin-left: 2em;
-    // }
-}
-
-#patchWrap {
-    margin: 2em auto;
-    padding: 1em;
-    width: 30%;
-    border: .4vw groove oldlace;
     text-align: center;
-    h3 {
-        display: block;
-        width: 40%;
-        padding-bottom: .4vw;
-        letter-spacing: .2vw;
-        border-bottom: .1vw solid white;
+    width: $rangeLabel;
+    }
+    #oscType {
+        text-align: right;
+        label {
+            display: inline-block;
+            text-align: left;
+            width: initial;
+        }
     }
 }
 
-// #keyOver{
-//     margin: 0 auto;
-//     width: 59%;
-//     height: 20.4vw;
-//     position: absolute;
-//     z-index: 3;
-//     left: 20.5%;
-//     background: linear-gradient(45deg, rgba(47, 79, 79, 0.767), rgba(53, 95, 95, 0.767));
-// }
 
 #keyMap {
     position: relative;
     font-size: 0;
     margin: 1em auto;
     padding-bottom: .1vw;
-    width: 59%;
+    width: $synthWidth;
     height: 20vw;
     border-top: $keyBorder;
     border-right: $keyBorder;
@@ -373,8 +485,8 @@ h1, h3 {
         span {
             display: inline-block; 
             font-size: 3vw;
-            color: rgb(211, 255, 124);
-            text-shadow: 0 0 .2vw darkblue;
+            color: gold;
+            text-shadow: 0 0 .1vw rgb(0, 0, 56),0 0 .2vw rgb(0, 0, 56);
             margin: 4.5em auto 0 auto;
             width: 100%;
             text-align: center;
@@ -403,7 +515,8 @@ h1, h3 {
 
 #keyCheck {
     margin: 1em auto;
-    width: 20%;
+    text-align: center;
+    width: 30%;
     sup {
         font-size: .2em;
         color: rgb(211, 255, 124);
@@ -412,10 +525,25 @@ h1, h3 {
 }
 
 #userTools {
+    display: inline-block;
+    margin: 1em auto;
+}
+
+
+
+////preset patches (radio buttons)
+#patchWrap {
     margin: 2em auto;
+    padding: 1em;
     width: 30%;
-    #patchData {
-        margin: 1em auto;
+    border: .4vw groove oldlace;
+    text-align: center;
+    h3 {
+        display: block;
+        width: 40%;
+        padding-bottom: .4vw;
+        letter-spacing: .2vw;
+        border-bottom: .1vw solid white;
     }
 }
 
@@ -425,36 +553,4 @@ h1, h3 {
     flex-flow: row nowrap;
     justify-content: space-around;
     margin: 1.3vw auto;
-}
-
-#piano {
-    display: block;
-    margin: 2em auto;
-    max-width: 40%;
-    height: auto;
-    border-radius: 1em;
-}
-
-#adsr {
-    margin: 2em auto;
-    height: 20vw;
-    width: 45vw;
-}
-
-#chartWrap, #chartCtrl {
-    width: 70%;
-    margin: 2em auto;
-}
-
-
-// canvas {
-//     display: block;
-//     margin: 1em auto;
-//     /* transform: rotate(90deg); */
-//     border: 1px solid white;
-// }
-
-#wave {
-    display: block;
-    margin: 1em auto;
 }

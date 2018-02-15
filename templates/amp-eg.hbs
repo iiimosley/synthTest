@@ -1,23 +1,17 @@
 <div id="ampView">
     <main>
-        <h3>Amplitude Envelope Generator</h3>
+        <h1>Amplitude Envelope Generator</h1>
         <p>where the oscillator sets sail</p>
         <div id="eduAmpEG">
+            <input type="range" id="aAttack" min="0" max="1" step="0.01" value=".4"> 
+            <input type="range" id="aDecay" min="0" max="1" step="0.01" value=".8"> 
+            <input type="range" id="aSustain" min="0" max="1" step="0.01" value=".6"> 
+            <input type="range" id="aRelease" min="0" max="1" step="0.01" value=".1"> 
             <div>
-                <label for="aAttack">A</label>
-                <input type="range" id="aAttack" min="0" max="1" step="0.01" value=".4"> 
-            </div>
-            <div>
-                <label for="aDecay">D</label>
-                <input type="range" id="aDecay" min="0" max="1" step="0.01" value=".8"> 
-            </div>
-            <div>
-                <label for="aAttack">S</label>
-                <input type="range" id="aSustain" min="0" max="1" step="0.01" value=".6"> 
-            </div>
-            <div>
-                <label for="aRelease">R</label>
-                <input type="range" id="aRelease" min="0" max="1" step="0.01" value=".1"> 
+            <label for="aAttack">A</label>
+            <label for="aDecay">D</label>
+            <label for="aAttack">S</label>
+            <label for="aRelease">R</label>
             </div>
         </div>
         <div id="ampDetail"></div>
