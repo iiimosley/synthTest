@@ -157,7 +157,7 @@ input[type=range] {
     padding-top: 4vw;
     #eduWrap {
         @include modalContent;
-        width: 82%;
+        width: 80%;
         main{
             float: left;
             text-align: center;
@@ -175,11 +175,15 @@ input[type=range] {
             text-align: center;
             width: $rangeLabel;
         }
+        h2 {
+            text-align: center;
+        }
         #oscView {
             main{
                 width: 40%;
                 p {
                     margin: 3.5vw auto;
+                    width: 70%;
                 }
             } 
             aside {
@@ -188,7 +192,6 @@ input[type=range] {
                     display: flex;
                     justify-content: space-between;
                     margin: .8vw;
-                    padding: .5vw;
                     transition: all .1s;
                     button {
                         display: inline-block;
@@ -196,12 +199,19 @@ input[type=range] {
                         width: 7vw;
                         height: 7vw;
                         border-radius: .7em;
+                        cursor: pointer;
+                        &:focus{
+                            outline: none;
+                        }
+                        &:hover{
+                            background: linear-gradient(45deg, rgb(235, 233, 233),snow);
+                        }
                         div { 
                             border: .1vw solid black;
                             margin: auto;
-                            width: 50%;
-                            height: 50%;
-                            box-shadow: 0 0 .3vw;
+                            width: 60%;
+                            height: 60%;
+                            // box-shadow: 0 0 .3vw;
                         }
                     }
                     img {
@@ -218,10 +228,17 @@ input[type=range] {
                         border-top: none;
                         border-left: 2vw solid transparent;
                         border-right: 2vw solid transparent;
-                        border-bottom: 4vw solid yellow;
+                        border-bottom: 4vw solid rgb(255, 217, 1);
                     }
                     #startSquare>div{
                         background: green;
+                    }
+                    #startSawtooth>div{
+                        width: 0;
+                        height: 0;
+                        border-top: none;
+                        border-left: 4vw solid transparent;
+                        border-bottom: 4vw solid tomato;
                     }
                 }
             }
@@ -233,7 +250,7 @@ input[type=range] {
         }
         #ampView, #filterEGView {
             main{
-                width: 55%;
+                width: 50%;
                 #ampDetail, #filterDetail {
                     width: 70%;
                     margin: 2vw auto;
@@ -317,6 +334,7 @@ input[type=range] {
             top: 3%;
         }
         .note {
+            margin: .4vw;
             font-size: .6em;
         }
     }
@@ -337,9 +355,13 @@ input[type=range] {
                 display: block;
                 margin: 2vw auto;
             }
+            h2 {
+                margin-bottom: 3vw;
+            }
         }
         h2 {
-            margin-bottom: 3vw;
+            margin-bottom: 3vw auto;
+            text-align: center;
         }
         a {
             padding: 1vw 2vw;
@@ -380,6 +402,11 @@ input[type=range] {
             }
         }
     }
+}
+
+.attention {
+    color: red;
+    text-shadow: 0 0 .3vw gold;
 }
 
 ///synth param container
@@ -488,7 +515,8 @@ input[type=range] {
 
 #keyCheck {
     margin: 1em auto;
-    width: 20%;
+    text-align: center;
+    width: 30%;
     sup {
         font-size: .2em;
         color: rgb(211, 255, 124);
@@ -497,12 +525,10 @@ input[type=range] {
 }
 
 #userTools {
-    margin: 2em auto;
-    width: 30%;
-    #patchData {
-        margin: 1em auto;
-    }
+    display: inline-block;
+    margin: 1em auto;
 }
+
 
 
 ////preset patches (radio buttons)
