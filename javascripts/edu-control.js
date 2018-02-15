@@ -5,13 +5,17 @@ const Tone = require('tone');
 const eduView = require('./edu-view');
 const main = require('./main');
 
-$(document).on('click', '#startBuild', ()=> eduView.startBuild());
+$(document).on('click', '#startBuild', ()=> {
+    resetSynth();
+    eduView.startBuild();
+});
+    
 
 
 /// synth for builder + params
 
 let buildPatch = {};
-
+let eduSynth;
 
 let eduParams = {
     detune: 0,
@@ -40,9 +44,11 @@ let eduParams = {
     }
 };
 
-let eduSynth = new Tone.MonoSynth(eduParams);
-eduSynth.toMaster();
-console.log(eduSynth);
+function resetSynth () {
+    eduSynth = new Tone.MonoSynth(eduParams);
+    eduSynth.toMaster();
+    console.log(eduSynth);
+}
 
 //oscillators
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
