@@ -65,10 +65,10 @@
         </div>
         <div id="ampEG">
             <h4>Amp EG</h4>
-            <input type="range" id="ampAttack" min="0" max="3" step="0.01" value="0.01">
-            <input type="range" id="ampDecay" min="0" max="1" step="0.01" value="1">
-            <input type="range" id="ampSustain" min="0" max="1" step="0.01" value="1">
-            <input type="range" id="ampRelease" min="0" max="4.5" step="0.01" value="0">
+            <input type="range" orient="vertical" id="ampAttack" min="0" max="3" step="0.01" value="0.01">
+            <input type="range" orient="vertical" id="ampDecay" min="0" max="1" step="0.01" value="1">
+            <input type="range" orient="vertical" id="ampSustain" min="0" max="1" step="0.01" value="1">
+            <input type="range" orient="vertical" id="ampRelease" min="0" max="4.5" step="0.01" value="0">
             <div>
                 <label for="ampAttack">A</label>
                 <label for="ampDecay">D</label>
@@ -79,20 +79,20 @@
         <div id="filter">
             <h4>Filter</h4>
             <div class="textOver">
-            <input type="range" id="filterFreq" min="100" max="8000" step="10" value="300">
+            <input type="range" orient="vertical" id="filterFreq" min="100" max="8000" step="10" value="300">
             <label for="filterFreq">Cutoff</label>
             </div>
             <div class="textOver">
-                <input type="range" id="filterQ" min="0" max="18" step="1" value="0">
+                <input type="range" orient="vertical" id="filterQ" min="0" max="18" step="1" value="0">
                 <label for="filterQ">Resonance</label>
             </div>
         </div>
         <div id="filterEG">
             <h4>Filter EG</h4>
-            <input type="range" id="filterAttack" min="0" max="3" step="0.01" value="0.01">
-            <input type="range" id="filterDecay" min="0" max="1" step="0.01" value="1">
-            <input type="range" id="filterSustain" min="0" max="1" step="0.01" value="1">
-            <input type="range" id="filterRelease" min="0" max="4.5" step="0.01" value="0.01">
+            <input type="range" orient="vertical" id="filterAttack" min="0" max="3" step="0.01" value="0.01">
+            <input type="range" orient="vertical" id="filterDecay" min="0" max="1" step="0.01" value="1">
+            <input type="range" orient="vertical" id="filterSustain" min="0" max="1" step="0.01" value="1">
+            <input type="range" orient="vertical" id="filterRelease" min="0" max="4.5" step="0.01" value="0.01">
             <div>
                 <label for="filterAttack">A</label>
                 <label for="filterDecay">D</label>
@@ -102,7 +102,7 @@
         </div>
         <div>
             <div class="textOver">
-            <input type="range" name="synthVol" id="synthVol" step=".01" min="-20" max="1" value="-1">
+            <input type="range" orient="vertical" name="synthVol" id="synthVol" step=".01" min="-20" max="1" value="-1">
             <label for="synthVol">volume</label>
             </div>
         </div>

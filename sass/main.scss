@@ -516,7 +516,11 @@ input[type=range] {
 #keyCheck {
     margin: 1em auto;
     text-align: center;
-    width: 30%;
+    width: 50%;
+    label {
+        text-shadow: 0 0 darkorange;
+        animation: 2s linear 3 glowNotice;
+    }
     sup {
         font-size: .2em;
         color: rgb(211, 255, 124);
@@ -527,9 +531,46 @@ input[type=range] {
 #userTools {
     display: inline-block;
     margin: 1em auto;
+    button {
+        cursor: pointer;
+        font-family: inherit;
+        font-size: 1em;
+        margin-left: 2vw;
+        padding: .3vw 2vw;
+        border-radius: .3em;
+        transition: box-shadow .2s;
+        &:hover {
+            box-shadow: 0 0 1vw darkorange;
+        }
+        &:focus {
+            outline: none;
+        }
+    }
 }
 
-
+@keyframes glowNotice {
+    0%{
+        text-shadow: 0 0 darkorange;
+    }
+    20% {
+        text-shadow: 0 0 1vw darkorange, 0 0 2vw gold;
+    }
+    40% {
+        text-shadow: 0 0 darkorange;
+    }
+    60% {
+        text-shadow: 0 0 1vw darkorange, 0 0 2vw gold;
+    }
+    80% {
+        text-shadow: 0 0 darkorange;
+    }
+    90% {
+        text-shadow: 0 0 darkorange;
+    }
+    100% {
+        text-shadow: 0 0 darkorange;
+    }
+}
 
 ////preset patches (radio buttons)
 #patchWrap {

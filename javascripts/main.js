@@ -18,7 +18,7 @@ module.exports.checkUser = uid => {
 };
 
 //firefox dependency for vertically aligned range inputs
-$("input[type=range]").attr('orient', 'vertical');
+// $("input[type=range]").attr('orient', 'vertical');
 
 
 $(document).on("click", "#login", ()=>{
@@ -90,9 +90,13 @@ $("#synthWrap").on("change", function(){
             exponent: 2
         }
     });
+    
 });
 
 $("#synthVol").on("change", ()=> synth.volume.value = $("#synthVol").val());
+
+//initialize settings on load
+$("#synthWrap").trigger("change");
 
 synth.toMaster();
 
