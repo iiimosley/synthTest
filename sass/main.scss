@@ -54,7 +54,7 @@ $rangeLabel: 2.1vw;
 body {
     margin: 0;
     background: rgb(34, 34, 34);
-    font-family: 'Averia Serif Libre', Helvetica, cursive;
+    font-family: 'Fira Sans Condensed', Helvetica, cursive;
     color: snow;
 }
 
@@ -65,22 +65,27 @@ h1, h3 {
 }
 
 
-input[type=range]{
-    -webkit-appearance: none;
+input[type=range] {
     writing-mode: bt-lr;
     -webkit-appearance: slider-vertical; 
     width: $rangeLabel;
+    height: 8em;
+    &:focus{
+        outline: none;
+    }
 }
 
 
 .textOver{
     display: inline-block;
+    margin: auto .4vw;
     > * {
         display: block;
     }
     label {
         width: initial !important;
         font-size: .8em;
+        margin-top: .6em;
     }
     input[type=range]{
         margin: auto;
@@ -257,8 +262,11 @@ input[type=range]{
                 h1 {
                     margin: .2em auto;
                 }
+                h3{
+                    margin: .2vw auto;
+                }
                 p {
-                    margin: 1.3vw auto;
+                    margin: 1.1vw auto;
                     width: 70%;
                     .detail {
                         font-size: .7em;
@@ -376,18 +384,38 @@ input[type=range]{
 
 ///synth param container
 #synthWrap {
+    position: relative;
     margin: 2vw auto 0;
+    padding: 1.7vw 0;
     width: $synthWidth;
     border: $keyBorder;
     border-radius: .9em .9em 0 0;
+    #brand{
+        position: absolute;
+        top: 3%;
+        left: 3%;
+        margin: 0;
+        font-family: 'Exo', Helvetica, sans-serif;
+        font-weight: 200;
+        font-style: italic;
+        font-size: 1.8em;
+        letter-spacing: .2em;
+        transform: skewX(170deg);
+        background: linear-gradient(270deg, rgb(126, 126, 145), gold);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
     > div {
         display: inline-block;
         margin: .3vw;
         // border: .2vw solid white;
         padding: 1vw;
         h4 {
-            margin: .3vw auto;
+            margin: .8vw auto;
+            padding-bottom: .2vw;
             text-align: center;
+            letter-spacing: .1vw;
             border-bottom: .1vw solid white;
         }
     }
@@ -397,6 +425,7 @@ input[type=range]{
     width: $rangeLabel;
     }
     #oscType {
+        text-align: right;
         label {
             display: inline-block;
             text-align: left;
@@ -428,8 +457,8 @@ input[type=range]{
         span {
             display: inline-block; 
             font-size: 3vw;
-            color: rgb(211, 255, 124);
-            text-shadow: 0 0 .2vw darkblue;
+            color: gold;
+            text-shadow: 0 0 .1vw rgb(0, 0, 56),0 0 .2vw rgb(0, 0, 56);
             margin: 4.5em auto 0 auto;
             width: 100%;
             text-align: center;
