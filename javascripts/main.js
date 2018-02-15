@@ -99,7 +99,7 @@ synth.toMaster();
 
 $(document).on("keydown", function (e) {
     for (let i = 0; i < allNotes.length; i++) {
-        if ($("#newPatch").is(":focus") || $('#eduModal').css('display') == 'block') {
+        if ($("input[type=text]").is(":focus") || $('#eduModal').css('display') == 'block') {
             e.stopPropagation();
         }
         else if (event.keyCode == allKeys[i] && !event.repeat) {
@@ -213,10 +213,23 @@ $(document).on("click", "#savePatch", function() {
 });
 
 
+$(document).on('click', '#changeName', ()=>{
+    if ($('#changeName').is(':checked')) {
+        console.log('getting it');
+        $('#newName').prop('disabled', false).focus();
+    } else {
+        $('#newName').prop('disabled', true);
+    }
+});
+
 $(document).on("click", "#editPatch", function () {
     let patchKey = $("#patchOver").val();
     let obj = {};
-    obj.patch_name = $("#patchOver option:selected").text();
+    if ($('#changeName').is(':checked') && $('#newName').val() !==""){
+        obj.patch_name = $('#newName').val();
+    } else {
+        obj.patch_name = $("#patchOver option:selected").text();
+    }
     obj.uid = currentUser;
     $("#synthWrap :input:radio:checked").each(function (set) {
         obj[this.name] = this.value;
@@ -228,6 +241,8 @@ $(document).on("click", "#editPatch", function () {
     DataFactory.overwritePatch(patchKey, obj)
         .then(patch => {
             view.leaveModal(patch.patch_name, editBool);
+            DataFactory.getPatches(currentUser)
+                .then(userPatches => view.userAuth(userPatches));
         });
 });
 
