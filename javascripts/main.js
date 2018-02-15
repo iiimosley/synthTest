@@ -54,7 +54,7 @@ function applyPatch(patch) {
             $(`#synthWrap :input#${i}`).val(patch[i]);
         }
     });
-    $("#synthWrap").trigger("input");
+    $("#synthWrap").trigger("change");
 }
 
 module.exports.receivePatch = (patch) => {
@@ -64,7 +64,7 @@ module.exports.receivePatch = (patch) => {
 
 
 
-$("#synthWrap").on("input", function(){
+$("#synthWrap").on("change", function(){
     synth.set({
         detune: $("input[name='detune']:checked").val(),
         oscillator: {
@@ -93,7 +93,7 @@ $("#synthWrap").on("input", function(){
     });
 });
 
-$("#synthVol").on("input", ()=> synth.volume.value = $("#synthVol").val());
+$("#synthVol").on("change", ()=> synth.volume.value = $("#synthVol").val());
 
 synth.toMaster();
 
@@ -103,6 +103,7 @@ $(document).on("keydown", function (e) {
             e.stopPropagation();
         }
         else if (event.keyCode == allKeys[i] && !event.repeat) {
+            console.log(event.char);
             if ($(`#key${allKeys[i]}`).hasClass("flat")){
                 $(`#key${allKeys[i]}`).addClass("keyFillFlat");
             } else {
@@ -162,7 +163,7 @@ $("#patchBtns :input:radio").change(function(){
     DataFactory.setPatch()
     .then((patches)=>{
         applyPatch(patches[pID]);
-        $("#synthWrap").trigger("input");
+        $("#synthWrap").trigger("change");
     });
 });
 
