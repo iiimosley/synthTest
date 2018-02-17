@@ -376,10 +376,16 @@ input[type=range] {
             border: .1vw solid black;
             border-radius: .7vw;
             box-shadow: 0 .5vw .3vw darkslategrey;
+            transition: all .1s;
             animation: spacePress 1.2s linear 2;
             p {
                 margin: 1.1em auto;
             }
+        }
+        .pressingSpace {
+            background: linear-gradient(13deg, rgb(66, 255, 255), rgb(255, 255, 234));
+            transform: translateY(.2vw);
+            box-shadow: 0 .1vw black;
         }
         .closeChip {
             @include closeChip;
@@ -390,33 +396,6 @@ input[type=range] {
             margin: .4vw;
             font-size: .6em;
         }
-    }
-}
-
-
-@keyframes spacePress {
-    0% {
-        box-shadow: 0 .5vw .3vw darkslategrey;
-    }
-    20% {
-        transform: translateY(.2vw);
-        box-shadow: 0 .1vw black;
-    }
-    40% {
-        transform: translateY(0);
-        box-shadow: 0 .5vw .3vw darkslategrey;
-    }
-    60% {
-        transform: translateY(.2vw);
-        box-shadow: 0 .1vw black;
-    }
-    80% {
-        transform: translateY(0);
-        box-shadow: 0 .5vw .3vw darkslategrey;
-    }
-    100% {
-        transform: translateY(0);
-        box-shadow: 0 .5vw .3vw darkslategrey;
     }
 }
 
@@ -676,5 +655,32 @@ input[type=range] {
     }
     100% {
         text-shadow: 0 0 darkorange;
+    }
+}
+
+
+@keyframes spacePress {
+    0% {
+        box-shadow: 0 .5vw .3vw darkslategrey;
+    }
+    20% {
+        transform: translateY(.2vw);
+        box-shadow: 0 .1vw black;
+    }
+    40% {
+        transform: translateY(0);
+        box-shadow: 0 .5vw .3vw darkslategrey;
+    }
+    60% {
+        transform: translateY(.2vw);
+        box-shadow: 0 .1vw black;
+    }
+    80% {
+        transform: translateY(0);
+        box-shadow: 0 .5vw .3vw darkslategrey;
+    }
+    100% {
+        transform: translateY(0);
+        box-shadow: 0 .5vw .3vw darkslategrey;
     }
 }
