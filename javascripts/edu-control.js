@@ -344,6 +344,7 @@ $(document).on('click', '#pickFilter', () => {
 $(document).on('keydown', ()=>{
     if (event.keyCode === 32 && $('#eduModal').css('display') == 'block' && !event.repeat) {
         event.preventDefault();
+        $('.spacebarEvent').addClass('pressingSpace');
         eduSynth.triggerAttack('A4');
     } else if (event.keyCode === 32 && $('#eduModal').css('display') == 'block' && event.repeat) {
         event.preventDefault();
@@ -353,6 +354,7 @@ $(document).on('keydown', ()=>{
 $(document).on('keyup', (e) => {
     if (e.keyCode === 32 && $('#eduModal').css('display') == 'block') {
         eduSynth.triggerRelease();
+        $('.spacebarEvent').removeClass('pressingSpace');
     }
 });
 
