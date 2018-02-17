@@ -128,7 +128,8 @@ $(document).on('mouseup mouseleave', "#startSawtooth", () => sawtoothWave.discon
 /// pulls selected sound wave, augments synth params, continues to amp stage 
 $(document).on('click', '#pickOsc', ()=>{
     if ($('.oscSelect').attr('wave')===undefined) {
-        window.alert('Please Select a Soundwave');
+        // window.alert('Please Select a Soundwave');
+        eduView.oscAlert();
     } else {
         eduSynth.oscillator.type = $('.oscSelect').attr('wave');
         buildPatch.osc = $('.oscSelect').attr('wave');

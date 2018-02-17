@@ -178,6 +178,23 @@ input[type=range] {
         h2 {
             text-align: center;
         }
+        #oscAlert {
+            position: absolute;
+            display: none;
+            top: 0;
+            left: 0; 
+            width: 100%;
+            height: 100%;
+            background: rgb(155, 216, 238);
+            border-radius: 1em;
+            box-shadow: 0 0 3vw lightblue;
+            h2 {
+            margin: 18vw auto;
+            font-size: 3em;
+            letter-spacing: .05em;
+            color: snow;
+            }
+        }
         #oscView {
             main{
                 width: 40%;
