@@ -2,8 +2,19 @@
 $synthWidth: 63%;
 $keyBorder: .3vw double white;
 $rangeLabel: 2.1vw;
+$sineColor: blue;
+$triangleColor: rgb(255, 217, 1);
+$squareColor: green;
+$sawtoothColor: tomato;
 
 // mixins
+@mixin waveTitle ($waveColor) {
+    margin: .8em;
+    font-size: 2.2em;
+    color: white;
+    text-shadow: 0 0 .2vw black, 0 0 .8vw $waveColor;
+}
+
 @mixin modal {
     display: none;
     position: fixed;
@@ -178,12 +189,53 @@ input[type=range] {
         h2 {
             text-align: center;
         }
+        #oscAlert {
+            position: absolute;
+            display: none;
+            top: 0;
+            left: 0; 
+            width: 100%;
+            height: 100%;
+            background: rgb(155, 216, 238);
+            border-radius: 1em;
+            box-shadow: 0 0 3vw lightblue;
+            h2 {
+                margin: 18vw auto;
+                font-size: 3em;
+                letter-spacing: .05em;
+                color: snow;
+            }
+        }
         #oscView {
             main{
                 width: 40%;
-                p {
-                    margin: 3.5vw auto;
+                h1 {
                     width: 70%;
+                    margin: 1.3vw auto;
+                    // border-bottom: .2vw solid black;
+                }
+                p:first-of-type {
+                    margin: 1.1vw auto 4vw;
+                }
+                p {
+                    margin: 2vw auto;
+                    width: 70%;
+                }
+                #sineTitle{
+                    @include waveTitle($sineColor);
+                }
+                #triangleTitle{
+                    @include waveTitle($triangleColor);
+                }
+                #squareTitle{
+                    @include waveTitle($squareColor);
+                }
+                #sawtoothTitle{
+                    @include waveTitle($sawtoothColor);
+                }
+                h4>span{
+                    color: darkgreen;
+                    text-shadow: 0 0 .2vw rgb(255, 230, 91);
                 }
             } 
             aside {
@@ -220,7 +272,7 @@ input[type=range] {
                     }
                     #startSine>div{
                         border-radius: 50%;
-                        background: blue;
+                        background: $sineColor;
                     }
                     #startTriangle>div{
                         width: 0;
@@ -228,17 +280,17 @@ input[type=range] {
                         border-top: none;
                         border-left: 2vw solid transparent;
                         border-right: 2vw solid transparent;
-                        border-bottom: 4vw solid rgb(255, 217, 1);
+                        border-bottom: 4vw solid $triangleColor;
                     }
                     #startSquare>div{
-                        background: green;
+                        background: $squareColor;
                     }
                     #startSawtooth>div{
                         width: 0;
                         height: 0;
                         border-top: none;
                         border-left: 4vw solid transparent;
-                        border-bottom: 4vw solid tomato;
+                        border-bottom: 4vw solid $sawtoothColor;
                     }
                 }
             }
@@ -323,10 +375,17 @@ input[type=range] {
             width: 80%;
             border: .1vw solid black;
             border-radius: .7vw;
-            box-shadow: 0 0 1vw;
+            box-shadow: 0 .5vw .3vw darkslategrey;
+            transition: all .1s;
+            animation: spacePress 1.2s linear 2;
             p {
-                margin: 1.1vw auto;
+                margin: 1.1em auto;
             }
+        }
+        .pressingSpace {
+            background: linear-gradient(13deg, rgb(66, 255, 255), rgb(255, 255, 234));
+            transform: translateY(.2vw);
+            box-shadow: 0 .1vw black;
         }
         .closeChip {
             @include closeChip;
@@ -339,6 +398,7 @@ input[type=range] {
         }
     }
 }
+
 
 
 #editModal, #saveModal, #deleteModal {
@@ -548,6 +608,32 @@ input[type=range] {
     }
 }
 
+
+////preset patches (radio buttons)
+#patchWrap {
+    margin: 2em auto;
+    padding: 1em;
+    width: 30%;
+    border: .4vw groove oldlace;
+    text-align: center;
+    h3 {
+        display: block;
+        width: 40%;
+        padding-bottom: .4vw;
+        letter-spacing: .2vw;
+        border-bottom: .1vw solid white;
+    }
+}
+
+
+#patchBtns {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    margin: 1.3vw auto;
+}
+
+
 @keyframes glowNotice {
     0%{
         text-shadow: 0 0 darkorange;
@@ -572,26 +658,29 @@ input[type=range] {
     }
 }
 
-////preset patches (radio buttons)
-#patchWrap {
-    margin: 2em auto;
-    padding: 1em;
-    width: 30%;
-    border: .4vw groove oldlace;
-    text-align: center;
-    h3 {
-        display: block;
-        width: 40%;
-        padding-bottom: .4vw;
-        letter-spacing: .2vw;
-        border-bottom: .1vw solid white;
+
+@keyframes spacePress {
+    0% {
+        box-shadow: 0 .5vw .3vw darkslategrey;
     }
-}
-
-
-#patchBtns {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-around;
-    margin: 1.3vw auto;
+    20% {
+        transform: translateY(.2vw);
+        box-shadow: 0 .1vw black;
+    }
+    40% {
+        transform: translateY(0);
+        box-shadow: 0 .5vw .3vw darkslategrey;
+    }
+    60% {
+        transform: translateY(.2vw);
+        box-shadow: 0 .1vw black;
+    }
+    80% {
+        transform: translateY(0);
+        box-shadow: 0 .5vw .3vw darkslategrey;
+    }
+    100% {
+        transform: translateY(0);
+        box-shadow: 0 .5vw .3vw darkslategrey;
+    }
 }

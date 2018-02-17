@@ -24,6 +24,13 @@ module.exports.printOscDetail = (wave) => {
     $("#oscDetail").append(oscDetail(oscObj));
 };
 
+module.exports.oscAlert = () => {
+    $("#oscAlert").fadeIn(500);
+    setTimeout(() => {
+        $("#oscAlert").fadeOut(1000);
+    }, 1000);
+};
+
 module.exports.printAmpEG = () => {
     $("#eduWrap").empty();
     $("#eduWrap").append(ampEG);
