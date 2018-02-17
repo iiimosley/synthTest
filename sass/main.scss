@@ -375,9 +375,10 @@ input[type=range] {
             width: 80%;
             border: .1vw solid black;
             border-radius: .7vw;
-            box-shadow: 0 0 1vw;
+            box-shadow: 0 .5vw .3vw darkslategrey;
+            animation: spacePress 1.2s linear 2;
             p {
-                margin: 1.1vw auto;
+                margin: 1.1em auto;
             }
         }
         .closeChip {
@@ -391,6 +392,34 @@ input[type=range] {
         }
     }
 }
+
+
+@keyframes spacePress {
+    0% {
+        box-shadow: 0 .5vw .3vw darkslategrey;
+    }
+    20% {
+        transform: translateY(.2vw);
+        box-shadow: 0 .1vw black;
+    }
+    40% {
+        transform: translateY(0);
+        box-shadow: 0 .5vw .3vw darkslategrey;
+    }
+    60% {
+        transform: translateY(.2vw);
+        box-shadow: 0 .1vw black;
+    }
+    80% {
+        transform: translateY(0);
+        box-shadow: 0 .5vw .3vw darkslategrey;
+    }
+    100% {
+        transform: translateY(0);
+        box-shadow: 0 .5vw .3vw darkslategrey;
+    }
+}
+
 
 
 #editModal, #saveModal, #deleteModal {
@@ -600,29 +629,6 @@ input[type=range] {
     }
 }
 
-@keyframes glowNotice {
-    0%{
-        text-shadow: 0 0 darkorange;
-    }
-    20% {
-        text-shadow: 0 0 1vw darkorange, 0 0 2vw gold;
-    }
-    40% {
-        text-shadow: 0 0 darkorange;
-    }
-    60% {
-        text-shadow: 0 0 1vw darkorange, 0 0 2vw gold;
-    }
-    80% {
-        text-shadow: 0 0 darkorange;
-    }
-    90% {
-        text-shadow: 0 0 darkorange;
-    }
-    100% {
-        text-shadow: 0 0 darkorange;
-    }
-}
 
 ////preset patches (radio buttons)
 #patchWrap {
@@ -646,4 +652,29 @@ input[type=range] {
     flex-flow: row nowrap;
     justify-content: space-around;
     margin: 1.3vw auto;
+}
+
+
+@keyframes glowNotice {
+    0%{
+        text-shadow: 0 0 darkorange;
+    }
+    20% {
+        text-shadow: 0 0 1vw darkorange, 0 0 2vw gold;
+    }
+    40% {
+        text-shadow: 0 0 darkorange;
+    }
+    60% {
+        text-shadow: 0 0 1vw darkorange, 0 0 2vw gold;
+    }
+    80% {
+        text-shadow: 0 0 darkorange;
+    }
+    90% {
+        text-shadow: 0 0 darkorange;
+    }
+    100% {
+        text-shadow: 0 0 darkorange;
+    }
 }
