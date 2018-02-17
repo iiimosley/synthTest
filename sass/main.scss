@@ -209,8 +209,16 @@ input[type=range] {
         #oscView {
             main{
                 width: 40%;
+                h1 {
+                    width: 70%;
+                    margin: 1.3vw auto;
+                    // border-bottom: .2vw solid black;
+                }
+                p:first-of-type {
+                    margin: 1.1vw auto 4vw;
+                }
                 p {
-                    margin: 2.8vw auto;
+                    margin: 2vw auto;
                     width: 70%;
                 }
                 #sineTitle{
@@ -224,6 +232,10 @@ input[type=range] {
                 }
                 #sawtoothTitle{
                     @include waveTitle($sawtoothColor);
+                }
+                h4>span{
+                    color: darkgreen;
+                    text-shadow: 0 0 .2vw rgb(255, 230, 91);
                 }
             } 
             aside {
