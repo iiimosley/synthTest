@@ -174,6 +174,12 @@ $("#patchBtns :input:radio").change(function(){
 
 ///display modal event listeners
 /////////////////////////////
+$(document).on("click", "#promptLogin", function(){
+    AuthFactory.authUser()
+        .then(account => currentUser = account.user.uid)
+        .then($(this).parent().parent().hide());  
+});
+
 $(document).on("click", "#callSave", () => view.saveView());
 
 $(document).on("click", "#callEdit", () => {
