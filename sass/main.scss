@@ -377,10 +377,12 @@ input[type=range] {
             border-radius: .7vw;
             box-shadow: 0 .5vw .3vw darkslategrey;
             transition: all .1s;
-            animation: spacePress 1.2s linear 2;
             p {
                 margin: 1.1em auto;
             }
+        }
+        .spacebarAnimate {
+            animation: spacePress 1.2s linear 2;
         }
         .pressingSpace {
             background: linear-gradient(13deg, rgb(66, 255, 255), rgb(255, 255, 234));
@@ -464,10 +466,69 @@ input[type=range] {
     }
 }
 
+#registerModal {
+    @include modal;
+    padding-top: 5vw;
+    #registerContent{
+        @include modalContent;
+        padding: 2vw 3vw;
+        width: 40%;
+        h1 {
+            text-align: left;
+            font-weight: 200;
+            font-size: 3.5em;
+            margin: 1vw auto 2vw;
+        }
+        h3 {
+            letter-spacing: .1em;
+        }
+        p {
+            width: 80%;
+            margin: 1.5vw auto;
+        }
+        button {
+            display: block;
+            width: 70%;
+            margin: 2vw auto;
+            padding: .8vw 1.8vw;
+            font-size: 1em;
+            font-family: 'Exo', Helvetica, sans-serif;
+            font-weight: 200;
+            letter-spacing: .2em;
+            color: white;
+            border-radius: .7vw;
+            outline: none;
+            transition: filter .2s;
+            &:hover {
+                cursor: pointer;
+                filter: contrast(170%);
+                box-shadow: 0 0 .5vw darkslategray;
+            }
+        }
+        #promptLogin {
+            background: rgb(54, 54, 255);
+            img {
+                text-align: left;
+                width: auto;
+                height: 1.8vw;
+            }
+        }
+        #promptGuest {
+            background: rgb(0, 151, 0);
+        }
+    }
+}
+
+
 .attention {
     color: red;
     text-shadow: 0 0 .3vw gold;
 }
+
+
+
+
+
 
 ///synth param container
 #synthWrap {
