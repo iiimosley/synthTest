@@ -9,6 +9,7 @@ const eduCtrl = require('./edu-control');
 const inNav = require('../templates/in-nav.hbs');
 const outNav = require('../templates/out-nav.hbs');
 const userBtns = require('../templates/user-buttons.hbs');
+const registerModal = require('../templates/register.hbs');
 const editModal = require('../templates/edit-modal.hbs');
 const saveModal = require('../templates/save-modal.hbs');
 const deleteModal = require('../templates/delete-modal.hbs');
@@ -26,6 +27,9 @@ module.exports.userFeat = () => {
 module.exports.noUser = () => {
     $("#nav").empty();
     $("#nav").append(outNav);
+    $("#registerModal").empty();
+    $("#registerModal").append(registerModal);
+    $("#registerModal").show();
     $("#userTools").empty();
 };
 
