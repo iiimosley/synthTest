@@ -239,7 +239,7 @@ input[type=range] {
                 }
             } 
             aside {
-                width: 50%;
+                width: 55%;
                 div {
                     display: flex;
                     justify-content: space-between;
@@ -250,6 +250,7 @@ input[type=range] {
                         padding: 0;
                         width: 7vw;
                         height: 7vw;
+                        margin: .8vw;
                         border-radius: .7em;
                         cursor: pointer;
                         &:focus{
@@ -265,10 +266,6 @@ input[type=range] {
                             height: 60%;
                             // box-shadow: 0 0 .3vw;
                         }
-                    }
-                    img {
-                        width: 30vw;
-                        height: auto;
                     }
                     #startSine>div{
                         border-radius: 50%;
@@ -292,6 +289,16 @@ input[type=range] {
                         border-left: 4vw solid transparent;
                         border-bottom: 4vw solid $sawtoothColor;
                     }
+                    .oscScope {
+                        display: inline-block;
+                        height: 7vw;
+                        width: 35vw;
+                        border: .1vw solid black;
+                    }
+                    // img {
+                    //     width: 30vw;
+                    //     height: auto;
+                    // }
                 }
             }
             .oscSelect {
