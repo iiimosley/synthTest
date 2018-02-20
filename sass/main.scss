@@ -320,6 +320,9 @@ input[type=range] {
                 border-radius: .3em;
                 box-shadow: 0 0 .4vw darkslategray;
             }
+            .oscAnimate {
+                animation: oscAnimate 60s linear infinite;
+            }
         }
         #ampView, #filterEGView {
             main{
@@ -740,6 +743,14 @@ input[type=range] {
     }
 }
 
+@keyframes oscAnimate {
+	from { 
+        background-position: 0 0; 
+    }
+	to { 
+        background-position: -20000px 0; 
+    }
+}
 
 @keyframes spacePress {
     0% {

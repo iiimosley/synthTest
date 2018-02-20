@@ -98,6 +98,7 @@ $(document).on('mouseup mouseleave', "#startSine", () => sineWave.disconnect());
 
 
 $(document).on('mousedown', "#startSquare", () => {
+    console.log($(event.target).parent().next());
     g.gain.value = 0.3;
     squareWave.connect(g);
     g.connect(audioCtx.destination);
@@ -122,6 +123,8 @@ $(document).on('mousedown', "#startSawtooth", () => {
     selectOsc($('#startSawtooth').parent());
 });
 $(document).on('mouseup mouseleave', "#startSawtooth", () => sawtoothWave.disconnect());
+
+$(document).on('mousedown', '#oscView>aside>div>button', function(){console.log($(this).next());});
 //////////////////
 
 
