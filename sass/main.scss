@@ -15,6 +15,18 @@ $sawtoothColor: tomato;
     text-shadow: 0 0 .2vw black, 0 0 .8vw $waveColor;
 }
 
+@mixin oscScope ($thisImage, $thisColor) {
+    display: inline-block;
+    height: 6vw;
+    width: 35vw;
+    margin: .8vw;
+    border: .1vw solid black;
+    background: url($thisImage), $thisColor;
+    background-size: auto 100%;
+    background-repeat: repeat-x;
+    background-position: 0 0;
+}
+
 @mixin modal {
     display: none;
     position: fixed;
@@ -239,8 +251,8 @@ input[type=range] {
                 }
             } 
             aside {
-                width: 50%;
-                div {
+                width: 55%;
+                > div {
                     display: flex;
                     justify-content: space-between;
                     margin: .8vw;
@@ -248,8 +260,9 @@ input[type=range] {
                     button {
                         display: inline-block;
                         padding: 0;
-                        width: 7vw;
-                        height: 7vw;
+                        width: 6vw;
+                        height: 6vw;
+                        margin: .8vw;
                         border-radius: .7em;
                         cursor: pointer;
                         &:focus{
@@ -265,10 +278,6 @@ input[type=range] {
                             height: 60%;
                             // box-shadow: 0 0 .3vw;
                         }
-                    }
-                    img {
-                        width: 30vw;
-                        height: auto;
                     }
                     #startSine>div{
                         border-radius: 50%;
@@ -292,12 +301,27 @@ input[type=range] {
                         border-left: 4vw solid transparent;
                         border-bottom: 4vw solid $sawtoothColor;
                     }
+                    #sineAnimate {
+                        @include oscScope('../images/sine-alpha.png', $sineColor);
+                    }
+                    #triangleAnimate {
+                        @include oscScope('../images/triangle-alpha.png', $triangleColor);
+                    }
+                    #squareAnimate {
+                        @include oscScope('../images/square-alpha.png', $squareColor);
+                    }
+                    #sawtoothAnimate {
+                        @include oscScope('../images/sawtooth-alpha.png', $sawtoothColor);
+                    }
                 }
             }
             .oscSelect {
                 border: .2vw solid rgb(0, 113, 151);
                 border-radius: .3em;
                 box-shadow: 0 0 .4vw darkslategray;
+            }
+            .oscAnimate {
+                animation: oscAnimate 5s linear infinite;
             }
         }
         #ampView, #filterEGView {
@@ -719,6 +743,14 @@ input[type=range] {
     }
 }
 
+@keyframes oscAnimate {
+	from { 
+        background-position: 0 0; 
+    }
+	to { 
+        background-position: 3000px 0; 
+    }
+}
 
 @keyframes spacePress {
     0% {
