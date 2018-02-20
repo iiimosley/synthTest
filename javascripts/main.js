@@ -32,6 +32,7 @@ $(document).on("click", "#logout", () => AuthFactory.logout());
 
 let allNotes = ['C4','C#4','D4','D#4','E4','F4','F#4','G4','G#4','A4','A#4','B4','C5','C#5','D5','D#5','E5','F5'];
 let allKeys = [65,87,83,69,68,70,84,71,89,72,85,74,75,79,76,80,186,222];
+let allKeypress = ["a","w","s","e","d","f","t","g","y","h","u","j","k","o","l","p",";","'"];
 
 let keyboard = $("#keyMap").children();
 
@@ -105,20 +106,21 @@ $(document).on("keydown", function (e) {
         if ($("input[type=text]").is(":focus") || $('#eduModal').css('display') == 'block') {
             e.stopPropagation();
         }
-        else if (event.keyCode == allKeys[i] && !event.repeat) {
+        else if (e.key == allKeypress[i] && !e.repeat) {
             if ($(`#key${allKeys[i]}`).hasClass("flat")){
                 $(`#key${allKeys[i]}`).addClass("keyFillFlat");
             } else {
                 $(`#key${allKeys[i]}`).addClass("keyFill");
             }
             synth.triggerAttack(allNotes[i]);
+            console.log(e.repeat);
         }
     }
 });
 
-$(document).on("keyup", function () {
+$(document).on("keyup", function (e) {
     for (let i = 0; i < allNotes.length; i++) {
-        if (event.keyCode == allKeys[i]) {
+        if (e.key == allKeypress[i]) {
             $(`#key${allKeys[i]}`).removeClass("keyFill");
             $(`#key${allKeys[i]}`).removeClass("keyFillFlat");
             synth.triggerRelease(allNotes[i]);
