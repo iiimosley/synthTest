@@ -321,7 +321,7 @@ input[type=range] {
                 box-shadow: 0 0 .4vw darkslategray;
             }
             .oscAnimate {
-                animation: oscAnimate 60s linear infinite;
+                animation: oscAnimate 5s linear infinite;
             }
         }
         #ampView, #filterEGView {
@@ -748,7 +748,7 @@ input[type=range] {
         background-position: 0 0; 
     }
 	to { 
-        background-position: -20000px 0; 
+        background-position: 3000px 0; 
     }
 }
 

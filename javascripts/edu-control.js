@@ -124,7 +124,14 @@ $(document).on('mousedown', "#startSawtooth", () => {
 });
 $(document).on('mouseup mouseleave', "#startSawtooth", () => sawtoothWave.disconnect());
 
-$(document).on('mousedown', '#oscView>aside>div>button', function(){console.log($(this).next());});
+$(document).on('mousedown', '#oscView>aside>div>button', function(){
+    $(this).next().addClass("oscAnimate");
+});
+
+$(document).on('mouseup mouseleave', '#oscView>aside>div>button', function () {
+    $(this).next().removeClass("oscAnimate");
+});
+
 //////////////////
 
 
