@@ -350,20 +350,20 @@ $(document).on('click', '#pickFilter', () => {
 
 
 // spacebar plays single oscillator of synth builder when modal is in view
-$(document).on('keydown', ()=>{
-    if (event.keyCode === 32 && $('#eduModal').css('display') == 'block' && !event.repeat) {
-        event.preventDefault();
-        $('.spacebarEvent').addClass('pressingSpace');
-        eduSynth.triggerAttack('A4');
-    } else if (event.keyCode === 32 && $('#eduModal').css('display') == 'block' && event.repeat) {
-        event.preventDefault();
-    }
-});
+// $(document).on('keydown', ()=>{
+//     if (event.key === " " && $('#eduModal').css('display') == 'block' && !event.repeat) {
+//         event.preventDefault();
+//         $('.spacebarEvent').addClass('pressingSpace');
+//         eduSynth.triggerAttack('A4');
+//     } else if (event.key === " " && $('#eduModal').css('display') == 'block' && event.repeat) {
+//         event.preventDefault();
+//     }
+// });
 
-$(document).on('keyup', (e) => {
-    if (e.keyCode === 32 && $('#eduModal').css('display') == 'block') {
-        eduSynth.triggerRelease();
-        $('.spacebarEvent').removeClass('pressingSpace');
-    }
-});
+// $(document).on('keyup', (e) => {
+//     if (e.key === " " && $('#eduModal').css('display') == 'block') {
+//         eduSynth.triggerRelease();
+//         $('.spacebarEvent').removeClass('pressingSpace');
+//     }
+// });
 
