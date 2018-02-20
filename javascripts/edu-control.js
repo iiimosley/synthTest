@@ -98,7 +98,6 @@ $(document).on('mouseup mouseleave', "#startSine", () => sineWave.disconnect());
 
 
 $(document).on('mousedown', "#startSquare", () => {
-    console.log($(event.target).parent().next());
     g.gain.value = 0.3;
     squareWave.connect(g);
     g.connect(audioCtx.destination);
