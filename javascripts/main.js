@@ -11,6 +11,7 @@ const osc = require('./osc.js');
 
 let currentUser = null;
 let editBool = false;
+let keyDown = false;
 
 module.exports.checkUser = uid => {
     currentUser = uid;
@@ -102,18 +103,18 @@ $("#synthWrap").trigger("change");
 synth.toMaster();
 
 $(document).on("keydown", function (e) {
+    console.log(e.originalEvent.repeat);
     for (let i = 0; i < allNotes.length; i++) {
         if ($("input[type=text]").is(":focus") || $('#eduModal').css('display') == 'block') {
             e.stopPropagation();
         }
-        else if (e.key == allKeypress[i] && !e.repeat) {
+        else if (e.key == allKeypress[i] && !e.originalEvent.repeat) {
             if ($(`#key${allKeys[i]}`).hasClass("flat")){
                 $(`#key${allKeys[i]}`).addClass("keyFillFlat");
             } else {
                 $(`#key${allKeys[i]}`).addClass("keyFill");
             }
             synth.triggerAttack(allNotes[i]);
-            console.log(e.repeat);
         }
     }
 });
@@ -121,6 +122,7 @@ $(document).on("keydown", function (e) {
 $(document).on("keyup", function (e) {
     for (let i = 0; i < allNotes.length; i++) {
         if (e.key == allKeypress[i]) {
+            keyDown = false;
             $(`#key${allKeys[i]}`).removeClass("keyFill");
             $(`#key${allKeys[i]}`).removeClass("keyFillFlat");
             synth.triggerRelease(allNotes[i]);
