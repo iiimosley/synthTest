@@ -10,7 +10,6 @@ module.exports.savePatch = (patchData) => {
             data: JSON.stringify(patchData)
         })
             .done(patch => {
-                console.log(patch);
                 resolve(patch);
             })
             .fail(err => reject(err));
@@ -51,7 +50,6 @@ module.exports.overwritePatch = (patch, params) => {
             data: JSON.stringify(params)
         })
         .done(patch => {
-            console.log(patch);
             resolve(patch);
         })
         .fail(err => reject(err));

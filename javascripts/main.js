@@ -103,7 +103,6 @@ $("#synthWrap").trigger("change");
 synth.toMaster();
 
 $(document).on("keydown", function (e) {
-    console.log(e.originalEvent.repeat);
     for (let i = 0; i < allNotes.length; i++) {
         if ($("input[type=text]").is(":focus") || $('#eduModal').css('display') == 'block') {
             e.stopPropagation();
@@ -158,8 +157,8 @@ $(document).on("click", "#dropdown", ()=>{
 
 
 /// load user patch from firebase & apply params to synth
-$(document).on("click", "#patchDrop", function(){
-    DataFactory.loadPatch(event.target.id)
+$(document).on("click", "#patchDrop", function(e){
+    DataFactory.loadPatch(e.target.id)
     .then(patch=>applyPatch(patch));
 }); 
 
@@ -215,7 +214,6 @@ $(document).on("click", "#savePatch", function() {
     $("#synthWrap :input[type=range]").each(function (set) {
         obj[this.id] = this.value;
     });
-    console.log(obj);
     DataFactory.savePatch(obj)
         .then(() => {
             view.leaveModal(obj.patch_name, editBool);
@@ -227,7 +225,6 @@ $(document).on("click", "#savePatch", function() {
 
 $(document).on('click', '#changeName', ()=>{
     if ($('#changeName').is(':checked')) {
-        console.log('getting it');
         $('#newName').prop('disabled', false).focus();
     } else {
         $('#newName').prop('disabled', true);
@@ -249,7 +246,6 @@ $(document).on("click", "#editPatch", function () {
     $("#synthWrap :input[type=range]").each(function (set) {
         obj[this.id] = this.value;
     });
-    console.log(patchKey, obj);
     DataFactory.overwritePatch(patchKey, obj)
         .then(patch => {
             view.leaveModal(patch.patch_name, editBool);
