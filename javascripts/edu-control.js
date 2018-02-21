@@ -156,7 +156,7 @@ $(document).on('input', '#eduAmpEG', function() {
     eduSynth.envelope.release = $('#aRelease').val();
 });
 
-$(document).on('mousedown', '#eduAmpEG', ()=>eduView.printAmpEGDetail(event.target.id));
+$(document).on('mousedown', '#eduAmpEG', (e)=>eduView.printAmpEGDetail(e.target.id));
 
 
 /// AMP ADSR Graph
@@ -228,7 +228,7 @@ $(document).on('input', '#eduFilter', function () {
     eduSynth.filter.Q.value = $('#fResonance').val();
 });
 
-$(document).on('mousedown', '#eduFilter', () => eduView.printFilterDetail(event.target.id));
+$(document).on('mousedown', '#eduFilter', (e) => eduView.printFilterDetail(e.target.id));
 
 
 module.exports.cutoffDraw = () => {
@@ -280,7 +280,7 @@ $(document).on('input', '#eduFilterEG', function () {
     eduSynth.filterEnvelope.release = $('#fRelease').val();
 });
 
-$(document).on('mousedown', '#eduFilterEG', () => eduView.printFilterEGDetail(event.target.id));
+$(document).on('mousedown', '#eduFilterEG', (e) => eduView.printFilterEGDetail(e.target.id));
 
 
 /// Filter ADSR Graph
@@ -350,20 +350,20 @@ $(document).on('click', '#pickFilter', () => {
 
 
 // spacebar plays single oscillator of synth builder when modal is in view
-// $(document).on('keydown', ()=>{
-//     if (event.key === " " && $('#eduModal').css('display') == 'block' && !event.repeat) {
-//         event.preventDefault();
-//         $('.spacebarEvent').addClass('pressingSpace');
-//         eduSynth.triggerAttack('A4');
-//     } else if (event.key === " " && $('#eduModal').css('display') == 'block' && event.repeat) {
-//         event.preventDefault();
-//     }
-// });
+$(document).on('keydown', (e)=>{
+    if (e.key === " " && $('#eduModal').css('display') == 'block' && !e.repeat) {
+        e.preventDefault();
+        $('.spacebarEvent').addClass('pressingSpace');
+        eduSynth.triggerAttack('A4');
+    } else if (e.key === " " && $('#eduModal').css('display') == 'block' && e.repeat) {
+        e.preventDefault();
+    }
+});
 
-// $(document).on('keyup', (e) => {
-//     if (e.key === " " && $('#eduModal').css('display') == 'block') {
-//         eduSynth.triggerRelease();
-//         $('.spacebarEvent').removeClass('pressingSpace');
-//     }
-// });
+$(document).on('keyup', (e) => {
+    if (e.key === " " && $('#eduModal').css('display') == 'block') {
+        eduSynth.triggerRelease();
+        $('.spacebarEvent').removeClass('pressingSpace');
+    }
+});
 
