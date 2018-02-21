@@ -47,7 +47,6 @@ let eduParams = {
 function resetSynth () {
     eduSynth = new Tone.MonoSynth(eduParams);
     eduSynth.toMaster();
-    console.log(eduSynth);
 }
 
 //oscillators
@@ -123,6 +122,8 @@ $(document).on('mousedown', "#startSawtooth", () => {
 });
 $(document).on('mouseup mouseleave', "#startSawtooth", () => sawtoothWave.disconnect());
 
+
+// Oscillator Animation
 $(document).on('mousedown', '#oscView>aside>div>button', function(){
     $(this).next().addClass("oscAnimate");
 });
@@ -130,8 +131,6 @@ $(document).on('mousedown', '#oscView>aside>div>button', function(){
 $(document).on('mouseup mouseleave', '#oscView>aside>div>button', function () {
     $(this).next().removeClass("oscAnimate");
 });
-
-//////////////////
 
 
 /// pulls selected sound wave, augments synth params, continues to amp stage 
@@ -142,10 +141,10 @@ $(document).on('click', '#pickOsc', ()=>{
     } else {
         eduSynth.oscillator.type = $('.oscSelect').attr('wave');
         buildPatch.osc = $('.oscSelect').attr('wave');
-        console.log(buildPatch);
         eduView.printAmpEG();
     }
 });
+
 
 
 /// listener for range input on AmpEG
@@ -156,7 +155,7 @@ $(document).on('input', '#eduAmpEG', function() {
     eduSynth.envelope.release = $('#aRelease').val();
 });
 
-$(document).on('mousedown', '#eduAmpEG', ()=>eduView.printAmpEGDetail(event.target.id));
+$(document).on('mousedown', '#eduAmpEG', (e)=>eduView.printAmpEGDetail(e.target.id));
 
 
 /// AMP ADSR Graph
@@ -180,32 +179,25 @@ module.exports.ampDraw = () => {
         ctx.lineTo(+aVal, +dVal);
         ctx.strokeStyle = 'rgb(0,0,0)';
         ctx.stroke();
-        // ctx.fillStyle = 'rgb(0,0,0)';
-        // ctx.fillRect(+aVal, +dVal, 5, 5);
 
         ctx.beginPath();
         ctx.moveTo(+aVal, +dVal);
         ctx.lineTo(100, +sVal);
         ctx.strokeStyle = 'rgb(0,0,0)';
         ctx.stroke();
-        // ctx.fillStyle = 'rgb(0,0,0)';
-        // ctx.fillRect(130, +sVal, 5, 5);
 
         ctx.beginPath();
         ctx.moveTo(100, +sVal);
         ctx.lineTo(+rVal, +sVal);
         ctx.strokeStyle = 'rgb(0,0,0)';
         ctx.stroke();
-        // ctx.fillStyle = 'rgb(0,0,0)';
-        // ctx.fillRect(+rVal, +sVal, 5, 5);
 
         ctx.beginPath();
         ctx.moveTo(+rVal, +sVal);
         ctx.lineTo(canvas.width, canvas.height);
         ctx.strokeStyle = 'rgb(0,0,0)';
         ctx.stroke();
-        // ctx.fillStyle = 'rgb(0,0,0)';
-        // ctx.fillRect(130, +sVal, 5, 5);
+
     });
     $("#eduAmpEG").trigger("input");
 };
@@ -215,21 +207,23 @@ $(document).on('click', '#pickAmp', ()=>{
     buildPatch.ampDecay = $('#aDecay').val();
     buildPatch.ampSustain = $('#aSustain').val();
     buildPatch.ampRelease = $('#aRelease').val();
-    console.log(buildPatch);
     eduView.printFilter();
 });
 /////////////////////////
 
 
-/// cutoff filter
+
+/// Filter Cutoff
 ////range input listeners
 $(document).on('input', '#eduFilter', function () {
     eduSynth.filterEnvelope.baseFrequency = $("#fCutoff").val();
     eduSynth.filter.Q.value = $('#fResonance').val();
 });
 
-$(document).on('mousedown', '#eduFilter', () => eduView.printFilterDetail(event.target.id));
+$(document).on('mousedown', '#eduFilter', (e) => eduView.printFilterDetail(e.target.id));
 
+
+// Filter Cutoff Graph
 
 module.exports.cutoffDraw = () => {
     let canvas = document.getElementById("cutoffView");
@@ -246,16 +240,12 @@ module.exports.cutoffDraw = () => {
         ctx.bezierCurveTo((+fVal - 30), 10, (+fVal - 31), 76 / +qVal, (+fVal - 70), 60);
         ctx.strokeStyle = 'rgb(0,0,0)';
         ctx.stroke();
-        // ctx.fillStyle = 'rgb(0,0,0)';
-        // ctx.fillRect(+aVal, +dVal, 5, 5);
 
         ctx.beginPath();
         ctx.moveTo((+fVal - 70), 60);
         ctx.lineTo(0, 60);
         ctx.strokeStyle = 'rgb(0,0,0)';
         ctx.stroke();
-        // ctx.fillStyle = 'rgb(0,0,0)';
-        // ctx.fillRect(130, +sVal, 5, 5);
 
     });
     $("#eduFilter").trigger("input");
@@ -264,14 +254,12 @@ module.exports.cutoffDraw = () => {
 $(document).on('click', '#pickCutoff', () => {
     buildPatch.filterFreq = $("#fCutoff").val();
     buildPatch.filterQ = $('#fResonance').val();
-    console.log(buildPatch);
     eduView.printFilterEG();
 });
 ////////////////////
 
 
-
-
+//Filter EG
 /// listener for range input on FilterEG
 $(document).on('input', '#eduFilterEG', function () {
     eduSynth.filterEnvelope.attack = $('#fAttack').val();
@@ -280,7 +268,7 @@ $(document).on('input', '#eduFilterEG', function () {
     eduSynth.filterEnvelope.release = $('#fRelease').val();
 });
 
-$(document).on('mousedown', '#eduFilterEG', () => eduView.printFilterEGDetail(event.target.id));
+$(document).on('mousedown', '#eduFilterEG', (e) => eduView.printFilterEGDetail(e.target.id));
 
 
 /// Filter ADSR Graph
@@ -304,32 +292,25 @@ module.exports.filterDraw = () => {
         ctx.lineTo(+aVal, +dVal);
         ctx.strokeStyle = 'rgb(0,0,0)';
         ctx.stroke();
-        // ctx.fillStyle = 'rgb(0,0,0)';
-        // ctx.fillRect(+aVal, +dVal, 5, 5);
 
         ctx.beginPath();
         ctx.moveTo(+aVal, +dVal);
         ctx.lineTo(100, +sVal);
         ctx.strokeStyle = 'rgb(0,0,0)';
         ctx.stroke();
-        // ctx.fillStyle = 'rgb(0,0,0)';
-        // ctx.fillRect(130, +sVal, 5, 5);
 
         ctx.beginPath();
         ctx.moveTo(100, +sVal);
         ctx.lineTo(+rVal, +sVal);
         ctx.strokeStyle = 'rgb(0,0,0)';
         ctx.stroke();
-        // ctx.fillStyle = 'rgb(0,0,0)';
-        // ctx.fillRect(+rVal, +sVal, 5, 5);
 
         ctx.beginPath();
         ctx.moveTo(+rVal, +sVal);
         ctx.lineTo(canvas.width, canvas.height);
         ctx.strokeStyle = 'rgb(0,0,0)';
         ctx.stroke();
-        // ctx.fillStyle = 'rgb(0,0,0)';
-        // ctx.fillRect(130, +sVal, 5, 5);
+
     });
     $("#eduFilterEG").trigger("input");
 };
@@ -347,21 +328,20 @@ $(document).on('click', '#pickFilter', () => {
 
 
 
-
-
 // spacebar plays single oscillator of synth builder when modal is in view
-$(document).on('keydown', ()=>{
-    if (event.keyCode === 32 && $('#eduModal').css('display') == 'block' && !event.repeat) {
-        event.preventDefault();
+// prevents page movement while testing oscillator
+$(document).on('keydown', (e)=>{
+    if (e.key === " " && $('#eduModal').css('display') == 'block' && !e.originalEvent.repeat) {
+        e.preventDefault();
         $('.spacebarEvent').addClass('pressingSpace');
         eduSynth.triggerAttack('A4');
-    } else if (event.keyCode === 32 && $('#eduModal').css('display') == 'block' && event.repeat) {
-        event.preventDefault();
+    } else if (e.key === " " && $('#eduModal').css('display') == 'block' && e.originalEvent.repeat) {
+        e.preventDefault();
     }
 });
 
 $(document).on('keyup', (e) => {
-    if (e.keyCode === 32 && $('#eduModal').css('display') == 'block') {
+    if (e.key === " " && $('#eduModal').css('display') == 'block') {
         eduSynth.triggerRelease();
         $('.spacebarEvent').removeClass('pressingSpace');
     }
