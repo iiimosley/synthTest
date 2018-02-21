@@ -47,7 +47,6 @@ let eduParams = {
 function resetSynth () {
     eduSynth = new Tone.MonoSynth(eduParams);
     eduSynth.toMaster();
-    console.log(eduSynth);
 }
 
 //oscillators
@@ -142,7 +141,6 @@ $(document).on('click', '#pickOsc', ()=>{
     } else {
         eduSynth.oscillator.type = $('.oscSelect').attr('wave');
         buildPatch.osc = $('.oscSelect').attr('wave');
-        console.log(buildPatch);
         eduView.printAmpEG();
     }
 });
@@ -215,7 +213,6 @@ $(document).on('click', '#pickAmp', ()=>{
     buildPatch.ampDecay = $('#aDecay').val();
     buildPatch.ampSustain = $('#aSustain').val();
     buildPatch.ampRelease = $('#aRelease').val();
-    console.log(buildPatch);
     eduView.printFilter();
 });
 /////////////////////////
@@ -264,7 +261,6 @@ module.exports.cutoffDraw = () => {
 $(document).on('click', '#pickCutoff', () => {
     buildPatch.filterFreq = $("#fCutoff").val();
     buildPatch.filterQ = $('#fResonance').val();
-    console.log(buildPatch);
     eduView.printFilterEG();
 });
 ////////////////////

@@ -21,7 +21,6 @@ firebase.auth().onAuthStateChanged(user => {
             view.userFeat();
         });
     } else {
-        console.log('not logged in');
         view.noUser();
         $('#patchData').hide();
     }
