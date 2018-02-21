@@ -10,7 +10,6 @@ module.exports.savePatch = (patchData) => {
             data: JSON.stringify(patchData)
         })
             .done(patch => {
-                console.log(patch);
                 resolve(patch);
             })
             .fail(err => reject(err));
@@ -51,7 +50,6 @@ module.exports.overwritePatch = (patch, params) => {
             data: JSON.stringify(params)
         })
         .done(patch => {
-            console.log(patch);
             resolve(patch);
         })
         .fail(err => reject(err));
@@ -71,7 +69,7 @@ module.exports.deletePatch = (patch) => {
 
 
 
-//radio button patches on load (no login)
+//radio button patches on load (no login necessary)
 module.exports.setPatch = () => {
     return new Promise((resolve, reject) => {
         $.ajax({url: '../patchData.json'})

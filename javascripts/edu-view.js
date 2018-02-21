@@ -24,6 +24,7 @@ module.exports.printOscDetail = (wave) => {
     $("#oscDetail").append(oscDetail(oscObj));
 };
 
+//if no oscillator selected: flashes screen to user prompt selection
 module.exports.oscAlert = () => {
     $("#oscAlert").fadeIn(500);
     setTimeout(() => {
