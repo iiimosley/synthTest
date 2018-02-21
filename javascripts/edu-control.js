@@ -122,6 +122,8 @@ $(document).on('mousedown', "#startSawtooth", () => {
 });
 $(document).on('mouseup mouseleave', "#startSawtooth", () => sawtoothWave.disconnect());
 
+
+// Oscillator Animation
 $(document).on('mousedown', '#oscView>aside>div>button', function(){
     $(this).next().addClass("oscAnimate");
 });
@@ -129,8 +131,6 @@ $(document).on('mousedown', '#oscView>aside>div>button', function(){
 $(document).on('mouseup mouseleave', '#oscView>aside>div>button', function () {
     $(this).next().removeClass("oscAnimate");
 });
-
-//////////////////
 
 
 /// pulls selected sound wave, augments synth params, continues to amp stage 
@@ -144,6 +144,7 @@ $(document).on('click', '#pickOsc', ()=>{
         eduView.printAmpEG();
     }
 });
+
 
 
 /// listener for range input on AmpEG
@@ -178,32 +179,25 @@ module.exports.ampDraw = () => {
         ctx.lineTo(+aVal, +dVal);
         ctx.strokeStyle = 'rgb(0,0,0)';
         ctx.stroke();
-        // ctx.fillStyle = 'rgb(0,0,0)';
-        // ctx.fillRect(+aVal, +dVal, 5, 5);
 
         ctx.beginPath();
         ctx.moveTo(+aVal, +dVal);
         ctx.lineTo(100, +sVal);
         ctx.strokeStyle = 'rgb(0,0,0)';
         ctx.stroke();
-        // ctx.fillStyle = 'rgb(0,0,0)';
-        // ctx.fillRect(130, +sVal, 5, 5);
 
         ctx.beginPath();
         ctx.moveTo(100, +sVal);
         ctx.lineTo(+rVal, +sVal);
         ctx.strokeStyle = 'rgb(0,0,0)';
         ctx.stroke();
-        // ctx.fillStyle = 'rgb(0,0,0)';
-        // ctx.fillRect(+rVal, +sVal, 5, 5);
 
         ctx.beginPath();
         ctx.moveTo(+rVal, +sVal);
         ctx.lineTo(canvas.width, canvas.height);
         ctx.strokeStyle = 'rgb(0,0,0)';
         ctx.stroke();
-        // ctx.fillStyle = 'rgb(0,0,0)';
-        // ctx.fillRect(130, +sVal, 5, 5);
+
     });
     $("#eduAmpEG").trigger("input");
 };
@@ -218,7 +212,8 @@ $(document).on('click', '#pickAmp', ()=>{
 /////////////////////////
 
 
-/// cutoff filter
+
+/// Filter Cutoff
 ////range input listeners
 $(document).on('input', '#eduFilter', function () {
     eduSynth.filterEnvelope.baseFrequency = $("#fCutoff").val();
@@ -227,6 +222,8 @@ $(document).on('input', '#eduFilter', function () {
 
 $(document).on('mousedown', '#eduFilter', (e) => eduView.printFilterDetail(e.target.id));
 
+
+// Filter Cutoff Graph
 
 module.exports.cutoffDraw = () => {
     let canvas = document.getElementById("cutoffView");
@@ -243,16 +240,12 @@ module.exports.cutoffDraw = () => {
         ctx.bezierCurveTo((+fVal - 30), 10, (+fVal - 31), 76 / +qVal, (+fVal - 70), 60);
         ctx.strokeStyle = 'rgb(0,0,0)';
         ctx.stroke();
-        // ctx.fillStyle = 'rgb(0,0,0)';
-        // ctx.fillRect(+aVal, +dVal, 5, 5);
 
         ctx.beginPath();
         ctx.moveTo((+fVal - 70), 60);
         ctx.lineTo(0, 60);
         ctx.strokeStyle = 'rgb(0,0,0)';
         ctx.stroke();
-        // ctx.fillStyle = 'rgb(0,0,0)';
-        // ctx.fillRect(130, +sVal, 5, 5);
 
     });
     $("#eduFilter").trigger("input");
@@ -266,8 +259,7 @@ $(document).on('click', '#pickCutoff', () => {
 ////////////////////
 
 
-
-
+//Filter EG
 /// listener for range input on FilterEG
 $(document).on('input', '#eduFilterEG', function () {
     eduSynth.filterEnvelope.attack = $('#fAttack').val();
@@ -300,32 +292,25 @@ module.exports.filterDraw = () => {
         ctx.lineTo(+aVal, +dVal);
         ctx.strokeStyle = 'rgb(0,0,0)';
         ctx.stroke();
-        // ctx.fillStyle = 'rgb(0,0,0)';
-        // ctx.fillRect(+aVal, +dVal, 5, 5);
 
         ctx.beginPath();
         ctx.moveTo(+aVal, +dVal);
         ctx.lineTo(100, +sVal);
         ctx.strokeStyle = 'rgb(0,0,0)';
         ctx.stroke();
-        // ctx.fillStyle = 'rgb(0,0,0)';
-        // ctx.fillRect(130, +sVal, 5, 5);
 
         ctx.beginPath();
         ctx.moveTo(100, +sVal);
         ctx.lineTo(+rVal, +sVal);
         ctx.strokeStyle = 'rgb(0,0,0)';
         ctx.stroke();
-        // ctx.fillStyle = 'rgb(0,0,0)';
-        // ctx.fillRect(+rVal, +sVal, 5, 5);
 
         ctx.beginPath();
         ctx.moveTo(+rVal, +sVal);
         ctx.lineTo(canvas.width, canvas.height);
         ctx.strokeStyle = 'rgb(0,0,0)';
         ctx.stroke();
-        // ctx.fillStyle = 'rgb(0,0,0)';
-        // ctx.fillRect(130, +sVal, 5, 5);
+
     });
     $("#eduFilterEG").trigger("input");
 };
@@ -343,9 +328,8 @@ $(document).on('click', '#pickFilter', () => {
 
 
 
-
-
 // spacebar plays single oscillator of synth builder when modal is in view
+// prevents page movement while testing oscillator
 $(document).on('keydown', (e)=>{
     if (e.key === " " && $('#eduModal').css('display') == 'block' && !e.originalEvent.repeat) {
         e.preventDefault();

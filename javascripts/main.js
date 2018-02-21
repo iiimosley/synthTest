@@ -11,15 +11,11 @@ const osc = require('./osc.js');
 
 let currentUser = null;
 let editBool = false;
-let keyDown = false;
 
 module.exports.checkUser = uid => {
     currentUser = uid;
     return currentUser;
 };
-
-//firefox dependency for vertically aligned range inputs
-// $("input[type=range]").attr('orient', 'vertical');
 
 
 $(document).on("click", "#login", ()=>{
@@ -30,20 +26,24 @@ $(document).on("click", "#login", ()=>{
 $(document).on("click", "#logout", () => AuthFactory.logout());
 
 
-
 let allNotes = ['C4','C#4','D4','D#4','E4','F4','F#4','G4','G#4','A4','A#4','B4','C5','C#5','D5','D#5','E5','F5'];
 let allKeyCodes = [65,87,83,69,68,70,84,71,89,72,85,74,75,79,76,80,186,222];
 let allKeys = ["a","w","s","e","d","f","t","g","y","h","u","j","k","o","l","p",";","'"];
 
+
+//sets id for each piano key for UI coloring 
 let keyboard = $("#keyMap").children();
 
 for (let i=0;i<keyboard.length;i++) {
     keyboard[i].id = `key${allKeyCodes[i]}`;
 }
 
+
+//Tone Js Synth created on page load:  plays 6 notes at a time
 let synth = new Tone.PolySynth(6, Tone.MonoSynth);
 
-
+//applies all values of patch passed into the argument to the inputs of the synth
+//triggers change at the end of function to initiate patch  
 function applyPatch(patch) {
     let params = Object.keys(patch);
     console.log(patch);
@@ -59,12 +59,13 @@ function applyPatch(patch) {
     $("#synthWrap").trigger("change");
 }
 
+// receives patch created in SynthBuilder
 module.exports.receivePatch = (patch) => {
     applyPatch(patch);
 };
 
 
-
+// detects any change made on #synthWrap inputs and adjusts object values of Tone.PolySynth
 $("#synthWrap").on("change", function(){
     synth.set({
         detune: $("input[name='detune']:checked").val(),
@@ -95,18 +96,26 @@ $("#synthWrap").on("change", function(){
     
 });
 
+//synth volume control event listener
 $("#synthVol").on("change", ()=> synth.volume.value = $("#synthVol").val());
 
 //initialize settings on load
 $("#synthWrap").trigger("change");
 
+//connects synth to main audio output
 synth.toMaster();
 
+
+// keydown: loops through all notes on keydown
 $(document).on("keydown", function (e) {
     for (let i = 0; i < allNotes.length; i++) {
+        //stops bubbling of event if text input focused or SynthBuilder open
         if ($("input[type=text]").is(":focus") || $('#eduModal').css('display') == 'block') {
             e.stopPropagation();
         }
+        // matches non-repeating key event (prevents multiple sounds of same key) 
+        // colors coresponding key on piano
+        // plays note
         else if (e.key == allKeys[i] && !e.originalEvent.repeat) {
             if ($(`#key${allKeyCodes[i]}`).hasClass("flat")){
                 $(`#key${allKeyCodes[i]}`).addClass("keyFillFlat");
@@ -118,10 +127,10 @@ $(document).on("keydown", function (e) {
     }
 });
 
+// keyup removes key color and ends note played
 $(document).on("keyup", function (e) {
     for (let i = 0; i < allNotes.length; i++) {
         if (e.key == allKeys[i]) {
-            keyDown = false;
             $(`#key${allKeyCodes[i]}`).removeClass("keyFill");
             $(`#key${allKeyCodes[i]}`).removeClass("keyFillFlat");
             synth.triggerRelease(allNotes[i]);
@@ -149,12 +158,6 @@ $(document).on("click", "#dropdown", ()=>{
     }
 });
 
-// $(document).on("click", (e)=>{
-//     if (e.currentTarget !== $("#dropdown") && $("#patchDrop").css("display") == "block") {
-//         $("#patchDrop").css("display", "none");
-//     }
-// });
-
 
 /// load user patch from firebase & apply params to synth
 $(document).on("click", "#patchDrop", function(e){
@@ -175,7 +178,7 @@ $("#patchBtns :input:radio").change(function(){
 
 
 
-///display modal event listeners
+///display modals - event listeners
 /////////////////////////////
 $(document).on("click", "#promptLogin", function(){
     AuthFactory.authUser()
@@ -192,10 +195,12 @@ $(document).on("click", "#callEdit", () => {
     });
 });
 
+// calls delete from 'x' in patch dropdown next to patch name
 $(document).on("click", ".deleteChip", function () {
     view.deleteView($(this).prev().attr("id"), $(this).prev().text());
 });
 
+// closes all modals with no data changes (cancels action)
 $(document).on("click", ".closeChip", function () {
     $(this).parent().parent().hide();
 });
@@ -222,7 +227,7 @@ $(document).on("click", "#savePatch", function() {
         });
 });
 
-
+//if box is checked, enables edit modal text input
 $(document).on('click', '#changeName', ()=>{
     if ($('#changeName').is(':checked')) {
         $('#newName').prop('disabled', false).focus();

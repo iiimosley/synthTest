@@ -69,7 +69,7 @@ module.exports.deletePatch = (patch) => {
 
 
 
-//radio button patches on load (no login)
+//radio button patches on load (no login necessary)
 module.exports.setPatch = () => {
     return new Promise((resolve, reject) => {
         $.ajax({url: '../patchData.json'})
