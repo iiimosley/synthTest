@@ -351,11 +351,11 @@ $(document).on('click', '#pickFilter', () => {
 
 // spacebar plays single oscillator of synth builder when modal is in view
 $(document).on('keydown', (e)=>{
-    if (e.key === " " && $('#eduModal').css('display') == 'block' && !e.repeat) {
+    if (e.key === " " && $('#eduModal').css('display') == 'block' && !e.originalEvent.repeat) {
         e.preventDefault();
         $('.spacebarEvent').addClass('pressingSpace');
         eduSynth.triggerAttack('A4');
-    } else if (e.key === " " && $('#eduModal').css('display') == 'block' && e.repeat) {
+    } else if (e.key === " " && $('#eduModal').css('display') == 'block' && e.originalEvent.repeat) {
         e.preventDefault();
     }
 });
