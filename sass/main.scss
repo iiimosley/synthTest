@@ -643,11 +643,14 @@ input[type=range] {
         display: inline-block;
         padding: 0;
         margin: 0;
-        width: 8.74%;
+        width: 8.97%;
         height: 100%;
         background: white;
-        border: .1vw solid black;
+        // border: .1vw solid black;
         border-radius: 0 0 1.3vw 1.3vw;
+        &:not(:last-child){
+            margin-right: .13%;
+        }
         span {
             display: inline-block; 
             font-size: 3vw;
