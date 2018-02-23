@@ -543,6 +543,12 @@ input[type=range] {
             border-radius: .7vw;
             outline: none;
             transition: all .3s;
+            img {
+                display: inline-block;
+                width: 3.4vw;
+                margin-left: 1vw;
+                filter: drop-shadow(0 0 .07vw snow);
+            }
             &:hover {
                 cursor: pointer;
                 letter-spacing: .18em;
@@ -552,13 +558,14 @@ input[type=range] {
             background: rgb(25, 25, 180);
             &:hover {
                 background: rgb(1, 1, 255);
-                box-shadow: 0 0 .3vw rgb(1, 1, 255), 0 0 1vw gold;
+                box-shadow: inset 0 0 .3vw silver, 0 0 .3vw rgb(1, 1, 255), 0 0 1vw gold;
             }
         }
         #promptGuest {
             background: rgb(0, 133, 0);
             &:hover {
                 background: rgb(0, 168, 0);
+                box-shadow: inset 0 0 .3vw snow, 0 0 .3vw snow;
             }
         }
     }
