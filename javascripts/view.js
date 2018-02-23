@@ -29,20 +29,20 @@ module.exports.noUser = () => {
     $("#nav").append(outNav);
     $("#registerModal").empty();
     $("#registerModal").append(registerModal);
-    $("#registerModal").show();
+    $("#registerModal").fadeIn();
     $("#userTools").empty();
 };
 
 module.exports.editView = (patches) => {
     $("#editModal").empty();
     $("#editModal").append(editModal({userPatches: patches}));
-    $("#editModal").show();
+    $("#editModal").fadeIn(300);
 };
 
 module.exports.saveView = () => {
     $("#saveModal").empty();
     $("#saveModal").append(saveModal);
-    $("#saveModal").fadeIn(100, ()=>$(this).show());
+    $("#saveModal").fadeIn(300, ()=>$(this).show());
 };
 
 module.exports.deleteView = (id, patch) => {

@@ -155,7 +155,7 @@ $("#showKeys").on("change", function(){
 $("#showKeys").trigger("change");
 
 /// dropdown menu listener
-$(document).on("click", "#dropdown", ()=>{ 
+$(document).on("click", "#dropdown", (e)=>{ 
     if ($("#patchDrop").css("display") == "none") {
         $("#patchDrop").css("display", "block");
     } else {
@@ -167,7 +167,8 @@ $(document).on("click", "#dropdown", ()=>{
 /// load user patch from firebase & apply params to synth
 $(document).on("click", "#patchDrop", function(e){
     DataFactory.loadPatch(e.target.id)
-    .then(patch=>applyPatch(patch));
+    .then(patch=>applyPatch(patch))
+    .then($(this).css("display", "none"));
 }); 
 
 /// load prebuilt patch for non-registered users & apply params to synth
@@ -207,7 +208,7 @@ $(document).on("click", ".deleteChip", function () {
 
 // closes all modals with no data changes (cancels action)
 $(document).on("click", ".closeChip", function () {
-    $(this).parent().parent().hide();
+    $(this).parent().parent().fadeOut(300);
 });
 
 
