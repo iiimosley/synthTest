@@ -1,10 +1,10 @@
-<div id="logout">Logout</div>
-<div id="dropdown">
-    <span id="userPatches">patches</span>
+<div><a id="logout">Logout</a></div>
+<div id="userPatches">
+    <a id="dropdown">Patches</a>
     <div id="patchDrop">
             {{#each userPatches}}
                 <div class="patchSelect"><a id="{{@key}}">{{patch_name}}</a> <span class="deleteChip">&times;</span></div>
             {{/each}}
     </div>
 </div>
-<div id="startBuild"><a>start synthbuilder</a></div>
+<div id="startBuild"><a>Start SynthBuilder</a></div>

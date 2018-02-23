@@ -12,6 +12,7 @@ const osc = require('./osc.js');
 let currentUser = null;
 let editBool = false;
 
+
 module.exports.checkUser = uid => {
     currentUser = uid;
     return currentUser;
@@ -96,14 +97,16 @@ $("#synthWrap").on("change", function(){
     
 });
 
+//connects synth to main audio output
+synth.toMaster();
+
 //synth volume control event listener
-$("#synthVol").on("change", ()=> synth.volume.value = $("#synthVol").val());
+$("#synthVol").on("change", () => {
+    synth.toMaster().volume.value = $("#synthVol").val();
+});
 
 //initialize settings on load
 $("#synthWrap").trigger("change");
-
-//connects synth to main audio output
-synth.toMaster();
 
 
 // keydown: loops through all notes on keydown
@@ -149,6 +152,8 @@ $("#showKeys").on("change", function(){
 });
 
 
+$("#showKeys").trigger("change");
+
 /// dropdown menu listener
 $(document).on("click", "#dropdown", ()=>{ 
     if ($("#patchDrop").css("display") == "none") {
@@ -158,11 +163,19 @@ $(document).on("click", "#dropdown", ()=>{
     }
 });
 
+// 
+$(document).on("click", (e) => {
+    if ($("#patchDrop").css("display") === "block" && e.target.id !== "dropdown") {
+        $("#patchDrop").css("display", "none");
+    }
+});
+
 
 /// load user patch from firebase & apply params to synth
 $(document).on("click", "#patchDrop", function(e){
     DataFactory.loadPatch(e.target.id)
-    .then(patch=>applyPatch(patch));
+    .then(patch=>applyPatch(patch))
+    .then($(this).css("display", "none"));
 }); 
 
 /// load prebuilt patch for non-registered users & apply params to synth
@@ -202,7 +215,7 @@ $(document).on("click", ".deleteChip", function () {
 
 // closes all modals with no data changes (cancels action)
 $(document).on("click", ".closeChip", function () {
-    $(this).parent().parent().hide();
+    $(this).parent().parent().fadeOut(100);
 });
 
 
