@@ -72,6 +72,7 @@ $sawtoothColor: red;
 
 * {
     margin: 0;
+    padding: 0;
 }
 
 body {
@@ -125,15 +126,21 @@ input[type=range] {
     border-bottom: .3vw double gold;
     overflow: hidden;
     transition: all .2s;
-    > * {
-        padding: 1.3vw 4vw;
+    > div {
         display: inline-block;
         border-left: .1vw solid navy;
         border-right: .1vw solid navy;
         transition: all .2s;
-        &:hover, {
+        &:hover {
             background: rgb(209, 167, 59);
             cursor: pointer;
+        }
+        > a {
+            display: inline-block;
+            padding: 1.3vw 4vw;
+            &:hover {
+                color: snow;
+            }
         }
     }
     #patchDrop {
@@ -142,8 +149,7 @@ input[type=range] {
         z-index: 7;
         background: rgba(255, 250, 250, 0.959);
         box-shadow: 0 .7vw 1vw darkslategray;
-        margin-left: -4vw;
-        margin-top: 1.3vw;
+        margin-top: .3vw;
         .patchSelect{
             display: flex;
             justify-content: space-between;
@@ -512,35 +518,38 @@ input[type=range] {
             width: 80%;
             margin: 1.5vw auto;
         }
-        button {
+        a {
             display: block;
             width: 70%;
             margin: 2vw auto;
             padding: .8vw 1.8vw;
             font-size: 1em;
-            font-family: 'Exo', Helvetica, sans-serif;
-            font-weight: 200;
+            font-family: 'Futura', Helvetica, sans-serif;
+            font-weight: 250;
+            text-align: center;
             letter-spacing: .2em;
             color: white;
+            border: none;
             border-radius: .7vw;
             outline: none;
-            transition: filter .2s;
+            transition: all .3s;
             &:hover {
                 cursor: pointer;
-                filter: contrast(170%);
-                box-shadow: 0 0 .5vw darkslategray;
+                letter-spacing: .18em;
             }
         }
         #promptLogin {
-            background: rgb(54, 54, 255);
-            img {
-                text-align: left;
-                width: auto;
-                height: 1.8vw;
+            background: rgb(25, 25, 180);
+            &:hover {
+                background: rgb(1, 1, 255);
+                box-shadow: 0 0 .3vw rgb(1, 1, 255), 0 0 1vw gold;
             }
         }
         #promptGuest {
-            background: rgb(0, 151, 0);
+            background: rgb(0, 133, 0);
+            &:hover {
+                background: rgb(0, 168, 0);
+            }
         }
     }
 }
@@ -669,7 +678,7 @@ input[type=range] {
         animation: 2s linear 3 glowNotice;
     }
     sup {
-        font-size: .2em;
+        font-size: 0.65em;
         color: rgb(211, 255, 124);
         margin: 0 .4vw;
     }
