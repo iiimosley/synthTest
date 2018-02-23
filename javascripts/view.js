@@ -36,13 +36,13 @@ module.exports.noUser = () => {
 module.exports.editView = (patches) => {
     $("#editModal").empty();
     $("#editModal").append(editModal({userPatches: patches}));
-    $("#editModal").fadeIn(300);
+    $("#editModal").fadeIn(200);
 };
 
 module.exports.saveView = () => {
     $("#saveModal").empty();
     $("#saveModal").append(saveModal);
-    $("#saveModal").fadeIn(300, ()=>$(this).show());
+    $("#saveModal").fadeIn(200, ()=>$(this).show());
 };
 
 module.exports.deleteView = (id, patch) => {
