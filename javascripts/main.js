@@ -12,6 +12,7 @@ const osc = require('./osc.js');
 let currentUser = null;
 let editBool = false;
 
+
 module.exports.checkUser = uid => {
     currentUser = uid;
     return currentUser;
@@ -96,14 +97,16 @@ $("#synthWrap").on("change", function(){
     
 });
 
+//connects synth to main audio output
+synth.toMaster();
+
 //synth volume control event listener
-$("#synthVol").on("change", ()=> synth.volume.value = $("#synthVol").val());
+$("#synthVol").on("change", () => {
+    synth.toMaster().volume.value = $("#synthVol").val();
+});
 
 //initialize settings on load
 $("#synthWrap").trigger("change");
-
-//connects synth to main audio output
-synth.toMaster();
 
 
 // keydown: loops through all notes on keydown
@@ -148,6 +151,8 @@ $("#showKeys").on("change", function(){
     }
 });
 
+
+$("#showKeys").trigger("change");
 
 /// dropdown menu listener
 $(document).on("click", "#dropdown", ()=>{ 
