@@ -215,7 +215,7 @@ $(document).on("click", ".deleteChip", function () {
 
 // closes all modals with no data changes (cancels action)
 $(document).on("click", ".closeChip", function () {
-    $(this).parent().parent().fadeOut(300);
+    $(this).parent().parent().fadeOut(100);
 });
 
 
