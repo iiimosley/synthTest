@@ -72,10 +72,12 @@ module.exports.printFilterEGDetail = (f) => {
 };
 
 module.exports.leaveBuilder = () => {
-    $("#eduWrap").empty();
-    $("#eduWrap").append(buildComplete);
+    $("#eduModal").empty();
+    $("#eduModal").hide();
+    $("#completeModal").show();
+    $("#completeModal").append(buildComplete);
     setTimeout(() => {
-        $("#eduWrap").parent().fadeOut();
-    }, 1000);
+        $("#completeModal").fadeOut(300);
+        $("#completeModal").empty();
+    }, 1500);
 };
-
