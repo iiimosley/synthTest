@@ -436,6 +436,18 @@ input[type=range] {
     }
 }
 
+#completeModal {
+    @include modal;
+    padding-top: 10vw;
+    #buildComplete {
+        @include modalContent;
+        width: 40%;
+        h2 {
+            margin: 3vw auto;
+            text-align: center;
+        }
+    }
+}
 
 
 #editModal, #saveModal, #deleteModal {
