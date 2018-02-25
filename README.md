@@ -2,7 +2,7 @@
 
 *SynthULX* is a web application designed for users of any musical background to overview basic concepts & functionalities of musical synthesis.
 
-*SynthULX* provides a musical synthesizer that emulates modern synthesizer interfaces & is playable via QWERTY keyboard. Synthesizer Components include:
+*SynthULX* provides a musical synthesizer that emulates modern synthesizer interfaces & is playable via QWERTY keyboard. Synthesizer Components/Features include:
   - Single Oscillator Selection:
     - Sine
     - Triangle
@@ -14,6 +14,9 @@
     - Resonance
   - Filter Envelope Generator (full ADSR*)
   - 6-note polyphony (up to 6 notes simultaneously)
+  - 18-note keyboard: 
+    - initial settings from C4-F5 (all keys assigned to a specified keydown/up event)
+    - transposable by +/-2 octaves
   
 ###### * ADSR: Attack, Decay, Sustain, Release
 
@@ -21,13 +24,13 @@
 
 ## Authenticated User Features
 
-Registered users can save, load, edit/overwrite, & delete patches that hold user-specified parameters for the synthesizer (full CRUD methodology).
+Registered users can save, load, edit/overwrite, & delete patches that hold user-specified parameters for the synthesizer.
 
 ![Synth ULX Patches](https://raw.githubusercontent.com/iiimosley/synthULX/master/images/synthULX-patches.png "Synth ULX patch menu")
 
 ## Integrative Learning
 
-*SynthULX* also provides a **SynthBuilder** feature. The **SynthBuilder** walks users through a step-by-step tutorial explaining each synthesizer component's functionality (with responsive visual diagrams to each component) and allows users to adjust parameters to their desired value. Once the tutorial is complete, the **SynthBuilder** loads the user-defined parameters to the web application synthesizer for key-event utilization.
+*SynthULX* also provides a **SynthBuilder** feature. The **SynthBuilder** walks users through a step-by-step tutorial explaining each synthesizer component's functionality (with responsive visual diagrams to each component) and allows users to adjust parameters to their desired value. Once the tutorial is complete, the **SynthBuilder** loads the user-defined parameters to the web application synthesizer for QWERTY keyboard performance.
 
 ![Synth ULX SynthBuilder](https://raw.githubusercontent.com/iiimosley/synthULX/master/images/synthULX-builder.png "Synth ULX Synth Builder")
 
