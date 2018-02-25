@@ -16,17 +16,17 @@
   - 6-note polyphony (up to 6 notes simultaneously)
   
 ###### * ADSR: Attack, Decay, Sustain, Release
-\
+
 ![Synth ULX Main](https://raw.githubusercontent.com/iiimosley/synthULX/master/images/synthULX-main.png "Synth ULX Main Page")
-\
-\
-\
+
+## Authenticated User Features
+
 Registered users can save, load, edit/overwrite, & delete patches that hold user-specified parameters for the synthesizer (full CRUD methodology).
-\
+
 ![Synth ULX Patches](https://raw.githubusercontent.com/iiimosley/synthULX/master/images/synthULX-patches.png "Synth ULX patch menu")
-\
-\
-\
+
+## Integrative Learning
+
 *SynthULX* also provides a **SynthBuilder** feature. The **SynthBuilder** walks users through a step-by-step tutorial explaining each synthesizer component's functionality (with responsive visual diagrams to each component) and allows users to adjust parameters to their desired value. Once the tutorial is complete, the **SynthBuilder** loads the user-defined parameters to the web application synthesizer for key-event utilization.
 
 ![Synth ULX SynthBuilder](https://raw.githubusercontent.com/iiimosley/synthULX/master/images/synthULX-builder.png "Synth ULX Synth Builder")
