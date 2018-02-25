@@ -43,6 +43,7 @@ module.exports.saveView = () => {
     $("#saveModal").empty();
     $("#saveModal").append(saveModal);
     $("#saveModal").fadeIn(200, ()=>$(this).show());
+    $("#newPatch").focus();
 };
 
 module.exports.deleteView = (id, patch) => {
