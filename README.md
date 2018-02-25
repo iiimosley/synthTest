@@ -53,12 +53,14 @@ $ http-server
 $ grunt
 ```
 
-You will need to create your own [Firebase](https://firebase.google.com/) credentials by first creating this js file:
+You will need to create your own [Firebase](https://firebase.google.com/) project and set your credentials by... 
+
+Creating this javascript file:
 ```
 $ touch javascripts/config/fb-creds.js
 ```
-Then, paste the following into the file with your Firebase credentials
-(found on the overview page of your Firebase Project)
+Paste the following into the file with your Firebase credentials
+(found on the Project Overview page of your Firebase Project):
 ```javascript
 'use strict';
 
