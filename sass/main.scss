@@ -49,6 +49,7 @@ $sawtoothColor: red;
     border-radius: 1em;
     color: rgb(51, 51, 51);
     background: white;
+    box-shadow: 0 0 6vw black;
 }
 
 @mixin closeChip {
@@ -477,21 +478,39 @@ input[type=range] {
             color: white;
             text-decoration: none;
             background: blue;
-            border-radius: 1em;
+            border-radius: .8vw;
+            width: 50%;
+            letter-spacing: .2em;
+            transition: all .3s;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+        #savePatch {
+            background: $sineColor;
             &:hover{
                 box-shadow: inset 0 0 .7vw .2vw rgba(1, 1, 66, 0.582), inset 0 0 1vw rgb(2, 2, 109);
-                cursor: pointer;
+            }
+        }
+        #editPatch{
+            background: $squareColor;
+            &:hover{
+                box-shadow: inset 0 0 .7vw .2vw rgb(9, 104, 9), inset 0 0 1vw rgb(6, 99, 6);
+            }
+        }
+        #deletePatch {
+            background: $sawtoothColor;
+                &:hover{
+                box-shadow: inset 0 0 .7vw .2vw rgb(128, 19, 0), inset 0 0 1vw rgb(122, 33, 17);
             }
         }
         input, select {
             font-family: inherit;
-            font-size: 1.1em;
+            font-size: 1.3em;
         }
-        #deletePatch {
-            background: red;
-                &:hover{
-                box-shadow: inset 0 0 .7vw .2vw rgb(128, 19, 0), inset 0 0 1vw rgb(122, 33, 17);
-            }
+        input[type="checkbox"]{
+            margin-left: .3em;
+            cursor: pointer;
         }
         .closeChip {
             position: absolute;
@@ -574,9 +593,9 @@ input[type=range] {
             }
         }
         #promptGuest {
-            background: rgb(0, 133, 0);
+            background: rgb(1, 109, 1);
             &:hover {
-                background: rgb(0, 168, 0);
+                background: green;
                 box-shadow: inset 0 0 .3vw snow, 0 0 .3vw snow;
             }
         }

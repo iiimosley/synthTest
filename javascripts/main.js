@@ -245,7 +245,7 @@ $(document).on('click', '#changeName', ()=>{
     if ($('#changeName').is(':checked')) {
         $('#newName').prop('disabled', false).focus();
     } else {
-        $('#newName').prop('disabled', true);
+        $('#newName').prop('disabled', true).val("");
     }
 });
 
