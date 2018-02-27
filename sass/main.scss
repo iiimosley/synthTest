@@ -91,12 +91,12 @@ h1, h3 {
     text-align: center;
 }
 
-
 input[type=range] {
     writing-mode: bt-lr;
     -webkit-appearance: slider-vertical; 
     width: $rangeLabel;
     height: 8em;
+    transition: all .2s; 
     &:focus{
         outline: none;
     }

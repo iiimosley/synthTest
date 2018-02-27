@@ -21,10 +21,10 @@ module.exports.getPatches = (uid) => {
     return new Promise((resolve, reject) => {
         $.ajax({ url: `https://synthulx.firebaseio.com/patches.json?orderBy="uid"&equalTo="${uid}"` })
             .done(patches => {
-                let patchKeys = Object.keys(patches);
-                patchKeys.map(key => {
-                    patches[key].patch_id = key;
-                });
+                // let patchKeys = Object.keys(patches);
+                // patchKeys.map(key => {
+                //     patches[key].patch_id = key;
+                // });
                 resolve(patches);
             })
             .fail(err => reject(err));
