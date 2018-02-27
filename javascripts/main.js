@@ -1,13 +1,13 @@
 'use strict';
 const $ = require('jquery');
 const Tone = require('tone');
+const Handlebars = require('hbsfy/runtime');
 
 const DataFactory = require('./dataFactory');
 const AuthFactory = require('./authFactory');
 const view = require('./view');
 const eduCtrl = require('./edu-control');
 const eduView = require('./edu-view');
-const osc = require('./osc.js');
 
 let currentUser = null;
 let editBool = false;
@@ -47,7 +47,6 @@ let synth = new Tone.PolySynth(6, Tone.MonoSynth);
 //triggers change at the end of function to initiate patch  
 function applyPatch(patch) {
     let params = Object.keys(patch);
-    console.log(patch);
     params.forEach(i => {
         if (i === "osc") {
             $(`#synthWrap :input:radio[name=${i}][id=${patch[i]}]`).prop('checked', true);
@@ -58,13 +57,13 @@ function applyPatch(patch) {
         }
     });
     $("#synthWrap").trigger("change");
+    $("#synthVol").trigger("change");
 }
 
 // receives patch created in SynthBuilder
 module.exports.receivePatch = (patch) => {
     applyPatch(patch);
 };
-
 
 // detects any change made on #synthWrap inputs and adjusts object values of Tone.PolySynth
 $("#synthWrap").on("change", function(){
@@ -97,16 +96,18 @@ $("#synthWrap").on("change", function(){
     
 });
 
+//synth volume control event listener
+$("#synthVol").on("change", () => {
+    synth.volume.value = $("#synthVol").val();
+});
+
 //connects synth to main audio output
 synth.toMaster();
 
-//synth volume control event listener
-$("#synthVol").on("change", () => {
-    synth.toMaster().volume.value = $("#synthVol").val();
-});
 
 //initialize settings on load
 $("#synthWrap").trigger("change");
+$("#synthVol").trigger("change");
 
 
 // keydown: loops through all notes on keydown
