@@ -5,18 +5,19 @@ const Tone = require('tone');
 const eduView = require('./edu-view');
 const main = require('./main');
 
+// resets params for synth in synthbuilder on load
 $(document).on('click', '#startBuild', ()=> {
     resetSynth();
     eduView.startBuild();
 });
-    
 
-
-/// synth for builder + params
-
+// object that holds values of parameters set through synthbuilder
 let buildPatch = {};
+
+//init variable for synth in synthbuilder (reset purposed)
 let eduSynth;
 
+//init params for synth in synthbuilder (reset purposed)
 let eduParams = {
     detune: 0,
     oscillator: {
@@ -44,21 +45,25 @@ let eduParams = {
     }
 };
 
+//resets params of synth everytime synthbuilder is loaded
 function resetSynth () {
     eduSynth = new Tone.MonoSynth(eduParams);
     eduSynth.toMaster();
 }
 
-//oscillators
+
+// Web Audio Oscillators: context and gain
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 let audioCtx = new window.AudioContext();
 let g = audioCtx.createGain();
 
+//creates separate osc for each wave
 let sineWave = audioCtx.createOscillator();
 let squareWave = audioCtx.createOscillator();
 let triangleWave = audioCtx.createOscillator();
 let sawtoothWave = audioCtx.createOscillator();
 
+// set osc type for each individual osc
 sineWave.type = 'sine';
 squareWave.type = 'square';
 triangleWave.type = 'triangle';
@@ -66,16 +71,13 @@ sawtoothWave.type = 'sawtooth';
 
 let waves = [sineWave, squareWave, triangleWave, sawtoothWave];
 
-// waves.forEach(wave=>{
-//     console.log(wave);
-// });
-
-
+// set osc frequency
 sineWave.frequency.setValueAtTime(440, audioCtx.currentTime);
 squareWave.frequency.setValueAtTime(440, audioCtx.currentTime);
 triangleWave.frequency.setValueAtTime(440, audioCtx.currentTime);
 sawtoothWave.frequency.setValueAtTime(440, audioCtx.currentTime);
 
+// init osc
 sineWave.start(0);
 squareWave.start(0);
 triangleWave.start(0);
@@ -89,13 +91,14 @@ function selectOsc(wave) {
 }
 
 // oscillator listeners
+//plays sine wave on click, end oscillation on mouseup or mouse leave
 $(document).on('mousedown', '#startSine', function() {
     sineWave.connect(audioCtx.destination);
     selectOsc($('#startSine').parent());
 });
 $(document).on('mouseup mouseleave', "#startSine", () => sineWave.disconnect());
 
-
+// || square wave
 $(document).on('mousedown', "#startSquare", () => {
     g.gain.value = 0.3;
     squareWave.connect(g);
@@ -104,7 +107,7 @@ $(document).on('mousedown', "#startSquare", () => {
 });
 $(document).on('mouseup mouseleave', "#startSquare", () => squareWave.disconnect());
 
-
+// || triangle wave
 $(document).on('mousedown', "#startTriangle", () => {
     g.gain.value = 0.71;
     triangleWave.connect(g);
@@ -113,7 +116,7 @@ $(document).on('mousedown', "#startTriangle", () => {
 });
 $(document).on('mouseup mouseleave', "#startTriangle", () => triangleWave.disconnect());
 
-
+// || sawtooth wave
 $(document).on('mousedown', "#startSawtooth", () => {
     g.gain.value = 0.5;
     sawtoothWave.connect(g);
@@ -123,7 +126,7 @@ $(document).on('mousedown', "#startSawtooth", () => {
 $(document).on('mouseup mouseleave', "#startSawtooth", () => sawtoothWave.disconnect());
 
 
-// Oscillator Animation
+// Oscillator Animation toggle
 $(document).on('mousedown', '#oscView>aside>div>button', function(){
     $(this).next().addClass("oscAnimate");
 });
@@ -133,10 +136,10 @@ $(document).on('mouseup mouseleave', '#oscView>aside>div>button', function () {
 });
 
 
-/// pulls selected sound wave, augments synth params, continues to amp stage 
+/// augments synth osc params, adds selected wave to buildPatch, continues to amp stage
 $(document).on('click', '#pickOsc', ()=>{
     if ($('.oscSelect').attr('wave')===undefined) {
-        // window.alert('Please Select a Soundwave');
+        // screen prompt when no osc selected
         eduView.oscAlert();
     } else {
         eduSynth.oscillator.type = $('.oscSelect').attr('wave');
@@ -146,8 +149,8 @@ $(document).on('click', '#pickOsc', ()=>{
 });
 
 
-
-/// listener for range input on AmpEG
+// AMP EG
+/// listener for range input on AmpEG, augments synth params for amp eg
 $(document).on('input', '#eduAmpEG', function() {
     eduSynth.envelope.attack = $('#aAttack').val();
     eduSynth.envelope.decay = $('#aDecay').val();
@@ -155,6 +158,7 @@ $(document).on('input', '#eduAmpEG', function() {
     eduSynth.envelope.release = $('#aRelease').val();
 });
 
+//toggles amp details when targeted range input is clicked
 $(document).on('mousedown', '#eduAmpEG', (e)=>eduView.printAmpEGDetail(e.target.id));
 
 
@@ -165,6 +169,8 @@ module.exports.ampDraw = () => {
     let ctx = canvas.getContext("2d");
     ctx.beginPath();
 
+    // plot points change with range input
+    // redraws with every change
     $(document).on("input", "#eduAmpEG", function () {
         let aVal = +($("#aAttack").val() * 90);
         let dVal = +(canvas.height) - +($("#aDecay").val() * +(canvas.height)); 
@@ -202,6 +208,7 @@ module.exports.ampDraw = () => {
     $("#eduAmpEG").trigger("input");
 };
 
+// sets value to buildPatch
 $(document).on('click', '#pickAmp', ()=>{
     buildPatch.ampAttack = $('#aAttack').val();
     buildPatch.ampDecay = $('#aDecay').val();
@@ -214,12 +221,13 @@ $(document).on('click', '#pickAmp', ()=>{
 
 
 /// Filter Cutoff
-////range input listeners
+////range input listeners, augments synth filter cutoff settings
 $(document).on('input', '#eduFilter', function () {
     eduSynth.filterEnvelope.baseFrequency = $("#fCutoff").val();
     eduSynth.filter.Q.value = $('#fResonance').val();
 });
 
+// toggles filter details when targeted range input is clicked
 $(document).on('mousedown', '#eduFilter', (e) => eduView.printFilterDetail(e.target.id));
 
 
@@ -251,6 +259,8 @@ module.exports.cutoffDraw = () => {
     $("#eduFilter").trigger("input");
 };
 
+// sets values of cutoff filter to buildPatch
+// continues to next section
 $(document).on('click', '#pickCutoff', () => {
     buildPatch.filterFreq = $("#fCutoff").val();
     buildPatch.filterQ = $('#fResonance').val();
@@ -260,7 +270,7 @@ $(document).on('click', '#pickCutoff', () => {
 
 
 //Filter EG
-/// listener for range input on FilterEG
+/// listener for range input on FilterEG, augments synth filter eg params
 $(document).on('input', '#eduFilterEG', function () {
     eduSynth.filterEnvelope.attack = $('#fAttack').val();
     eduSynth.filterEnvelope.decay = $('#fDecay').val();
@@ -268,6 +278,7 @@ $(document).on('input', '#eduFilterEG', function () {
     eduSynth.filterEnvelope.release = $('#fRelease').val();
 });
 
+// toggles filter details when targeted range input is clicked
 $(document).on('mousedown', '#eduFilterEG', (e) => eduView.printFilterEGDetail(e.target.id));
 
 
@@ -315,12 +326,14 @@ module.exports.filterDraw = () => {
     $("#eduFilterEG").trigger("input");
 };
 
+// sets filter eg params to buildPatch
+// calls for buildPatch to be applied to synth 
+// leaves synthbuilder
 $(document).on('click', '#pickFilter', () => {
     buildPatch.filterAttack = $('#fAttack').val();
     buildPatch.filterDecay = $('#fDecay').val();
     buildPatch.filterSustain = $('#fSustain').val();
     buildPatch.filterRelease = $('#fRelease').val();
-    console.log(buildPatch);
     main.receivePatch(buildPatch);
     eduView.leaveBuilder();
 });
