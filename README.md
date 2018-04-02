@@ -70,5 +70,5 @@ module.exports = {
 };
 ```
 
-Direct your browser to <http://localhost:8080> to view project.
+Direct your browser to [localhost:8080](http://localhost:8080) to view project.
 Refresh page whenever changes have been made.
