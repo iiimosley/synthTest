@@ -559,7 +559,11 @@ input[type=range] {
             -webkit-text-fill-color: transparent;
             font-weight: 400;
         }
-        a {
+        #chromeMsg {
+            font-weight: bold;
+            letter-spacing: .05em;
+        }
+        a:not(.autoPlayMsg) {
             display: block;
             width: 70%;
             margin: 2vw auto;
